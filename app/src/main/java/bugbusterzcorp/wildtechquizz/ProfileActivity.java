@@ -9,11 +9,14 @@ import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class ProfileActivity extends AppCompatActivity implements View.OnClickListener {
 
     //firebase auth object
     private FirebaseAuth firebaseAuth;
+    private DatabaseReference refUser;
 
     //view objects
     private TextView textViewUserEmail;
@@ -39,13 +42,15 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
         //getting current user
         FirebaseUser user = firebaseAuth.getCurrentUser();
+        refUser = FirebaseDatabase.getInstance().getReference("User"); // APPELLE LA BASE DE DONNEES
 
-        //initializing views
+
+
         textViewUserEmail = (TextView) findViewById(R.id.textViewUserEmail);
         buttonLogout = (Button) findViewById(R.id.buttonLogout);
 
-        //displaying logged in user name
-        textViewUserEmail.setText("Welcome "+user.getEmail());
+
+        textViewUserEmail.setText("Salut "+ user.getEmail());
 
         //adding listener to button
         buttonLogout.setOnClickListener(this);

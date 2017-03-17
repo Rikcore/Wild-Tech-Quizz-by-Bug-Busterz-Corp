@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "357206827922",
+    "firebase_url": "https://wildtechquizz-32c36.firebaseio.com",
+    "project_id": "wildtechquizz-32c36",
+    "storage_bucket": "wildtechquizz-32c36.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:357206827922:android:7eb2b807e0ace67d",
+        "android_client_info": {
+          "package_name": "bugbusterzcorp.wildtechquizz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "357206827922-msg8rppf7cdqqgl8e9lq19qlth14lfal.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "bugbusterzcorp.wildtechquizz",
+            "certificate_hash": "ca0c23fcb53f24857ed26b4934b9702553ab1be5"
+          }
+        },
+        {
+          "client_id": "357206827922-6n6tkamprqpu213rf0erpt6es1a1md03.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCOnfs96R9fjPpnaTJqRkXX-H6RkbOzR5o"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "357206827922-6n6tkamprqpu213rf0erpt6es1a1md03.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

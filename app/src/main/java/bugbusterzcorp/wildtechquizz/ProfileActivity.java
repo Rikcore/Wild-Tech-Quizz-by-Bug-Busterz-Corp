@@ -1,16 +1,18 @@
 package bugbusterzcorp.wildtechquizz;
 
 import android.content.Intent;
+import android.media.Image;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 public class ProfileActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -19,7 +21,8 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     private DatabaseReference refUser;
 
     //view objects
-    private TextView textViewUserEmail;
+    private TextView textViewUsername;
+    private ImageView imageViewUser;
     private Button buttonLogout;
     private Button buttonPlay;
 
@@ -43,16 +46,17 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
         //getting current user
         FirebaseUser user = firebaseAuth.getCurrentUser();
-        refUser = FirebaseDatabase.getInstance().getReference("User"); // APPELLE LA BASE DE DONNEES
 
 
 
-        textViewUserEmail = (TextView) findViewById(R.id.textViewUserEmail);
+        textViewUsername = (TextView) findViewById(R.id.textViewUsername);
+        imageViewUser = (ImageView) findViewById(R.id.imageViewUser);
         buttonLogout = (Button) findViewById(R.id.buttonLogout);
         buttonPlay = (Button)findViewById(R.id.buttonPlay);
 
 
-        textViewUserEmail.setText("Salut "+ user.getEmail());
+        textViewUsername.setText("Salut "+ user.getDisplayName());
+
 
         //adding listener to button
         buttonLogout.setOnClickListener(this);

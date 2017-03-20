@@ -2,10 +2,12 @@ package bugbusterzcorp.wildtechquizz;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,6 +18,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -32,10 +36,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView textViewSignin;
 
     private ProgressDialog progressDialog;
-
-    private FirebaseDatabase userDatabase;
-    DatabaseReference refUser;
-
 
     //defining firebaseauth object
     private FirebaseAuth firebaseAuth;
@@ -92,6 +92,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return;
         }
 
+
         //if the email and password are not empty
         //displaying a progress dialog
 
@@ -105,14 +106,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         //checking if success
                         if(task.isSuccessful()){
-                            userDatabase = FirebaseDatabase.getInstance(); //APPELLE LA BASE DE DONNEES
-                            refUser = userDatabase.getReference("Users");
-                            UserClass newUser = new UserClass(email, username);
-                            refUser.push().setValue(newUser);
+                            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+                            UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                                    .setDisplayName(username)
+                                    .setPhotoUri(Uri.parse("http://www.canalvie.com/polopoly_fs/1.1805948.1468184179!/image/chat-raye.jpg_gen/derivatives/cvlandscape_670_377/chat-raye.jpg"))
+                                    .build();
+
+                            user.updateProfile(profileUpdates).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+                                        Log.d("TAG", "User profile updated.");
+                                        finish();
+                                        startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+                                    }
+                                }
+                            });
 
 
-                            finish();
-                            startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+
                         }else{
                             //display some message here
                             Toast.makeText(MainActivity.this,"Erreur",Toast.LENGTH_LONG).show();

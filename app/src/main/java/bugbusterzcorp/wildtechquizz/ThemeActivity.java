@@ -8,8 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class ThemeActivity extends AppCompatActivity {
-    TextView textViewTech;
-    TextView textViewWild;
+
     ImageView imageViewTech;
     ImageView imageViewWild;
 
@@ -20,6 +19,7 @@ public class ThemeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_theme);
 
         imageViewTech = (ImageView) findViewById(R.id.imageViewTech);
+
         imageViewWild = (ImageView) findViewById(R.id.imageViewWild);
 
 
@@ -31,8 +31,7 @@ public class ThemeActivity extends AppCompatActivity {
                 startActivity(techQuizz);
 
 
-            }
-        });
+
 
         imageViewWild.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -42,6 +41,7 @@ public class ThemeActivity extends AppCompatActivity {
 
             }
         });
+
 
 
 

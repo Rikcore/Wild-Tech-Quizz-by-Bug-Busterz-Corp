@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         //checking if success
                         if(task.isSuccessful()){
                             userDatabase = FirebaseDatabase.getInstance(); //APPELLE LA BASE DE DONNEES
-                            refUser = userDatabase.getReference("User");
+                            refUser = userDatabase.getReference("Users");
                             UserClass newUser = new UserClass(email, username);
                             refUser.push().setValue(newUser);
 

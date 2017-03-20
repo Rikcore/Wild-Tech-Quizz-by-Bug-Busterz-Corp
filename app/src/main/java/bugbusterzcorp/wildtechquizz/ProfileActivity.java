@@ -24,6 +24,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     private TextView textViewUsername;
     private ImageView imageViewUser;
     private Button buttonLogout;
+    private Button buttonPlay;
 
 
     @Override
@@ -51,6 +52,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         textViewUsername = (TextView) findViewById(R.id.textViewUsername);
         imageViewUser = (ImageView) findViewById(R.id.imageViewUser);
         buttonLogout = (Button) findViewById(R.id.buttonLogout);
+        buttonPlay = (Button)findViewById(R.id.buttonPlay);
 
 
         textViewUsername.setText("Salut "+ user.getDisplayName());
@@ -58,6 +60,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
         //adding listener to button
         buttonLogout.setOnClickListener(this);
+        buttonPlay.setOnClickListener(this);
     }
 
     @Override
@@ -70,6 +73,10 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
             finish();
             //starting login activity
             startActivity(new Intent(this, LoginActivity.class));
+
+            }
+         else if (view == buttonPlay) {
+            startActivity(new Intent(this, ThemeActivity.class));
         }
     }
 }

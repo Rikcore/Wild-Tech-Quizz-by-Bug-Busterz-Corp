@@ -20,15 +20,15 @@ public class ThemeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_theme);
 
         imageViewTech = (ImageView) findViewById(R.id.imageViewTech);
-        imageViewWild = (ImageView) findViewById(R.id.imageViewTech);
-        Intent techQuizz = getIntent();
-        Intent wildQuizz = getIntent();
+        imageViewWild = (ImageView) findViewById(R.id.imageViewWild);
+
 
 
         imageViewTech.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent techQuizz = new Intent(ThemeActivity.this,)
+                Intent techQuizz = new Intent(ThemeActivity.this, QuizzListActivity.class);
+                startActivity(techQuizz);
 
 
             }
@@ -37,7 +37,9 @@ public class ThemeActivity extends AppCompatActivity {
         imageViewWild.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent wildQUizz = new Intent(ThemeActivity)
+                Intent wildQuizz = new Intent(ThemeActivity.this, QuizzListActivity.class);
+                startActivity(wildQuizz);
+
             }
         });
 

@@ -19,7 +19,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".ProfileActivity" />
-        <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".CharteActivity" />
+        <activity android:name=".MyQuizzActivity" />
+        <activity android:name=".ThemeActivity"></activity>
     </application>
 
 </manifest>

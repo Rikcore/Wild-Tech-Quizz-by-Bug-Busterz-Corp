@@ -16,17 +16,25 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     //defining view objects
     private EditText editTextEmail;
     private EditText editTextPassword;
+    private EditText editTextUsername;
     private Button buttonSignup;
 
     private TextView textViewSignin;
 
     private ProgressDialog progressDialog;
+
+    private FirebaseDatabase userDatabase;
+    DatabaseReference refUser;
 
 
     //defining firebaseauth object
@@ -53,6 +61,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //initializing views
         editTextEmail = (EditText) findViewById(R.id.editTextEmail);
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
+        editTextUsername = (EditText) findViewById(R.id.editTextUsername);
+
         textViewSignin = (TextView) findViewById(R.id.textViewSignin);
 
         buttonSignup = (Button) findViewById(R.id.buttonSignup);
@@ -67,24 +77,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void registerUser(){
 
         //getting email and password from edit texts
-        String email = editTextEmail.getText().toString().trim();
+        final String email = editTextEmail.getText().toString().trim();
         String password  = editTextPassword.getText().toString().trim();
+        final String username = editTextUsername.getText().toString().trim();
 
         //checking if email and passwords are empty
         if(TextUtils.isEmpty(email)){
-            Toast.makeText(this,"Please enter email",Toast.LENGTH_LONG).show();
+            Toast.makeText(this,"Merci de fourni une adresse mail.",Toast.LENGTH_LONG).show();
             return;
         }
 
         if(TextUtils.isEmpty(password)){
-            Toast.makeText(this,"Please enter password",Toast.LENGTH_LONG).show();
+            Toast.makeText(this,"Tu ne peux pas créer un compte sans mot de passe !",Toast.LENGTH_LONG).show();
             return;
         }
 
         //if the email and password are not empty
         //displaying a progress dialog
 
-        progressDialog.setMessage("Registering Please Wait...");
+        progressDialog.setMessage("Validation de ton compte");
         progressDialog.show();
 
         //creating a new user
@@ -94,11 +105,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         //checking if success
                         if(task.isSuccessful()){
+                            userDatabase = FirebaseDatabase.getInstance(); //APPELLE LA BASE DE DONNEES
+                            refUser = userDatabase.getReference("Users");
+                            UserClass newUser = new UserClass(email, username);
+                            refUser.push().setValue(newUser);
+
+
                             finish();
                             startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
                         }else{
                             //display some message here
-                            Toast.makeText(MainActivity.this,"Registration Error",Toast.LENGTH_LONG).show();
+                            Toast.makeText(MainActivity.this,"Erreur",Toast.LENGTH_LONG).show();
                         }
                         progressDialog.dismiss();
                     }

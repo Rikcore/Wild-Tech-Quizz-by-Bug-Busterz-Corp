@@ -41,6 +41,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button buttonLoadPicture;
     private Button buttonSignup;
     private ImageView imageView;
+    private String picturePath;
+    private Uri selectedImage;
 
     private TextView textViewSignin;
 
@@ -91,15 +93,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && null != data) {
-            Uri selectedImage = data.getData();
+            selectedImage = data.getData();
             String[] filePathColumn = { MediaStore.Images.Media.DATA };
             Cursor cursor = getContentResolver().query(selectedImage,filePathColumn, null, null, null);
             cursor.moveToFirst();
             int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-            final String picturePath = cursor.getString(columnIndex);
+            picturePath = cursor.getString(columnIndex);
             cursor.close();
-            ImageView imageView = (ImageView) findViewById(R.id.imageView);
-            imageView.setImageBitmap(BitmapFactory.decodeFile(picturePath));
+
         }
     }
 
@@ -125,7 +126,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //if the email and password are not empty
         //displaying a progress dialog
 
-        progressDialog.setMessage("Validation de ton compte connard");
+        progressDialog.setMessage("Validation de ton compte");
         progressDialog.show();
 
         //creating a new user
@@ -140,8 +141,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                             UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
                                     .setDisplayName(username)
-                                    
-
+                                    .setPhotoUri(selectedImage)
                                     .build();
 
                             user.updateProfile(profileUpdates).addOnCompleteListener(new OnCompleteListener<Void>() {

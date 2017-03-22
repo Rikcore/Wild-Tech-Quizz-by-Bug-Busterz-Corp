@@ -1,8 +1,12 @@
 package bugbusterzcorp.wildtechquizz;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.media.Image;
 import android.net.Uri;
+import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,9 +14,18 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.File;
+import java.net.URI;
+import java.net.URISyntaxException;
+
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserInfo;
 import com.google.firebase.database.DatabaseReference;
+
+import static android.R.attr.data;
+import static android.R.attr.name;
 
 public class ProfileActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -31,6 +44,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         //initializing firebase authentication object
         firebaseAuth = FirebaseAuth.getInstance();
@@ -44,10 +58,6 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
             startActivity(new Intent(this, LoginActivity.class));
         }
 
-        //getting current user
-        FirebaseUser user = firebaseAuth.getCurrentUser();
-
-
 
         textViewUsername = (TextView) findViewById(R.id.textViewUsername);
         imageViewUser = (ImageView) findViewById(R.id.imageViewUser);
@@ -55,7 +65,25 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         buttonPlay = (Button)findViewById(R.id.buttonPlay);
 
 
-        textViewUsername.setText("Salut "+ user.getDisplayName());
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            for (UserInfo profile : user.getProviderData()) {
+
+                String providerId = profile.getProviderId();
+
+                String uid = profile.getUid();
+
+                String name = profile.getDisplayName();
+                String email = profile.getEmail();
+                Uri profilePic = profile.getPhotoUrl();
+
+
+                textViewUsername.setText(name);
+                imageViewUser.setImageURI(profilePic);
+
+            };
+        }
 
 
 
@@ -63,6 +91,9 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         buttonLogout.setOnClickListener(this);
         buttonPlay.setOnClickListener(this);
     }
+
+
+
 
     @Override
     public void onClick(View view) {
@@ -80,4 +111,8 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
             startActivity(new Intent(this, ThemeActivity.class));
         }
     }
+
+
+
+
 }

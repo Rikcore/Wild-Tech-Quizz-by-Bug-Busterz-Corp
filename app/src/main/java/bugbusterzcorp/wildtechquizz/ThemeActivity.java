@@ -29,6 +29,7 @@ public class ThemeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent techQuizz = new Intent(ThemeActivity.this, QuizzListActivity.class);
                 startActivity(techQuizz);
+            }});
 
 
 
@@ -39,13 +40,15 @@ public class ThemeActivity extends AppCompatActivity {
                 Intent wildQuizz = new Intent(ThemeActivity.this, QuizzListActivity.class);
                 startActivity(wildQuizz);
 
-            }
-        });
+            }});
+        }
 
 
 
 
-    }
 }
+
+
+
 
 

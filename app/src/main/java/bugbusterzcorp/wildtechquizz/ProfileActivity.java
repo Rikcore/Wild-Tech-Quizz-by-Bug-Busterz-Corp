@@ -112,6 +112,13 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         }
     }
 
+    public void goToCreate(View view){
+
+        startActivity(new Intent(this, CreateQuizActivity.class));
+
+
+    }
+
 
 
 

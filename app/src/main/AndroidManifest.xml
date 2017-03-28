@@ -14,7 +14,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,7 +26,8 @@
         <activity android:name=".CharteActivity" />
         <activity android:name=".MyQuizzActivity" />
         <activity android:name=".ThemeActivity" />
-        <activity android:name=".QuizzListActivity"></activity>
+        <activity android:name=".QuizzListActivity" />
+        <activity android:name=".CreateQuizActivity"></activity>
     </application>
 
 </manifest>

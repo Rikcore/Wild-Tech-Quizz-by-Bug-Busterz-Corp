@@ -5,6 +5,7 @@ import android.content.pm.ActivityInfo;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.net.Uri;
 import android.provider.ContactsContract;
@@ -18,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -35,7 +37,9 @@ import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
 import static android.R.attr.data;
+import static android.R.attr.drawable;
 import static android.R.attr.name;
+import static bugbusterzcorp.wildtechquizz.R.id.image;
 import static bugbusterzcorp.wildtechquizz.R.id.imageView;
 
 public class ProfileActivity extends AppCompatActivity implements View.OnClickListener {
@@ -105,7 +109,8 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
             mStorage.child("images/"+uid).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                 @Override
                 public void onSuccess(Uri uri) {
-                    imageViewUser.setImageURI(uri);
+                    Picasso.with(ProfileActivity.this).load(uri).into(imageViewUser);
+                    buttonUpload.setVisibility(View.INVISIBLE);
 
                 }
             }).addOnFailureListener(new OnFailureListener() {
@@ -189,6 +194,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                             // ...
                         }
                     });
+            buttonUpload.setVisibility(View.INVISIBLE);
 
         }
     }

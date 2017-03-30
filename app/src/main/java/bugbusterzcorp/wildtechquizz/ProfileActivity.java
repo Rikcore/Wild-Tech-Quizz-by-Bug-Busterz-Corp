@@ -61,7 +61,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     private String picturePath;
     private Uri selectedImage;
     private String uid;
-    private String username;
+
 
 
 
@@ -100,16 +100,22 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
                 String providerId = user.getProviderId();
                 uid = user.getUid();
-                username = user.getDisplayName();
+                String username = user.getDisplayName();
                 String email = user.getEmail();
 
                 textViewUsername.setText(username);
 
 
+
+
             mStorage.child("images/"+uid).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                 @Override
                 public void onSuccess(Uri uri) {
-                    Picasso.with(ProfileActivity.this).load(uri).into(imageViewUser);
+                    Picasso
+                            .with(ProfileActivity.this)
+                            .load(uri)
+                            .resize(400, 400)
+                            .into(imageViewUser);
                     buttonUpload.setVisibility(View.INVISIBLE);
 
                 }
@@ -120,10 +126,6 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                     Exception Prout = exception;
                 }
             });
-
-
-
-
 
 
 

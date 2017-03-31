@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             //LORS DE LA CREATION DU COMPTE, JE L'UPDATE EN Y AJOUTANT UN PSEUDO
                             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                             UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                                    .setDisplayName(username)
+                                     .setDisplayName(username)
                                     .build();
 
                             user.updateProfile(profileUpdates).addOnCompleteListener(new OnCompleteListener<Void>() {

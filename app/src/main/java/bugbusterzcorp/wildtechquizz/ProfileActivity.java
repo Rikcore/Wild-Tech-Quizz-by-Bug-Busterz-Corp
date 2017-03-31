@@ -88,6 +88,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
 
         textViewUsername = (TextView) findViewById(R.id.textViewUsername);
+
         imageViewUser = (ImageView) findViewById(R.id.imageViewUser);
         buttonLogout = (Button) findViewById(R.id.buttonLogout);
         buttonPlay = (Button)findViewById(R.id.buttonPlay);
@@ -95,10 +96,12 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
 
 
+
         user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
 
                 String providerId = user.getProviderId();
+
                 uid = user.getUid();
                 String username = user.getDisplayName();
                 String email = user.getEmail();
@@ -138,6 +141,17 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         imageViewUser.setOnClickListener(this);
         buttonUpload.setOnClickListener(this);
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        String username = user.getDisplayName();
+        textViewUsername.setText(username);
+
+
+    }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

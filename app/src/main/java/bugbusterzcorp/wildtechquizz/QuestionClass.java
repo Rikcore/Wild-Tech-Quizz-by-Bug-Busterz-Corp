@@ -6,16 +6,14 @@ import android.widget.EditText;
 
 
 public class QuestionClass {
-
     private String mQuestion;
-
-
     private String mChoiceA;
     private String mChoiceB;
     private String mCorrectAnswer;
 
 
-    private QuestionClass(){}
+
+    public QuestionClass(){}
 
     public QuestionClass(String question, String choiceA, String choiceB, String correctAnswer){
         mQuestion = question;
@@ -25,6 +23,11 @@ public class QuestionClass {
 
     }
 
+
+
+    public String getmQuestion() {
+        return mQuestion;
+    }
 
     public String getChoiceA() {
         return mChoiceA;
@@ -39,6 +42,21 @@ public class QuestionClass {
     }
 
 
+    public void setmQuestion(String mQuestion) {
+        this.mQuestion = mQuestion;
+    }
+
+    public void setmChoiceA(String mChoiceA) {
+        this.mChoiceA = mChoiceA;
+    }
+
+    public void setmChoiceB(String mChoiceB) {
+        this.mChoiceB = mChoiceB;
+    }
+
+    public void setmCorrectAnswer(String mCorrectAnswer) {
+        this.mCorrectAnswer = mCorrectAnswer;
+    }
 
 
 }

@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "357206827922-iopqljt0u30kbiqfaap72re5ktgr509h.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "bugbusterzcorp.wildtechquizz",
+            "certificate_hash": "a0e1700c64a6904daff5a94ffd468b308348abe2"
+          }
+        },
+        {
           "client_id": "357206827922-msg8rppf7cdqqgl8e9lq19qlth14lfal.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

@@ -46,7 +46,6 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
 
     private TextView textViewUsername;
-    private TextView textview2;
     private ImageView imageViewUser;
     private Button buttonLogout;
     private Button buttonPlay;
@@ -77,11 +76,12 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
 
         textViewUsername = (TextView) findViewById(R.id.textViewUsername);
-        textview2 = (TextView) findViewById(R.id.textView2);
+       // textview2 = (TextView) findViewById(R.id.textView2);
         imageViewUser = (ImageView) findViewById(R.id.imageViewUser);
         buttonLogout = (Button) findViewById(R.id.buttonLogout);
         buttonPlay = (Button)findViewById(R.id.buttonPlay);
         buttonUpload = (Button) findViewById(R.id.buttonUpload);
+
 
 
 
@@ -90,18 +90,16 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
                 String providerId = user.getProviderId();
                 String uid = user.getUid();
-                String username = user.getDisplayName();
                 String email = user.getEmail();
 
-            for (UserInfo userInfo : user.getProviderData()) {
+             /*for (UserInfo userInfo : user.getProviderData()) {
                 if (username == null && userInfo.getDisplayName() != null) {
                     username = userInfo.getDisplayName();
                 }
 
-            }
+            } */
 
-                textViewUsername.setText(email);
-                textview2.setText(username);
+
 
 
 
@@ -114,6 +112,17 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         imageViewUser.setOnClickListener(this);
         buttonUpload.setOnClickListener(this);
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        String username = user.getDisplayName();
+        textViewUsername.setText(username);
+
+
+    }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

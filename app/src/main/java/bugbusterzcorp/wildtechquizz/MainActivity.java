@@ -19,6 +19,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,6 +28,9 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.io.File;
 
@@ -34,84 +39,55 @@ import static android.R.attr.data;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    //defining view objects
     private EditText editTextEmail;
     private EditText editTextPassword;
     private EditText editTextUsername;
-    private Button buttonLoadPicture;
-    private Button buttonSignup;
-    private ImageView imageView;
-    private String picturePath;
-    private Uri selectedImage;
-
     private TextView textViewSignin;
+    private Button buttonSignup;
 
-    private static int RESULT_LOAD_IMAGE = 1;
 
     private ProgressDialog progressDialog;
 
-    //defining firebaseauth object
     private FirebaseAuth firebaseAuth;
+
+
+    String username;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //initializing firebase auth object
         firebaseAuth = FirebaseAuth.getInstance();
 
-        //if getCurrentUser does not returns null
-        if(firebaseAuth.getCurrentUser() != null){
-            //that means user is already logged in
-            //so close this activity
-            finish();
 
-            //and open profile activity
+        if(firebaseAuth.getCurrentUser() != null){
+            finish();
             startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
         }
 
-        //initializing views
         editTextEmail = (EditText) findViewById(R.id.editTextEmail);
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
         editTextUsername = (EditText) findViewById(R.id.editTextUsername);
-
-
         textViewSignin = (TextView) findViewById(R.id.textViewSignin);
-        buttonLoadPicture = (Button) findViewById(R.id.buttonLoadPicture);
         buttonSignup = (Button) findViewById(R.id.buttonSignup);
 
         progressDialog = new ProgressDialog(this);
 
-        //attaching listener to button
         buttonSignup.setOnClickListener(this);
         textViewSignin.setOnClickListener(this);
-        buttonLoadPicture.setOnClickListener(this);
+
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && null != data) {
-            selectedImage = data.getData();
-            String[] filePathColumn = { MediaStore.Images.Media.DATA };
-            Cursor cursor = getContentResolver().query(selectedImage,filePathColumn, null, null, null);
-            cursor.moveToFirst();
-            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-            picturePath = cursor.getString(columnIndex);
-            cursor.close();
-
-        }
-    }
 
     private void registerUser(){
 
-        //getting email and password from edit texts
         final String email = editTextEmail.getText().toString().trim();
         String password  = editTextPassword.getText().toString().trim();
-        final String username = editTextUsername.getText().toString().trim();
+        username = editTextUsername.getText().toString().trim();
 
-        //checking if email and passwords are empty
         if(TextUtils.isEmpty(email)){
             Toast.makeText(this,"Merci de fourni une adresse mail.",Toast.LENGTH_LONG).show();
             return;
@@ -123,32 +99,28 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
 
-        //if the email and password are not empty
-        //displaying a progress dialog
+
 
         progressDialog.setMessage("Validation de ton compte");
         progressDialog.show();
 
-        //creating a new user
         firebaseAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        //checking if success
+
                         if(task.isSuccessful()){
+
+                            //LORS DE LA CREATION DU COMPTE, JE L'UPDATE EN Y AJOUTANT UN PSEUDO
                             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
-
                             UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                                    .setDisplayName(username)
-                                    .setPhotoUri(selectedImage)
+                                     .setDisplayName(username)
                                     .build();
 
                             user.updateProfile(profileUpdates).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
-                                        Log.d("TAG", "User profile updated.");
                                         finish();
                                         startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
                                     }
@@ -156,9 +128,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             });
 
 
-
                         }else{
-                            //display some message here
+
                             Toast.makeText(MainActivity.this,"Erreur",Toast.LENGTH_LONG).show();
                         }
                         progressDialog.dismiss();
@@ -175,14 +146,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         if(view == textViewSignin){
-            //open login activity when user taps on the already registered textview
+
             startActivity(new Intent(this, LoginActivity.class));
         }
-        if(view == buttonLoadPicture){
-            final Intent i = new Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-            startActivityForResult(i, RESULT_LOAD_IMAGE);
 
-        }
 
     }
 }

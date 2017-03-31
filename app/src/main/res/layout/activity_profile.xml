@@ -14,24 +14,29 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
-            android:layout_marginTop="29dp"
             android:textAppearance="?android:attr/textAppearanceLarge"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintHorizontal_bias="0.504"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/view2" />
 
         <Button
             android:id="@+id/buttonLogout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="32dp"
+            android:layout_marginEnd="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
-            android:text="Logout"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginStart="8dp"
+            android:text="Déconnexion"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginBottom="32dp" />
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
 
         <Button
             android:id="@+id/buttonPlay"
@@ -39,49 +44,67 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
-            android:layout_marginTop="32dp"
             android:text="Jouer"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageViewUser" />
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="24dp"
+            app:layout_constraintBottom_toTopOf="@+id/buttonCreateQuiz" />
 
-        <ImageView
-            android:id="@+id/imageViewUser"
-            android:layout_width="135dp"
-            android:layout_height="143dp"
+        <android.support.v7.widget.CardView
+            android:backgroundTint="@color/cardview_dark_background"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:elevation="12dp"
+            android:id="@+id/view2"
+            app:cardCornerRadius="80dp"
+            android:layout_centerHorizontal="true"
+            android:innerRadius="0dp"
+            android:shape="ring"
+            android:thicknessRatio="1.9"
             android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintHorizontal_bias="0.463"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewUsername"
-            app:srcCompat="@drawable/score" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="64dp"
+            android:layout_marginRight="8dp"
+            app:layout_constraintRight_toRightOf="parent">
+                <ImageView
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:id="@+id/imageViewUser"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true">
+                </ImageView>
+        </android.support.v7.widget.CardView>
+
 
         <Button
             android:id="@+id/buttonCreateQuiz"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Create Quiz"
-            android:onClick="goToCreate"
-            android:layout_marginRight="8dp"
-            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginBottom="32dp"
+            android:layout_marginEnd="8dp"
             android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:onClick="goToCreate"
+            android:text="Créer un quizz"
+            app:layout_constraintBottom_toTopOf="@+id/buttonLogout"
             app:layout_constraintLeft_toLeftOf="parent"
-            android:layout_marginTop="32dp"
-            app:layout_constraintTop_toBottomOf="@+id/buttonPlay" />
+            app:layout_constraintRight_toRightOf="parent" />
 
     <Button
         android:id="@+id/buttonUpload"
-        android:layout_width="57dp"
-        android:layout_height="43dp"
-        android:layout_marginLeft="0dp"
-        android:layout_marginRight="32dp"
-        android:layout_marginTop="128dp"
-        app:layout_constraintHorizontal_bias="0.483"
-        app:layout_constraintLeft_toRightOf="@+id/imageViewUser"
+
+        android:layout_width="76dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/view2" />
 
 
 </android.support.constraint.ConstraintLayout>

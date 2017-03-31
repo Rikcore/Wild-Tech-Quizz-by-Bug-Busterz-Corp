@@ -5,6 +5,7 @@ import android.content.pm.ActivityInfo;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.net.Uri;
 import android.provider.ContactsContract;
@@ -18,8 +19,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URL;
 
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -31,17 +34,20 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
 import static android.R.attr.data;
+import static android.R.attr.drawable;
 import static android.R.attr.name;
+import static bugbusterzcorp.wildtechquizz.R.id.image;
 import static bugbusterzcorp.wildtechquizz.R.id.imageView;
 
 public class ProfileActivity extends AppCompatActivity implements View.OnClickListener {
 
 
     private FirebaseAuth firebaseAuth;
-    private DatabaseReference refUser;
-    private StorageReference UserImageRef;
+    private StorageReference mStorage;
+    private StorageReference mUserRef;
     private FirebaseUser user;
 
 
@@ -54,6 +60,9 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     private static int RESULT_LOAD_IMAGE = 1;
     private String picturePath;
     private Uri selectedImage;
+    private String uid;
+
+
 
 
     @Override
@@ -61,6 +70,9 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+        mStorage = FirebaseStorage.getInstance().getReference();
+
 
         //initializing firebase authentication object
         firebaseAuth = FirebaseAuth.getInstance();
@@ -76,7 +88,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
 
         textViewUsername = (TextView) findViewById(R.id.textViewUsername);
-       // textview2 = (TextView) findViewById(R.id.textView2);
+
         imageViewUser = (ImageView) findViewById(R.id.imageViewUser);
         buttonLogout = (Button) findViewById(R.id.buttonLogout);
         buttonPlay = (Button)findViewById(R.id.buttonPlay);
@@ -89,17 +101,34 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         if (user != null) {
 
                 String providerId = user.getProviderId();
-                String uid = user.getUid();
+
+                uid = user.getUid();
+                String username = user.getDisplayName();
                 String email = user.getEmail();
 
-             /*for (UserInfo userInfo : user.getProviderData()) {
-                if (username == null && userInfo.getDisplayName() != null) {
-                    username = userInfo.getDisplayName();
+                textViewUsername.setText(username);
+
+
+
+
+            mStorage.child("images/"+uid).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                @Override
+                public void onSuccess(Uri uri) {
+                    Picasso
+                            .with(ProfileActivity.this)
+                            .load(uri)
+                            .resize(400, 400)
+                            .into(imageViewUser);
+                    buttonUpload.setVisibility(View.INVISIBLE);
+
                 }
-
-            } */
-
-
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception exception) {
+                    // Handle any errors
+                    Exception Prout = exception;
+                }
+            });
 
 
 
@@ -164,9 +193,9 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
             startActivityForResult(i, RESULT_LOAD_IMAGE);
         }
         else if (view == buttonUpload){
-            UserImageRef = FirebaseStorage.getInstance().getReference();
-            UserImageRef = UserImageRef.child(user.getUid());
-            UserImageRef.putFile(selectedImage)
+
+            mStorage = mStorage.child("images/"+uid);
+            mStorage.putFile(selectedImage)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -181,6 +210,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                             // ...
                         }
                     });
+            buttonUpload.setVisibility(View.INVISIBLE);
 
         }
     }

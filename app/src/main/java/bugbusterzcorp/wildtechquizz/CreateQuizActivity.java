@@ -2,13 +2,18 @@ package bugbusterzcorp.wildtechquizz;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.graphics.PorterDuff;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RadioButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.w3c.dom.Text;
@@ -26,52 +31,80 @@ import com.google.firebase.database.FirebaseDatabase;
 public class CreateQuizActivity extends AppCompatActivity {
 
 
-
-
-
     String mCorrectAnswer;
-    RadioButton radioButtonFirstChoice;
-    RadioButton radioButtonSecondChoice;
-    //FloatingActionButton floatingActionButtonAddQuestion;
     String mQuestion;
     String mChoiceA;
     String mChoiceB;
-    Button validate;
     ArrayList questionList;
     private FirebaseAuth firebaseAuth;
+    private String quizzName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_quiz);
 
-
-
-        final FloatingActionButton floatingActionButtonAddQuestion = (FloatingActionButton) findViewById(R.id.floatingActionButtonAddQuestion);
-        final Button validate =  (Button) findViewById(R.id.validate);
-        validate.setVisibility(View.INVISIBLE);
         final ArrayList<QuestionClass> questionList = new ArrayList<>();
-
         firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         final String username = user.getDisplayName();
 
+        final TextView textViewQuizzName = (TextView) findViewById(R.id.textViewQuizzNameChoice);
         final EditText editTextQuizzName = (EditText) findViewById(R.id.editTextQuizzName);
-        editTextQuizzName.setVisibility(View.INVISIBLE);
+        final Button buttonContinue = (Button) findViewById(R.id.buttonContinue);
 
 
 
-      floatingActionButtonAddQuestion.setOnClickListener(new View.OnClickListener() {
+        final FloatingActionButton floatingActionButtonAddQuestion = (FloatingActionButton) findViewById(R.id.floatingActionButtonAddQuestion);
+        floatingActionButtonAddQuestion.setVisibility(View.INVISIBLE);
+        final EditText editTextQuestion = (EditText) findViewById(R.id.editTextQuestion);
+        editTextQuestion.setVisibility(View.INVISIBLE);
+        final EditText editTextFirstChoice = (EditText) findViewById(R.id.editTextFirstChoice);
+        editTextFirstChoice.setVisibility(View.INVISIBLE);
+        final EditText editTextSecondChoice = (EditText) findViewById(R.id.editTextSecondChoice);
+        editTextSecondChoice.setVisibility(View.INVISIBLE);
+        final RadioButton radioButtonFirstChoice = (RadioButton) findViewById(R.id.radioButtonFirstChoice);
+        radioButtonFirstChoice.setVisibility(View.INVISIBLE);
+        final RadioButton radioButtonSecondChoice = (RadioButton) findViewById(R.id.radioButtonSecondChoice);
+        radioButtonSecondChoice.setVisibility(View.INVISIBLE);
+
+        final TextView textViewEnd = (TextView) findViewById(R.id.textViewEnd);
+        textViewEnd.setVisibility(View.INVISIBLE);
+        final ImageView bufferButton = (ImageView) findViewById(R.id.imageViewBuffer);
+        bufferButton.setVisibility(View.INVISIBLE);
+
+
+
+        buttonContinue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (editTextQuizzName==null){
+                    Toast.makeText(CreateQuizActivity.this,"Ton quizz a besoin d'un nom",Toast.LENGTH_LONG).show();
+                }
+                else{
+                    quizzName = editTextQuizzName.getText().toString();
+                    textViewQuizzName.setVisibility(View.INVISIBLE);
+                    editTextQuizzName.setVisibility(View.INVISIBLE);
+                    buttonContinue.setVisibility(View.INVISIBLE);
+                    editTextQuestion.setVisibility(View.VISIBLE);
+                    editTextFirstChoice.setVisibility(View.VISIBLE);
+                    editTextSecondChoice.setVisibility(View.VISIBLE);
+                    radioButtonFirstChoice.setVisibility(View.VISIBLE);
+                    radioButtonSecondChoice.setVisibility(View.VISIBLE);
+                    floatingActionButtonAddQuestion.setVisibility(View.VISIBLE);
+                    Toast.makeText(CreateQuizActivity.this,"Titre OK, place aux questions !",Toast.LENGTH_LONG).show();
+
+
+
+                }
+            }
+        });
+
+
+
+        floatingActionButtonAddQuestion.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View v) {
-
-
-              EditText editTextQuestion = (EditText) findViewById(R.id.editTextQuestion);
-              EditText editTextFirstChoice = (EditText) findViewById(R.id.editTextFirstChoice);
-              EditText editTextSecondChoice = (EditText) findViewById(R.id.editTextSecondChoice);
-              RadioButton radioButtonFirstChoice = (RadioButton) findViewById(R.id.radioButtonFirstChoice);
-              RadioButton radioButtonSecondChoice = (RadioButton) findViewById(R.id.radioButtonSecondChoice);
-
 
 
               if(editTextQuestion.length() > 0 && editTextFirstChoice.length() > 0 && editTextSecondChoice.length() > 0 && (radioButtonFirstChoice.isChecked() || radioButtonSecondChoice.isChecked())) {
@@ -107,16 +140,16 @@ public class CreateQuizActivity extends AppCompatActivity {
 
                   if (questionList.size() == 2){
                       floatingActionButtonAddQuestion.setVisibility(View.INVISIBLE);
-                      validate.setVisibility(View.VISIBLE);
-                      editTextQuizzName.setVisibility(View.VISIBLE);
+                      bufferButton.setVisibility(View.VISIBLE);
+                      textViewEnd.setVisibility(View.VISIBLE);
                       editTextQuestion.setVisibility(View.INVISIBLE);
                       editTextFirstChoice.setVisibility(View.INVISIBLE);
                       editTextSecondChoice.setVisibility(View.INVISIBLE);
                       radioButtonFirstChoice.setVisibility(View.INVISIBLE);
                       radioButtonSecondChoice.setVisibility(View.INVISIBLE);
+                      Toast.makeText(CreateQuizActivity.this,"Tu as fourni assez de questions, c'est la dernière ligne droite !",Toast.LENGTH_LONG).show();
 
-                      Toast.makeText(CreateQuizActivity.this,"Trouve un titre maintenant !",Toast.LENGTH_LONG).show();
-                      return;
+
                   }
 
 
@@ -135,15 +168,15 @@ public class CreateQuizActivity extends AppCompatActivity {
     });
 
 
-        validate.setOnClickListener(new View.OnClickListener() {
+        bufferButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 /*ProgressDialog progressDialog;
                 progressDialog = new ProgressDialog(CreateQuizActivity.this);
                 progressDialog.setMessage("Enregistrement de ton quizz");
-                progressDialog.show();*/
+                progressDialog.show();
+                //progressDialog.dismiss();*/
 
-                String quizzName = editTextQuizzName.getText().toString();
                 QuizClass newQuiz = new QuizClass(questionList, username, quizzName);
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                 DatabaseReference ref = database.getReference("Quizz");
@@ -152,10 +185,38 @@ public class CreateQuizActivity extends AppCompatActivity {
 
                 Toast.makeText(CreateQuizActivity.this,"Quizz envoyé",Toast.LENGTH_LONG).show();
 
-                //progressDialog.dismiss();
+
                 finish();
 
 
+            }
+        });
+
+
+        bufferButton.setOnTouchListener(new View.OnTouchListener() {
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN: {
+                        ImageView view = (ImageView) v;
+                        //overlay is black with transparency of 0x77 (119)
+                        view.getDrawable().setColorFilter(0x77000000, PorterDuff.Mode.SRC_ATOP);
+                        view.invalidate();
+                        break;
+                    }
+                    case MotionEvent.ACTION_UP:
+                    case MotionEvent.ACTION_CANCEL: {
+                        ImageView view = (ImageView) v;
+                        //clear the overlay
+                        view.getDrawable().clearColorFilter();
+                        view.invalidate();
+                        break;
+                    }
+                }
+
+                return false;
             }
         });
 

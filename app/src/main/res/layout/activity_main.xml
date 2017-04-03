@@ -121,7 +121,7 @@
             android:gravity="center"
             android:textColorHint="@color/white"
             android:hint="Pseudo"
-            android:inputType="textPersonName"
+            android:inputType="textCapSentences"
             android:layout_marginTop="16dp"
             app:layout_constraintTop_toBottomOf="@+id/editTextPassword"
             android:layout_marginLeft="8dp"

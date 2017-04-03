@@ -1,5 +1,6 @@
 package bugbusterzcorp.wildtechquizz;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.database.Cursor;
@@ -32,6 +33,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserInfo;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
@@ -172,6 +174,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         }
         else if (view == buttonUpload){
 
+
             mStorage = mStorage.child("images/"+uid);
             mStorage.putFile(selectedImage)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -188,11 +191,9 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                             // ...
                         }
                     });
+
+
             buttonUpload.setVisibility(View.INVISIBLE);
-
-
-
-
 
         }
     }

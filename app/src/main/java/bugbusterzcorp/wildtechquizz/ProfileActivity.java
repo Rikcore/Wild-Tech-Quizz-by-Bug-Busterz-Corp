@@ -72,17 +72,10 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         mStorage = FirebaseStorage.getInstance().getReference();
-
-
-        //initializing firebase authentication object
         firebaseAuth = FirebaseAuth.getInstance();
 
-        //if the user is not logged in
-        //that means current user will return null
         if(firebaseAuth.getCurrentUser() == null){
-            //closing this activity
             finish();
-            //starting login activity
             startActivity(new Intent(this, LoginActivity.class));
         }
 
@@ -96,19 +89,15 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
 
 
-
         user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
 
                 String providerId = user.getProviderId();
-
                 uid = user.getUid();
                 String username = user.getDisplayName();
                 String email = user.getEmail();
 
                 textViewUsername.setText(username);
-
-
 
 
             mStorage.child("images/"+uid).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
@@ -125,17 +114,12 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception exception) {
-                    // Handle any errors
                     Exception Prout = exception;
                 }
             });
 
-
-
-
         }
 
-        //adding listener to button
         buttonLogout.setOnClickListener(this);
         buttonPlay.setOnClickListener(this);
         imageViewUser.setOnClickListener(this);
@@ -171,17 +155,11 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     }
 
 
-
-
     @Override
     public void onClick(View view) {
-        //if logout is pressed
         if(view == buttonLogout){
-            //logging out the user
             firebaseAuth.signOut();
-            //closing activity
             finish();
-            //starting login activity
             startActivity(new Intent(this, LoginActivity.class));
 
             }
@@ -211,6 +189,10 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                         }
                     });
             buttonUpload.setVisibility(View.INVISIBLE);
+
+
+
+
 
         }
     }

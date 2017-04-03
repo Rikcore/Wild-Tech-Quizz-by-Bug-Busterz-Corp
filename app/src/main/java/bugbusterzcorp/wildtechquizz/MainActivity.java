@@ -50,7 +50,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private FirebaseAuth firebaseAuth;
 
-
     String username;
 
 
@@ -101,7 +100,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
 
-        progressDialog.setMessage("Validation de ton compte");
+        progressDialog.setMessage("Envoi des données à la NSA");
         progressDialog.show();
 
         firebaseAuth.createUserWithEmailAndPassword(email, password)
@@ -122,7 +121,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
                                         finish();
-                                        startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+                                        startActivity(new Intent(getApplicationContext(), CharteActivity.class));
                                     }
                                 }
                             });

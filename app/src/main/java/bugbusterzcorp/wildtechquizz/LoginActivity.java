@@ -39,13 +39,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 
         if(firebaseAuth.getCurrentUser() != null){
-            //close this activity
             finish();
-            //opening profile activity
             startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
         }
 
-        //initializing views
         editTextEmail = (EditText) findViewById(R.id.editTextEmail);
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
         buttonSignIn = (Button) findViewById(R.id.buttonSignin);
@@ -53,18 +50,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         progressDialog = new ProgressDialog(this);
 
-        //attaching click listener
         buttonSignIn.setOnClickListener(this);
         textViewSignup.setOnClickListener(this);
     }
 
-    //method for user login
     private void userLogin(){
         String email = editTextEmail.getText().toString().trim();
         String password  = editTextPassword.getText().toString().trim();
 
 
-        //checking if email and passwords are empty
         if(TextUtils.isEmpty(email)){
             Toast.makeText(this,"Please enter email",Toast.LENGTH_LONG).show();
             return;
@@ -75,21 +69,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             return;
         }
 
-        //if the email and password are not empty
-        //displaying a progress dialog
 
         progressDialog.setMessage("Registering Please Wait...");
         progressDialog.show();
 
-        //logging in the user
         firebaseAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         progressDialog.dismiss();
-                        //if the task is successfull
                         if(task.isSuccessful()){
-                            //start the profile activity
                             finish();
                             startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
                         }

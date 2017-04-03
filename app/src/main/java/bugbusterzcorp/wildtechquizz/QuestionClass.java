@@ -42,19 +42,19 @@ public class QuestionClass {
     }
 
 
-    public void setmQuestion(String mQuestion) {
+    public void setQuestion(String mQuestion) {
         this.mQuestion = mQuestion;
     }
 
-    public void setmChoiceA(String mChoiceA) {
+    public void setChoiceA(String mChoiceA) {
         this.mChoiceA = mChoiceA;
     }
 
-    public void setmChoiceB(String mChoiceB) {
+    public void setChoiceB(String mChoiceB) {
         this.mChoiceB = mChoiceB;
     }
 
-    public void setmCorrectAnswer(String mCorrectAnswer) {
+    public void setCorrectAnswer(String mCorrectAnswer) {
         this.mCorrectAnswer = mCorrectAnswer;
     }
 

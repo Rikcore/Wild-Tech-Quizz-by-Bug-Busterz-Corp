@@ -2,10 +2,10 @@ package bugbusterzcorp.wildtechquizz;
 
 import android.widget.EditText;
 
+import java.io.Serializable;
 
 
-
-public class QuestionClass {
+public class QuestionClass implements Serializable {
     private String mQuestion;
     private String mChoiceA;
     private String mChoiceB;

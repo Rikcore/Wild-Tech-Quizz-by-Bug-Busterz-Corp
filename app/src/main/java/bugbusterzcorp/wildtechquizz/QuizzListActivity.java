@@ -47,13 +47,14 @@ public class QuizzListActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
 
 
-                QuizClass prout = (QuizClass) quizzListView.getAdapter().getItem(position);
+                QuizClass newQuiz = (QuizClass) quizzListView.getAdapter().getItem(position);
+
                 String quizzRef = mQuizzListAdapter.getItemKey(position);
                 Toast.makeText(QuizzListActivity.this,quizzRef,Toast.LENGTH_LONG).show();
                 Intent goPlay = new Intent(QuizzListActivity.this, PlayQuizzActivity.class);
 
                 goPlay.putExtra("quizzRef", quizzRef);
-                goPlay.putExtra("quizzObject", prout);
+                goPlay.putExtra("quizzObject", newQuiz);
                 startActivity(goPlay);
             }
         });

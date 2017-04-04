@@ -6,7 +6,9 @@ import android.content.pm.ActivityInfo;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.graphics.drawable.Drawable;
+import android.media.ExifInterface;
 import android.media.Image;
 import android.net.Uri;
 import android.provider.ContactsContract;
@@ -21,6 +23,7 @@ import android.widget.TextView;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
@@ -38,9 +41,11 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
+import static android.R.attr.bitmap;
 import static android.R.attr.data;
 import static android.R.attr.drawable;
 import static android.R.attr.name;
+import static android.R.attr.path;
 import static bugbusterzcorp.wildtechquizz.R.id.image;
 import static bugbusterzcorp.wildtechquizz.R.id.imageView;
 
@@ -88,6 +93,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         buttonLogout = (Button) findViewById(R.id.buttonLogout);
         buttonPlay = (Button)findViewById(R.id.buttonPlay);
         buttonUpload = (Button) findViewById(R.id.buttonUpload);
+        buttonUpload.setVisibility(View.INVISIBLE);
 
 
 
@@ -108,7 +114,6 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                     Picasso
                             .with(ProfileActivity.this)
                             .load(uri)
-                            .resize(400, 400)
                             .into(imageViewUser);
                     buttonUpload.setVisibility(View.INVISIBLE);
 
@@ -151,6 +156,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
             picturePath = cursor.getString(columnIndex);
             cursor.close();
             imageViewUser.setImageURI(selectedImage);
+            buttonUpload.setVisibility(View.VISIBLE);
 
 
         }
@@ -174,14 +180,29 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         }
         else if (view == buttonUpload){
 
+            final ProgressDialog progressDialog = new ProgressDialog(this);
+            progressDialog.setTitle("Uploading");
+            progressDialog.show();
+
 
             mStorage = mStorage.child("images/"+uid);
+
             mStorage.putFile(selectedImage)
+
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             // Get a URL to the uploaded content
                             @SuppressWarnings("VisibleForTests") Uri downloadUrl = taskSnapshot.getDownloadUrl();
+
+                            progressDialog.dismiss();
+                        }
+                    })
+                    .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                            @SuppressWarnings("VisibleForTests") double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
+                            progressDialog.setMessage("Uploaded " + ((int) progress) + "%...");
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
@@ -198,15 +219,11 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         }
     }
 
-
     public void goToCreate(View view){
 
         startActivity(new Intent(this, CreateQuizActivity.class));
 
-
     }
-
-
 
 
 }

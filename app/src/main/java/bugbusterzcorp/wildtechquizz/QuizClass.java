@@ -1,10 +1,13 @@
 package bugbusterzcorp.wildtechquizz;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.ArrayList;
 
 
 
-public class QuizClass {
+public class QuizClass implements Parcelable {
 
     private ArrayList<QuestionClass> mQuestionList;
     private QuestionClass question;
@@ -45,5 +48,15 @@ public class QuizClass {
 
     public void setQuizzName(String mQuizzName) {
         this.mQuizzName = mQuizzName;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+
     }
 }

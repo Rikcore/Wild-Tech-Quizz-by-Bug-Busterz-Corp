@@ -138,7 +138,7 @@ public class CreateQuizActivity extends AppCompatActivity {
 
 
 
-                  if (questionList.size() == 2){
+                  if (questionList.size() == 5){
                       floatingActionButtonAddQuestion.setVisibility(View.INVISIBLE);
                       bufferButton.setVisibility(View.VISIBLE);
                       textViewEnd.setVisibility(View.VISIBLE);

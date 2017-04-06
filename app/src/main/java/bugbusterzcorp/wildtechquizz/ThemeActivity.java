@@ -37,7 +37,7 @@ public class ThemeActivity extends AppCompatActivity {
         imageViewWild.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent wildQuizz = new Intent(ThemeActivity.this, QuizzListActivity.class);
+                Intent wildQuizz = new Intent(ThemeActivity.this, WildTestQuizzActivity.class);
                 startActivity(wildQuizz);
 
             }});

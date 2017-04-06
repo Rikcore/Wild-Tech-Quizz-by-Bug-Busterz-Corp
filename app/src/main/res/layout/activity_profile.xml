@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="bugbusterzcorp.wildtechquizz.ProfileActivity">
+    tools:context="bugbusterzcorp.wildtechquizz.ProfileActivity"
+    android:background="@drawable/cube123">
 
 
         <TextView
@@ -25,32 +26,38 @@
 
         <Button
             android:id="@+id/buttonLogout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:background="@drawable/borderbutton"
+            android:layout_width="116dp"
+            android:layout_height="52dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="32dp"
+            android:layout_marginBottom="28dp"
             android:layout_marginEnd="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
             android:text="Déconnexion"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent" />
 
         <Button
             android:id="@+id/buttonPlay"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="116dp"
+            android:layout_height="52dp"
+            android:layout_marginBottom="24dp"
+            android:layout_marginEnd="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:background="@color/purple"
             android:text="Jouer"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toTopOf="@+id/buttonCreateQuiz"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="24dp"
-            app:layout_constraintBottom_toTopOf="@+id/buttonCreateQuiz" />
+            tools:layout_editor_absoluteX="122dp"
+            tools:layout_editor_absoluteY="326dp" />
 
         <android.support.v7.widget.CardView
             android:backgroundTint="@color/cardview_dark_background"
@@ -82,19 +89,20 @@
 
         <Button
             android:id="@+id/buttonCreateQuiz"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:layout_marginBottom="32dp"
+            android:layout_width="116dp"
+            android:layout_height="52dp"
+            android:textColor="@color/white"
             android:layout_marginEnd="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
+            android:background="@color/blue"
             android:onClick="goToCreate"
             android:text="Créer un quizz"
-            app:layout_constraintBottom_toTopOf="@+id/buttonLogout"
+            app:layout_constraintHorizontal_bias="0.501"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent" />
+            app:layout_constraintRight_toRightOf="parent"
+            tools:layout_editor_absoluteY="415dp" />
 
     <Button
         android:id="@+id/buttonUpload"

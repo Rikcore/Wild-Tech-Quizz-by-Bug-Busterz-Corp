@@ -6,6 +6,16 @@
     android:layout_height="match_parent"
     tools:context="bugbusterzcorp.wildtechquizz.QuizzListActivity">
 
+    <pl.droidsonroids.gif.GifTextView
+        android:id="@+id/gifTextViewResult"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/city2"/>
+
     <ListView
         android:id="@+id/QuizzLIstView"
         android:layout_width="368dp"

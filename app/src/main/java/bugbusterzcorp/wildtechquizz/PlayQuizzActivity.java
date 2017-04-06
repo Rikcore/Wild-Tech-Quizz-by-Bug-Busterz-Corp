@@ -4,10 +4,8 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 
@@ -35,7 +33,7 @@ public class PlayQuizzActivity extends AppCompatActivity {
         setContentView(R.layout.activity_play_quizz);
         Intent goPlay = getIntent();
         quizzString = goPlay.getStringExtra("quizzRef");
-        QuizClass newQuiz = (QuizClass) goPlay.getExtras().get("quizzObject");
+        Quizzclass newQuiz = (Quizzclass) goPlay.getExtras().get("quizzObject");
         questionList = newQuiz.getQuestionList();
 
 
@@ -91,6 +89,10 @@ public class PlayQuizzActivity extends AppCompatActivity {
                     textViewQuestion.setText(newQuestion.getmQuestion());
                 }
                 else{
+                    Intent scoreIntent = new Intent(PlayQuizzActivity.this, ScoreActivity.class);
+                    scoreIntent.putExtra("score", score);
+                    scoreIntent.putExtra("total", questionList.size());
+                    startActivity(scoreIntent);
                     finish();
                 }
 
@@ -137,6 +139,10 @@ public class PlayQuizzActivity extends AppCompatActivity {
                     textViewQuestion.setText(newQuestion.getmQuestion());
                 }
                 else{
+                    Intent scoreIntent = new Intent(PlayQuizzActivity.this, ScoreActivity.class);
+                    scoreIntent.putExtra("score", score);
+                    scoreIntent.putExtra("total", questionList.size());
+                    startActivity(scoreIntent);
                     finish();
                 }
 

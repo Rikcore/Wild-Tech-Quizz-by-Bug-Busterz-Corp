@@ -28,8 +28,8 @@
         <activity android:name=".ThemeActivity" />
         <activity android:name=".QuizzListActivity" />
         <activity android:name=".CreateQuizActivity" />
-        <activity android:name=".PlayQuizzActivity"></activity>
-
+        <activity android:name=".PlayQuizzActivity" />
+        <activity android:name=".ScoreActivity"></activity>
     </application>
 
 </manifest>

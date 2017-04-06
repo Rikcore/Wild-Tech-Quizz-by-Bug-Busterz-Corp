@@ -1,7 +1,5 @@
 package bugbusterzcorp.wildtechquizz;
 
-import android.app.ProgressDialog;
-import android.content.Context;
 import android.graphics.PorterDuff;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -10,13 +8,10 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -147,7 +142,6 @@ public class CreateQuizActivity extends AppCompatActivity {
                       editTextSecondChoice.setVisibility(View.INVISIBLE);
                       radioButtonFirstChoice.setVisibility(View.INVISIBLE);
                       radioButtonSecondChoice.setVisibility(View.INVISIBLE);
-                      Toast.makeText(CreateQuizActivity.this,"Tu as fourni assez de questions, c'est la dernière ligne droite !",Toast.LENGTH_LONG).show();
 
 
                   }
@@ -171,13 +165,8 @@ public class CreateQuizActivity extends AppCompatActivity {
         bufferButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*ProgressDialog progressDialog;
-                progressDialog = new ProgressDialog(CreateQuizActivity.this);
-                progressDialog.setMessage("Enregistrement de ton quizz");
-                progressDialog.show();
-                //progressDialog.dismiss();*/
 
-                QuizClass newQuiz = new QuizClass(questionList, username, quizzName);
+                Quizzclass newQuiz = new Quizzclass(questionList, username, quizzName);
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                 DatabaseReference ref = database.getReference("Quizz");
                 ref.push().setValue(newQuiz);

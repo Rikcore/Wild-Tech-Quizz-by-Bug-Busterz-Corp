@@ -172,7 +172,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
             }
         else if (view == buttonPlay) {
-            startActivity(new Intent(this, ThemeActivity.class));
+            startActivity(new Intent(this, QuizzListActivity.class));
         }
         else if (view == imageViewUser){
             final Intent i = new Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);

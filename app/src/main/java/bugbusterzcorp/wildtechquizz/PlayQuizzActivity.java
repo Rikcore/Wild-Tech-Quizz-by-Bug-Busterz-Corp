@@ -22,10 +22,12 @@ public class PlayQuizzActivity extends AppCompatActivity {
     private TextView textViewChoiceA;
     private TextView textViewChoiceB;
     private TextView textViewQuestion;
+    private TextView textViewScore;
     private QuestionClass newQuestion;
 
 
     private int positionDansLesQuestions = 0;
+    int score = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,20 +42,26 @@ public class PlayQuizzActivity extends AppCompatActivity {
         newQuestion = (QuestionClass) questionList.get(0);
 
 
+
         textViewChoiceA = (TextView) findViewById(R.id.textViewChoiceA);
         textViewChoiceB = (TextView) findViewById(R.id.textViewChoiceB);
         textViewQuestion = (TextView) findViewById(R.id.textViewQuestion);
+        textViewScore = (TextView) findViewById(R.id.textViewScore);
+
 
 
         textViewChoiceA.setText(newQuestion.getChoiceA());
         textViewChoiceB.setText(newQuestion.getChoiceB());
         textViewQuestion.setText(newQuestion.getmQuestion());
 
+
         textViewChoiceA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(newQuestion.getChoiceA().equals(newQuestion.getCorrectAnswer())){
                     textViewChoiceA.setBackgroundColor(Color.GREEN);
+                    score++;
+                    textViewScore.setText(score+"/"+questionList.size());
                     textViewChoiceA.postDelayed(new Runnable() {
 
                         @Override
@@ -74,19 +82,19 @@ public class PlayQuizzActivity extends AppCompatActivity {
                     }, 150);
                 }
 
-                if(positionDansLesQuestions < questionList.size()) {
-                    newQuestion = (QuestionClass) questionList.get(positionDansLesQuestions);
-
+                if(positionDansLesQuestions < questionList.size()-1) {
 
                     positionDansLesQuestions++;
+                    newQuestion = (QuestionClass) questionList.get(positionDansLesQuestions);
                     textViewChoiceA.setText(newQuestion.getChoiceA());
                     textViewChoiceB.setText(newQuestion.getChoiceB());
                     textViewQuestion.setText(newQuestion.getmQuestion());
                 }
-
+                else{
+                    finish();
+                }
 
             }
-
 
         });
 
@@ -95,14 +103,15 @@ public class PlayQuizzActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 if(newQuestion.getChoiceB().equals(newQuestion.getCorrectAnswer())){
-                    //textViewChoiceB.setBackgroundColor(Color.GREEN);
 
                     textViewChoiceB.setBackgroundColor(Color.GREEN);
+                    score++;
+                    textViewScore.setText(score+"/"+questionList.size());
                     textViewChoiceB.postDelayed(new Runnable() {
 
                         @Override
                         public void run() {
-                            textViewChoiceA.setBackgroundColor(Color.BLUE);
+                            textViewChoiceB.setBackgroundColor(Color.BLUE);
                         }
                     }, 150);
 
@@ -119,20 +128,21 @@ public class PlayQuizzActivity extends AppCompatActivity {
                     }, 150);
                 }
 
-
-
-                if(positionDansLesQuestions < questionList.size()) {
-                    newQuestion = (QuestionClass) questionList.get(positionDansLesQuestions);
-
+                if(positionDansLesQuestions < questionList.size()-1) {
 
                     positionDansLesQuestions++;
+                    newQuestion = (QuestionClass) questionList.get(positionDansLesQuestions);
                     textViewChoiceA.setText(newQuestion.getChoiceA());
                     textViewChoiceB.setText(newQuestion.getChoiceB());
                     textViewQuestion.setText(newQuestion.getmQuestion());
                 }
-
+                else{
+                    finish();
+                }
 
             }
         });
     }
+
+
 }

@@ -26,11 +26,9 @@
 
     <TextView
         android:id="@+id/textViewChoiceA"
-        android:onClick="changeQuestion"
         android:layout_width="0dp"
         android:layout_height="73dp"
         android:text="TextView"
-        android:focusable="false"
         android:background="@color/blue"
         android:padding="25dp"
         android:layout_marginRight="8dp"
@@ -66,4 +64,15 @@
         app:layout_constraintVertical_bias="0.387"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp" />
+
+    <TextView
+        android:id="@+id/textViewScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="32dp" />
 </android.support.constraint.ConstraintLayout>

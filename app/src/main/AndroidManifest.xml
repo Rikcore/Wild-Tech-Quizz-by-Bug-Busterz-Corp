@@ -27,7 +27,8 @@
         <activity android:name=".MyQuizzActivity" />
         <activity android:name=".ThemeActivity" />
         <activity android:name=".QuizzListActivity" />
-        <activity android:name=".CreateQuizActivity"></activity>
+        <activity android:name=".CreateQuizActivity" />
+        <activity android:name=".WildTestQuizzActivity" />
     </application>
 
 </manifest>

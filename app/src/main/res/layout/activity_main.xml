@@ -7,7 +7,7 @@
     tools:context="bugbusterzcorp.wildtechquizz.MainActivity"
     tools:layout_editor_absoluteY="81dp"
     tools:layout_editor_absoluteX="0dp"
-    android:background="@drawable/hmmm">
+    android:background="@drawable/cube3">
 
 
         <TextView
@@ -21,7 +21,7 @@
             android:typeface="serif"
             android:textSize="30dp"
             android:textStyle="bold"
-            android:textColor="@color/yellow"
+            android:textColor="@color/red"
 
             android:textAppearance="?android:attr/textAppearanceLarge"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -32,8 +32,8 @@
 
         <EditText
             android:id="@+id/editTextEmail"
-            android:layout_width="335dp"
-            android:layout_height="34dp"
+            android:layout_width="336dp"
+            android:layout_height="41dp"
             android:hint="Email"
             android:gravity="center"
             android:textColorHint="@color/white"
@@ -45,12 +45,14 @@
             app:layout_constraintLeft_toLeftOf="parent"
             android:layout_marginRight="8dp"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintHorizontal_bias="0.515" />
+            app:layout_constraintHorizontal_bias="0.515"
+            tools:layout_editor_absoluteY="291dp"
+            tools:layout_editor_absoluteX="24dp" />
 
         <EditText
             android:id="@+id/editTextPassword"
-            android:layout_width="335dp"
-            android:layout_height="34dp"
+            android:layout_width="338dp"
+            android:layout_height="41dp"
             android:hint="Mot de passe"
             android:background="@drawable/round"
             android:inputType="textPassword"
@@ -60,9 +62,12 @@
             app:layout_constraintTop_toBottomOf="@+id/editTextEmail"
             android:layout_marginLeft="8dp"
             app:layout_constraintLeft_toLeftOf="parent"
+
             android:layout_marginRight="8dp"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintHorizontal_bias="0.515" />
+            app:layout_constraintHorizontal_bias="0.515"
+            tools:layout_editor_absoluteY="348dp"
+            tools:layout_editor_absoluteX="22dp" />
 
         <Button
             android:id="@+id/buttonSignup"
@@ -70,7 +75,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
-            android:layout_marginTop="82dp"
+            android:layout_marginTop="75dp"
             android:background="@drawable/circle"
             android:text="Go"
             android:textColor="@color/white"
@@ -88,7 +93,7 @@
             android:layout_marginTop="8dp"
             android:text="Déjà enregistré ? Connectez vous ici."
             android:textAlignment="center"
-            android:textColor="#ecf414"
+            android:textColor="@color/yellow"
             android:textSize="15dp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -114,8 +119,8 @@
 
         <EditText
             android:id="@+id/editTextUsername"
-            android:layout_width="335dp"
-            android:layout_height="34dp"
+            android:layout_width="334dp"
+            android:layout_height="41dp"
             android:background="@drawable/round"
             android:ems="10"
             android:gravity="center"
@@ -128,7 +133,9 @@
             app:layout_constraintLeft_toLeftOf="parent"
             android:layout_marginRight="8dp"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintHorizontal_bias="0.515" />
+            app:layout_constraintHorizontal_bias="0.515"
+            tools:layout_editor_absoluteY="405dp"
+            tools:layout_editor_absoluteX="26dp" />
 
         <TextView
             android:id="@+id/textViewTitre"
@@ -140,7 +147,7 @@
             android:textSize="36dp"
             android:gravity="center"
             android:typeface="serif"
-            android:textColor="@color/red"
+            android:textColor="@color/blue"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="16dp"
             android:layout_marginRight="8dp"

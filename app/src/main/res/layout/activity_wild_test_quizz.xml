@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.widget.LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/aloo"
+    tools:context="bugbusterzcorp.wildtechquizz.WildTestQuizzActivity"
+    android:weightSum="1">
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:layout_marginBottom="40dp"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Score"
+            android:layout_alignParentLeft="true"
+            android:id="@+id/score_text"
+            android:textSize="25sp"
+            android:textColor="@color/purple"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25sp"
+            android:layout_alignParentRight="true"
+            android:id="@+id/score"
+            android:text="0"
+            android:textColor="@color/purple"/>
+
+    </RelativeLayout>
+
+
+    <TextView
+        android:id="@+id/textViewTimer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="TextView"
+        android:textColor="@color/green"
+        android:textSize="50sp" />
+
+    <TextView
+        android:id="@+id/question"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginBottom="40dp"
+        android:padding="8sp"
+        android:text="De quelle couleur est la chemise du Joeur de Grenier?"
+        android:textColor="@color/purple"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/choice1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:background="#FF29AAC7"
+        android:padding="8sp"
+        android:text="Rouge"
+        android:textColor="#fff" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Jaune"
+        android:background="#FF29AAC7"
+        android:textColor="#fff"
+        android:padding="8sp"
+        android:layout_marginBottom="24dp"
+        android:id="@+id/choice2" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Vert"
+        android:background="#FF29AAC7"
+        android:textColor="#fff"
+        android:padding="8sp"
+        android:layout_marginBottom="24dp"
+        android:id="@+id/choice3" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Quit"
+        android:background="#B71C1C"
+        android:textColor="#fff"
+        android:padding="8sp"
+        android:layout_marginBottom="24dp"
+        android:id="@+id/Finish" />
+
+
+
+</android.widget.LinearLayout>

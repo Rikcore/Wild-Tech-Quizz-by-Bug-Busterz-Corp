@@ -3,16 +3,20 @@
     <color name="colorPrimary">#000000</color>
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#d94941</color>
-    <color name="blue">#0000FF</color>
+    <color name="blued">#0000FF</color>
     <color name="LightSteelBlue">#B0C4DE</color>
     <color name="PaleGreen">#98FB98</color>
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
     <color name="DarkSeaGreen">#8FBC8F</color>
-    <color name="yellow">#ab881e </color>
+    <color name="yellowgolden">#ab881e </color>
     <color name="green">#008000</color>>
     <color name="purple">#800080</color>
     <color name="orange">#ffa500</color>
+    <color name="yellow">#FFFF00</color>
+    <color name="blue">#FF29AAC7</color>
+
     <item name="red" type="color">#FFFF4444</item>
+
 
 </resources>

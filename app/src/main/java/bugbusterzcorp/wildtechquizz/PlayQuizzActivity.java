@@ -25,6 +25,8 @@ public class PlayQuizzActivity extends AppCompatActivity {
     private TextView textViewScore;
     private QuestionClass newQuestion;
 
+    private SoundPlayer sound;
+
 
     private int positionDansLesQuestions = 0;
     int score = 0;
@@ -33,6 +35,8 @@ public class PlayQuizzActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_quizz);
+        sound = new SoundPlayer(this);
+
         Intent goPlay = getIntent();
         quizzString = goPlay.getStringExtra("quizzRef");
         QuizClass newQuiz = (QuizClass) goPlay.getExtras().get("quizzObject");
@@ -59,6 +63,7 @@ public class PlayQuizzActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(newQuestion.getChoiceA().equals(newQuestion.getCorrectAnswer())){
+                    sound.playSuccessSound();
                     textViewChoiceA.setBackgroundColor(Color.GREEN);
                     score++;
                     textViewScore.setText(score+"/"+questionList.size());
@@ -72,6 +77,7 @@ public class PlayQuizzActivity extends AppCompatActivity {
 
                 }
                 else{
+                    sound.playFailSound();
                     textViewChoiceA.setBackgroundColor(Color.RED);
                     textViewChoiceA.postDelayed(new Runnable() {
 
@@ -103,7 +109,7 @@ public class PlayQuizzActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 if(newQuestion.getChoiceB().equals(newQuestion.getCorrectAnswer())){
-
+                    sound.playSuccessSound();
                     textViewChoiceB.setBackgroundColor(Color.GREEN);
                     score++;
                     textViewScore.setText(score+"/"+questionList.size());
@@ -117,7 +123,7 @@ public class PlayQuizzActivity extends AppCompatActivity {
 
                 }
                 else{
-
+                    sound.playFailSound();
                     textViewChoiceB.setBackgroundColor(Color.RED);
                     textViewChoiceB.postDelayed(new Runnable() {
 

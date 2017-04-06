@@ -66,7 +66,7 @@ public class PlayQuizzActivity extends AppCompatActivity {
 
                         @Override
                         public void run() {
-                            textViewChoiceA.setBackgroundColor(Color.BLUE);
+                            textViewChoiceA.setBackgroundColor(getResources().getColor(R.color.blue));
                         }
                     }, 150);
 
@@ -77,7 +77,7 @@ public class PlayQuizzActivity extends AppCompatActivity {
 
                         @Override
                         public void run() {
-                            textViewChoiceA.setBackgroundColor(Color.BLUE);
+                            textViewChoiceA.setBackgroundColor(getResources().getColor(R.color.blue));
                         }
                     }, 150);
                 }
@@ -111,7 +111,7 @@ public class PlayQuizzActivity extends AppCompatActivity {
 
                         @Override
                         public void run() {
-                            textViewChoiceB.setBackgroundColor(Color.BLUE);
+                            textViewChoiceB.setBackgroundColor(getResources().getColor(R.color.blue));
                         }
                     }, 150);
 
@@ -123,7 +123,7 @@ public class PlayQuizzActivity extends AppCompatActivity {
 
                         @Override
                         public void run() {
-                            textViewChoiceB.setBackgroundColor(Color.BLUE);
+                            textViewChoiceB.setBackgroundColor(getResources().getColor(R.color.blue));
                         }
                     }, 150);
                 }

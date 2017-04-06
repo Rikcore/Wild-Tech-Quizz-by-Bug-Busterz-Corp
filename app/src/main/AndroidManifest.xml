@@ -29,7 +29,6 @@
         <activity android:name=".QuizzListActivity" />
         <activity android:name=".CreateQuizActivity" />
         <activity android:name=".PlayQuizzActivity"></activity>
-        <activity android:name=".WildTestQuizzActivity" />
 
     </application>
 

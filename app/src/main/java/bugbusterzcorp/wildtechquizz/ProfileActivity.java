@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.media.ExifInterface;
 import android.media.Image;
@@ -78,6 +79,9 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         setContentView(R.layout.activity_profile);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
+        Typeface game_font = Typeface.createFromAsset(getAssets(), "fonts/Gamegirl.ttf");
+
+
         mStorage = FirebaseStorage.getInstance().getReference();
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -106,6 +110,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                 String email = user.getEmail();
 
                 textViewUsername.setText(username);
+                textViewUsername.setTypeface(game_font);
 
 
             mStorage.child("images/"+uid).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {

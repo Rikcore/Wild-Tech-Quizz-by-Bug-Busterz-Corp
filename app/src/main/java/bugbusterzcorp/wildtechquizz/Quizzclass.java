@@ -8,20 +8,21 @@ import java.util.ArrayList;
 public class Quizzclass implements Serializable {
 
     private ArrayList<QuestionClass> mQuestionList;
-    private QuestionClass question;
     private String mUsername;
     private String mQuizzName;
+    private String mCreatorId;
 
     private Quizzclass() {
 
     }
 
 
-    public Quizzclass(ArrayList<QuestionClass> questions, String username, String quizzName){
+    public Quizzclass(ArrayList<QuestionClass> questions, String username, String quizzName, String creatorId){
 
         mQuestionList = questions;
         mUsername = username;
         mQuizzName = quizzName;
+        mCreatorId = creatorId;
 
     }
 
@@ -46,6 +47,14 @@ public class Quizzclass implements Serializable {
 
     public void setQuizzName(String mQuizzName) {
         this.mQuizzName = mQuizzName;
+    }
+
+    public String getmCreatorId() {
+        return mCreatorId;
+    }
+
+    public void setmCreatorId(String mCreatorId) {
+        this.mCreatorId = mCreatorId;
     }
 }
 

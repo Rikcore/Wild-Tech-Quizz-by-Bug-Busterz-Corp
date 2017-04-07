@@ -49,7 +49,6 @@ public class CreateQuizActivity extends AppCompatActivity {
         final Button buttonContinue = (Button) findViewById(R.id.buttonContinue);
 
 
-
         final FloatingActionButton floatingActionButtonAddQuestion = (FloatingActionButton) findViewById(R.id.floatingActionButtonAddQuestion);
         floatingActionButtonAddQuestion.setVisibility(View.INVISIBLE);
         final EditText editTextQuestion = (EditText) findViewById(R.id.editTextQuestion);
@@ -68,150 +67,143 @@ public class CreateQuizActivity extends AppCompatActivity {
         final ImageView bufferButton = (ImageView) findViewById(R.id.imageViewBuffer);
         bufferButton.setVisibility(View.INVISIBLE);
 
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+
+            String providerId = user.getProviderId();
+            final String uid = user.getUid();
 
 
-        buttonContinue.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (editTextQuizzName==null){
-                    Toast.makeText(CreateQuizActivity.this,"Ton quizz a besoin d'un nom",Toast.LENGTH_LONG).show();
-                }
-                else{
-                    quizzName = editTextQuizzName.getText().toString();
-                    textViewQuizzName.setVisibility(View.INVISIBLE);
-                    editTextQuizzName.setVisibility(View.INVISIBLE);
-                    buttonContinue.setVisibility(View.INVISIBLE);
-                    editTextQuestion.setVisibility(View.VISIBLE);
-                    editTextFirstChoice.setVisibility(View.VISIBLE);
-                    editTextSecondChoice.setVisibility(View.VISIBLE);
-                    radioButtonFirstChoice.setVisibility(View.VISIBLE);
-                    radioButtonSecondChoice.setVisibility(View.VISIBLE);
-                    floatingActionButtonAddQuestion.setVisibility(View.VISIBLE);
-                    Toast.makeText(CreateQuizActivity.this,"Titre OK, place aux questions !",Toast.LENGTH_LONG).show();
+            buttonContinue.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (editTextQuizzName == null) {
+                        Toast.makeText(CreateQuizActivity.this, "Ton quizz a besoin d'un nom", Toast.LENGTH_LONG).show();
+                    } else {
+                        quizzName = editTextQuizzName.getText().toString();
+                        textViewQuizzName.setVisibility(View.INVISIBLE);
+                        editTextQuizzName.setVisibility(View.INVISIBLE);
+                        buttonContinue.setVisibility(View.INVISIBLE);
+                        editTextQuestion.setVisibility(View.VISIBLE);
+                        editTextFirstChoice.setVisibility(View.VISIBLE);
+                        editTextSecondChoice.setVisibility(View.VISIBLE);
+                        radioButtonFirstChoice.setVisibility(View.VISIBLE);
+                        radioButtonSecondChoice.setVisibility(View.VISIBLE);
+                        floatingActionButtonAddQuestion.setVisibility(View.VISIBLE);
+                        Toast.makeText(CreateQuizActivity.this, "Titre OK, place aux questions !", Toast.LENGTH_LONG).show();
 
 
-
-                }
-            }
-        });
-
-
-
-        floatingActionButtonAddQuestion.setOnClickListener(new View.OnClickListener() {
-          @Override
-          public void onClick(View v) {
-
-
-              if(editTextQuestion.length() > 0 && editTextFirstChoice.length() > 0 && editTextSecondChoice.length() > 0 && (radioButtonFirstChoice.isChecked() || radioButtonSecondChoice.isChecked())) {
-
-                  mQuestion = editTextQuestion.getText().toString();
-                  mChoiceA = editTextFirstChoice.getText().toString();
-                  mChoiceB = editTextSecondChoice.getText().toString();
-
-                  if(radioButtonFirstChoice.isChecked()){
-                      mCorrectAnswer = mChoiceA;
-
-                  }
-
-                  else if(radioButtonSecondChoice.isChecked()){
-                      mCorrectAnswer = mChoiceB;
-
-                  }
-
-
-                  QuestionClass newQuestion = new QuestionClass(mQuestion, mChoiceA, mChoiceB, mCorrectAnswer);
-                  Toast.makeText(CreateQuizActivity.this,"Quesion enregistrée !",Toast.LENGTH_LONG).show();
-
-
-                  questionList.add(newQuestion);
-                  editTextQuestion.setText("");
-                  editTextFirstChoice.setText("");
-                  editTextSecondChoice.setText("");
-                  radioButtonFirstChoice.setChecked(false);
-                  radioButtonSecondChoice.setChecked(false);
-
-
-
-
-                  if (questionList.size() == 5){
-                      floatingActionButtonAddQuestion.setVisibility(View.INVISIBLE);
-                      bufferButton.setVisibility(View.VISIBLE);
-                      textViewEnd.setVisibility(View.VISIBLE);
-                      editTextQuestion.setVisibility(View.INVISIBLE);
-                      editTextFirstChoice.setVisibility(View.INVISIBLE);
-                      editTextSecondChoice.setVisibility(View.INVISIBLE);
-                      radioButtonFirstChoice.setVisibility(View.INVISIBLE);
-                      radioButtonSecondChoice.setVisibility(View.INVISIBLE);
-
-
-                  }
-
-
-
-
-          }
-          else{
-                  Toast.makeText(CreateQuizActivity.this,"Tu dois remplir tous les champs, et sélectionner la bonne réponse",Toast.LENGTH_LONG).show();
-                  return;
-              }
-      }
-
-
-
-
-    });
-
-
-        bufferButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Quizzclass newQuiz = new Quizzclass(questionList, username, quizzName);
-                FirebaseDatabase database = FirebaseDatabase.getInstance();
-                DatabaseReference ref = database.getReference("Quizz");
-                ref.push().setValue(newQuiz);
-                editTextQuizzName.setText("");
-
-                Toast.makeText(CreateQuizActivity.this,"Quizz envoyé",Toast.LENGTH_LONG).show();
-
-
-                finish();
-
-
-            }
-        });
-
-
-        bufferButton.setOnTouchListener(new View.OnTouchListener() {
-
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-
-                switch (event.getAction()) {
-                    case MotionEvent.ACTION_DOWN: {
-                        ImageView view = (ImageView) v;
-                        //overlay is black with transparency of 0x77 (119)
-                        view.getDrawable().setColorFilter(0x77000000, PorterDuff.Mode.SRC_ATOP);
-                        view.invalidate();
-                        break;
                     }
-                    case MotionEvent.ACTION_UP:
-                    case MotionEvent.ACTION_CANCEL: {
-                        ImageView view = (ImageView) v;
-                        //clear the overlay
-                        view.getDrawable().clearColorFilter();
-                        view.invalidate();
-                        break;
+                }
+            });
+
+
+            floatingActionButtonAddQuestion.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+
+                    if (editTextQuestion.length() > 0 && editTextFirstChoice.length() > 0 && editTextSecondChoice.length() > 0 && (radioButtonFirstChoice.isChecked() || radioButtonSecondChoice.isChecked())) {
+
+                        mQuestion = editTextQuestion.getText().toString();
+                        mChoiceA = editTextFirstChoice.getText().toString();
+                        mChoiceB = editTextSecondChoice.getText().toString();
+
+                        if (radioButtonFirstChoice.isChecked()) {
+                            mCorrectAnswer = mChoiceA;
+
+                        } else if (radioButtonSecondChoice.isChecked()) {
+                            mCorrectAnswer = mChoiceB;
+
+                        }
+
+
+                        QuestionClass newQuestion = new QuestionClass(mQuestion, mChoiceA, mChoiceB, mCorrectAnswer);
+                        Toast.makeText(CreateQuizActivity.this, "Quesion enregistrée !", Toast.LENGTH_LONG).show();
+
+
+                        questionList.add(newQuestion);
+                        editTextQuestion.setText("");
+                        editTextFirstChoice.setText("");
+                        editTextSecondChoice.setText("");
+                        radioButtonFirstChoice.setChecked(false);
+                        radioButtonSecondChoice.setChecked(false);
+
+
+                        if (questionList.size() == 5) {
+                            floatingActionButtonAddQuestion.setVisibility(View.INVISIBLE);
+                            bufferButton.setVisibility(View.VISIBLE);
+                            textViewEnd.setVisibility(View.VISIBLE);
+                            editTextQuestion.setVisibility(View.INVISIBLE);
+                            editTextFirstChoice.setVisibility(View.INVISIBLE);
+                            editTextSecondChoice.setVisibility(View.INVISIBLE);
+                            radioButtonFirstChoice.setVisibility(View.INVISIBLE);
+                            radioButtonSecondChoice.setVisibility(View.INVISIBLE);
+
+
+                        }
+
+
+                    } else {
+                        Toast.makeText(CreateQuizActivity.this, "Tu dois remplir tous les champs, et sélectionner la bonne réponse", Toast.LENGTH_LONG).show();
+                        return;
                     }
                 }
 
-                return false;
-            }
-        });
+
+            });
+
+
+            bufferButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    Quizzclass newQuiz = new Quizzclass(questionList, username, quizzName, uid);
+                    FirebaseDatabase database = FirebaseDatabase.getInstance();
+                    DatabaseReference ref = database.getReference("Quizz");
+                    ref.push().setValue(newQuiz);
+                    editTextQuizzName.setText("");
+
+                    Toast.makeText(CreateQuizActivity.this, "Quizz envoyé", Toast.LENGTH_LONG).show();
+
+
+                    finish();
+
+
+                }
+            });
+
+
+            bufferButton.setOnTouchListener(new View.OnTouchListener() {
+
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+
+                    switch (event.getAction()) {
+                        case MotionEvent.ACTION_DOWN: {
+                            ImageView view = (ImageView) v;
+                            //overlay is black with transparency of 0x77 (119)
+                            view.getDrawable().setColorFilter(0x77000000, PorterDuff.Mode.SRC_ATOP);
+                            view.invalidate();
+                            break;
+                        }
+                        case MotionEvent.ACTION_UP:
+                        case MotionEvent.ACTION_CANCEL: {
+                            ImageView view = (ImageView) v;
+                            //clear the overlay
+                            view.getDrawable().clearColorFilter();
+                            view.invalidate();
+                            break;
+                        }
+                    }
+
+                    return false;
+                }
+            });
+
+        }
+
 
     }
-
-
-
 
 }

@@ -1,6 +1,8 @@
 package bugbusterzcorp.wildtechquizz;
 
 import android.graphics.PorterDuff;
+import android.graphics.Typeface;
+import android.support.constraint.solver.SolverVariable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -66,6 +68,13 @@ public class CreateQuizActivity extends AppCompatActivity {
         textViewEnd.setVisibility(View.INVISIBLE);
         final ImageView bufferButton = (ImageView) findViewById(R.id.imageViewBuffer);
         bufferButton.setVisibility(View.INVISIBLE);
+
+        Typeface custom_font = Typeface.createFromAsset(getAssets(),  "fonts/bits.TTF");
+        Typeface geek_font = Typeface.createFromAsset(getAssets(), "fonts/digiffiti.ttf");
+        Typeface game_font = Typeface.createFromAsset(getAssets(), "fonts/Gamegirl.ttf");
+
+
+        textViewQuizzName.setTypeface(game_font);
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {

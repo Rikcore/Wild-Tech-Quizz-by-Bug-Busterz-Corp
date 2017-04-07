@@ -2,11 +2,13 @@ package bugbusterzcorp.wildtechquizz;
 
 import android.content.Intent;
 import android.database.DataSetObserver;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
@@ -20,13 +22,16 @@ public class QuizzListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quizz_list);
+        Typeface game_font = Typeface.createFromAsset(getAssets(), "fonts/Gamegirl.ttf");
+
 
 
 
         mDatabase = FirebaseDatabase.getInstance().getReference("Quizz"); // APPELLE LA BASE DE DONNEES
 
         final QuizzListAdapter mQuizzListAdapter = new QuizzListAdapter(mDatabase, this, R.layout.quizz_item ); // APPELLE L'ADAPTER
-
+        final TextView textViewChoix = (TextView) findViewById(R.id.textViewChoix);
+        textViewChoix.setTypeface(game_font);
         final ListView quizzListView = (ListView) findViewById(R.id.QuizzLIstView); //APPELLE LA LISTE .XML
         quizzListView.setAdapter(mQuizzListAdapter); //FUSION LIST ET ADAPTER
 

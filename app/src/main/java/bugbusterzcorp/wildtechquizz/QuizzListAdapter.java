@@ -1,6 +1,7 @@
 package bugbusterzcorp.wildtechquizz;
 
 import android.app.Activity;
+import android.graphics.Typeface;
 import android.view.View;
 import android.widget.TextView;
 
@@ -11,6 +12,9 @@ import com.google.firebase.database.Query;
 public class QuizzListAdapter extends FirebaseListAdapter<Quizzclass> {
 
 
+
+
+
     public QuizzListAdapter(Query ref, Activity activity, int layout) {
         super(ref, Quizzclass.class, layout, activity);
 
@@ -18,6 +22,8 @@ public class QuizzListAdapter extends FirebaseListAdapter<Quizzclass> {
 
     @Override
     protected void populateView(View v, Quizzclass newQuiz) {
+
+
         TextView quizzName = (TextView)v.findViewById(R.id.textViewQuizzName);
         TextView quizzAutor = (TextView)v.findViewById(R.id.textViewAuthor);
 

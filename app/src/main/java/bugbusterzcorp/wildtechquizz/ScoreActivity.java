@@ -1,6 +1,7 @@
 package bugbusterzcorp.wildtechquizz;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.graphics.drawable.AnimationDrawable;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -20,8 +21,13 @@ public class ScoreActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(activity_score);
 
+        Typeface game_font = Typeface.createFromAsset(getAssets(), "fonts/Gamegirl.ttf");
+
         GifTextView gifTextViewResult = (GifTextView) findViewById(R.id.gifTextViewResult);
         TextView textViewResult = (TextView) findViewById(R.id.textViewResult);
+        TextView textViewResult2= (TextView) findViewById(R.id.textViewResult2);
+        textViewResult.setTypeface(game_font);
+        textViewResult2.setTypeface(game_font);
 
         Intent scoreIntent = getIntent();
         int score = scoreIntent.getIntExtra("score", 0);
@@ -35,7 +41,8 @@ public class ScoreActivity extends AppCompatActivity {
             textViewResult.setText(score+"/"+total+" Not bad !");
         } else {
             gifTextViewResult.setBackgroundResource(R.drawable.victoire);
-            textViewResult.setText(score+"/"+total+" Beau gosse !");
+            textViewResult2.setText(score+"/"+total+" Beau gosse !");
+            textViewResult2.setTextColor(getResources().getColor(R.color.purple));
         }
 
 

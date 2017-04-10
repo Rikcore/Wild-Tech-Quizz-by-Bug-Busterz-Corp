@@ -47,7 +47,7 @@
     <TextView
         android:id="@+id/textViewChoiceA"
         android:layout_width="0dp"
-        android:layout_height="85dp"
+        android:layout_height="100dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
@@ -68,8 +68,8 @@
 
     <TextView
         android:id="@+id/textViewChoiceB"
-        android:layout_width="395dp"
-        android:layout_height="85dp"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
         android:layout_marginBottom="230dp"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"

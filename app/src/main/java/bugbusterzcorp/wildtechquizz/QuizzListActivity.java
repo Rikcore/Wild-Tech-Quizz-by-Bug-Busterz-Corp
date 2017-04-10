@@ -5,18 +5,22 @@ import android.database.DataSetObserver;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class QuizzListActivity extends AppCompatActivity {
 
     private DatabaseReference mDatabase;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,5 +65,23 @@ public class QuizzListActivity extends AppCompatActivity {
                 startActivity(goPlay);
             }
         });
+
+        quizzListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                Quizzclass newQuiz = (Quizzclass) quizzListView.getAdapter().getItem(position);
+                if(user.getUid().equals(newQuiz.getmCreatorId()) || user.getUid().equals("jCcNcWkOv4c4m4xV4yWWaAT7AAS2")) {
+                    mDatabase.child(mQuizzListAdapter.getItemKey(position)).removeValue();
+                }
+                else{
+                    Toast.makeText(QuizzListActivity.this,"C'est pas beau de vouloir supprimer les quizzs des copains !",Toast.LENGTH_LONG).show();
+
+                }
+                return (true);
+            }
+        });
+
+
     }
 }

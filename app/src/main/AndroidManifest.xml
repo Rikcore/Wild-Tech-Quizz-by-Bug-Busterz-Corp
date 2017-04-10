@@ -29,7 +29,16 @@
         <activity android:name=".QuizzListActivity" />
         <activity android:name=".CreateQuizActivity" />
         <activity android:name=".PlayQuizzActivity" />
-        <activity android:name=".ScoreActivity"></activity>
+        <activity android:name=".ScoreActivity" />
+
+        <service
+            android:name=".MyService"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="DemoService.DisplayNotif"></action>
+            </intent-filter>
+        </service>
     </application>
 
 </manifest>

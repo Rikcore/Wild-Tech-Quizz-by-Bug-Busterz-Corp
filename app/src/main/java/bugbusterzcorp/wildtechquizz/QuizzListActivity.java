@@ -14,6 +14,9 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -31,7 +34,10 @@ public class QuizzListActivity extends AppCompatActivity {
 
 
 
-        mDatabase = FirebaseDatabase.getInstance().getReference("Quizz"); // APPELLE LA BASE DE DONNEES
+        mDatabase = FirebaseDatabase.getInstance().getReference("Quizz");
+
+        // APPELLE LA BASE DE DONNEES
+
 
         final QuizzListAdapter mQuizzListAdapter = new QuizzListAdapter(mDatabase, this, R.layout.quizz_item ); // APPELLE L'ADAPTER
         final TextView textViewChoix = (TextView) findViewById(R.id.textViewChoix);
@@ -45,6 +51,11 @@ public class QuizzListActivity extends AppCompatActivity {
             public void onChanged() {
                 super.onChanged();
                 quizzListView.setSelection(mQuizzListAdapter.getCount() - 1);
+
+                Intent myIntent = new Intent(MyService.INTENT_DISPLAY_NOTIF);
+                myIntent.setClass(QuizzListActivity.this, MyService.class);
+                startService(myIntent);
+
             }
         });
 

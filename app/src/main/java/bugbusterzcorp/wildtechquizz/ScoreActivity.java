@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -78,6 +79,12 @@ public class ScoreActivity extends AppCompatActivity{
                     FirebaseDatabase database = FirebaseDatabase.getInstance();
                     DatabaseReference commentScoreRef = database.getReference("Quizz");
                     commentScoreRef.child(quizzString).child(user.getDisplayName()).push().setValue(scoreCommentUserClass);
+                    startActivity(new Intent(ScoreActivity.this, ProfileActivity.class));
+                    finish();
+
+                }
+                else{
+                    Toast.makeText(ScoreActivity.this,"Laisse nous un petit commentaire, connard!",Toast.LENGTH_LONG).show();
 
                 }
             }

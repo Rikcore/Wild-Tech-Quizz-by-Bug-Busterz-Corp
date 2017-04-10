@@ -92,4 +92,19 @@
         app:layout_constraintBottom_toBottomOf="@+id/gifTextViewResult"
         android:layout_marginBottom="320dp" />
 
+    <TextView
+        android:id="@+id/textViewForgetPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mot de passe oublié? Clique ici."
+        android:layout_marginLeft="-264dp"
+        android:textColor="@color/yellow"
+        android:textAlignment="center"
+        android:textSize="15dp"
+        app:layout_constraintLeft_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="226dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent" />
+
 </android.support.constraint.ConstraintLayout>

@@ -17,6 +17,7 @@ import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -30,8 +31,12 @@ import java.net.URISyntaxException;
 import java.net.URL;
 
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserInfo;
@@ -61,6 +66,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
     private TextView textViewUsername;
     private ImageView imageViewUser;
+    private TextView textViewResetPassword;
     private Button buttonLogout;
     private Button buttonPlay;
     private Button buttonUpload;
@@ -92,7 +98,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
 
         textViewUsername = (TextView) findViewById(R.id.textViewUsername);
-
+        textViewResetPassword = (TextView) findViewById(R.id.textViewForgetPassword);
         imageViewUser = (ImageView) findViewById(R.id.imageViewUser);
         buttonLogout = (Button) findViewById(R.id.buttonLogout);
         buttonPlay = (Button)findViewById(R.id.buttonPlay);
@@ -222,6 +228,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
             buttonUpload.setVisibility(View.INVISIBLE);
 
         }
+
     }
 
     public void goToCreate(View view){

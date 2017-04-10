@@ -101,6 +101,7 @@
         android:layout_marginEnd="8dp" />
 
     <RadioGroup
+        android:id="@+id/radioGroupAnswer"
         android:layout_width="72dp"
         android:layout_height="145dp"
         android:layout_marginLeft="8dp"

@@ -86,6 +86,7 @@ public class PlayQuizzActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(newQuestion.getChoiceA().equals(newQuestion.getCorrectAnswer())){
+                    sound.playSuccessSound();
                     textViewChoiceA.setBackgroundColor(Color.GREEN);
                     score++;
                     textViewScore.setText(score+"/"+questionList.size());
@@ -99,6 +100,7 @@ public class PlayQuizzActivity extends AppCompatActivity {
 
                 }
                 else{
+                    sound.playFailSound();
                     textViewChoiceA.setBackgroundColor(Color.RED);
                     textViewChoiceA.postDelayed(new Runnable() {
 
@@ -137,7 +139,7 @@ public class PlayQuizzActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 if(newQuestion.getChoiceB().equals(newQuestion.getCorrectAnswer())){
-
+                    sound.playSuccessSound();
                     textViewChoiceB.setBackgroundColor(Color.GREEN);
                     score++;
                     textViewScore.setText(score+"/"+questionList.size());

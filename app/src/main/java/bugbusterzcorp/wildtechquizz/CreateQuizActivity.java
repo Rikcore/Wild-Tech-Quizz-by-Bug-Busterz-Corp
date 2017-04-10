@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +33,7 @@ public class CreateQuizActivity extends AppCompatActivity {
     String mQuestion;
     String mChoiceA;
     String mChoiceB;
+    RadioGroup radioGroupAnswer;
     ArrayList questionList;
     private FirebaseAuth firebaseAuth;
     private String quizzName;
@@ -51,6 +53,8 @@ public class CreateQuizActivity extends AppCompatActivity {
         final Button buttonContinue = (Button) findViewById(R.id.buttonContinue);
 
 
+
+
         final FloatingActionButton floatingActionButtonAddQuestion = (FloatingActionButton) findViewById(R.id.floatingActionButtonAddQuestion);
         floatingActionButtonAddQuestion.setVisibility(View.INVISIBLE);
         final EditText editTextQuestion = (EditText) findViewById(R.id.editTextQuestion);
@@ -63,6 +67,8 @@ public class CreateQuizActivity extends AppCompatActivity {
         radioButtonFirstChoice.setVisibility(View.INVISIBLE);
         final RadioButton radioButtonSecondChoice = (RadioButton) findViewById(R.id.radioButtonSecondChoice);
         radioButtonSecondChoice.setVisibility(View.INVISIBLE);
+
+        final RadioGroup radiogroupAnswer = (RadioGroup) findViewById(R.id.radioGroupAnswer);
 
         final TextView textViewEnd = (TextView) findViewById(R.id.textViewEnd);
         textViewEnd.setVisibility(View.INVISIBLE);
@@ -135,8 +141,8 @@ public class CreateQuizActivity extends AppCompatActivity {
                         editTextQuestion.setText("");
                         editTextFirstChoice.setText("");
                         editTextSecondChoice.setText("");
-                        radioButtonFirstChoice.setChecked(false);
-                        radioButtonSecondChoice.setChecked(false);
+                        radiogroupAnswer.clearCheck();
+
 
 
                         if (questionList.size() == 5) {

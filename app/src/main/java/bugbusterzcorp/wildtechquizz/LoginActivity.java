@@ -123,9 +123,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             return;
         }
 
-
-
-
         auth.sendPasswordResetEmail(emailAddress)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override

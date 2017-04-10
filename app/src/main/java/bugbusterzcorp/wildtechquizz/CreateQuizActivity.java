@@ -1,5 +1,6 @@
 package bugbusterzcorp.wildtechquizz;
 
+import android.content.Intent;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.support.constraint.solver.SolverVariable;
@@ -177,6 +178,7 @@ public class CreateQuizActivity extends AppCompatActivity {
                     FirebaseDatabase database = FirebaseDatabase.getInstance();
                     DatabaseReference ref = database.getReference("Quizz");
                     ref.push().setValue(newQuiz);
+
                     editTextQuizzName.setText("");
 
                     Toast.makeText(CreateQuizActivity.this, "Quizz envoyé", Toast.LENGTH_LONG).show();

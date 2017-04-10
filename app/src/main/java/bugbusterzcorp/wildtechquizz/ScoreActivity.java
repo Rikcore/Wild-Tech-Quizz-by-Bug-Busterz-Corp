@@ -2,16 +2,12 @@ package bugbusterzcorp.wildtechquizz;
 
 import android.content.Intent;
 import android.graphics.Typeface;
-import android.graphics.drawable.AnimationDrawable;
-import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -78,11 +74,11 @@ public class ScoreActivity extends AppCompatActivity{
                     String userName = user.getDisplayName();
                     String userID = user.getUid();
 
-                    MessageUser messageUser = new MessageUser(message,userName, userID ,score);
+                    ScoreCommentUserClass scoreCommentUserClass = new ScoreCommentUserClass(message,userName, userID ,score);
                     FirebaseDatabase database = FirebaseDatabase.getInstance();
                     DatabaseReference commentScoreRef = database.getReference("Quizz");
-                    commentScoreRef.child(quizzString).child("Comment+Score").push().setValue(messageUser);
-                   // editTextMessage.setText("");
+                    commentScoreRef.child(quizzString).child(user.getDisplayName()).push().setValue(scoreCommentUserClass);
+
                 }
             }
         });

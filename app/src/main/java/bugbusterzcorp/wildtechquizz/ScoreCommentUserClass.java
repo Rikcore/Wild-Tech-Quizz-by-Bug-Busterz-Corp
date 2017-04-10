@@ -4,13 +4,13 @@ package bugbusterzcorp.wildtechquizz;
  * Created by apprenti on 10/04/17.
  */
 
-public class MessageUser {
+public class ScoreCommentUserClass {
     private String mMessage;
     private String mUserNickName;
     private String mUserID;
     private int mScore;
 
-    public MessageUser(String message, String userNickName, String userID, int score){
+    public ScoreCommentUserClass(String message, String userNickName, String userID, int score){
         mMessage= message;
         mUserNickName = userNickName;
         mUserID = userID;

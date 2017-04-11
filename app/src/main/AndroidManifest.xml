@@ -36,9 +36,11 @@
             android:enabled="true"
             android:exported="true">
             <intent-filter>
-                <action android:name="DemoService.DisplayNotif"></action>
+                <action android:name="DemoService.DisplayNotif" />
             </intent-filter>
         </service>
+
+        <activity android:name=".QuizzDetailActivity"></activity>
     </application>
 
 </manifest>

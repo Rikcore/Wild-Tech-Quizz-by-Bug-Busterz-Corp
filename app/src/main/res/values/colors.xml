@@ -14,8 +14,7 @@
     <color name="purple">#800080</color>
     <color name="orange">#ffa500</color>
     <color name="yellow">#FFFF00</color>
-    <color name="blue">#FF29AAC7</color>
-
+    <color name="grey">#6E6E6E</color>
     <item name="red" type="color">#FFFF4444</item>
 
 

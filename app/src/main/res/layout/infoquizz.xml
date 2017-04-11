@@ -39,10 +39,11 @@
         android:id="@+id/textViewMessage"
         android:textColor="@color/white"
         android:textStyle="italic"
+        android:maxLines=""
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Message"
-        android:layout_below="@+id/textViewPseudo"
+        android:layout_alignBottom="@+id/avatar"
         android:layout_alignStart="@+id/textViewPseudo" />
 
 </RelativeLayout>

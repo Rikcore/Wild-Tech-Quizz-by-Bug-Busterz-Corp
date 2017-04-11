@@ -62,17 +62,9 @@ public class SoundPlayer {
     }
 
     public void playFailSound() {
-
-        
-
-    public void playStageSound() {
-        soundPool.play(stageSound, 1.0f, 1.0f, 1, 0, 1.0f);
-    }
-
-}
-
         soundPool.play(failSound, 0.7f, 0.7f, 1, 0, 1.0f);
     }
+
 
     public void playBoogieSound() {
         soundPool.play(boogieSound, 1.0f, 1.0f, 1, 0, 1.0f);

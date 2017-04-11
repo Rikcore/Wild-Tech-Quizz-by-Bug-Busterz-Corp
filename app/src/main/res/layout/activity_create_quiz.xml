@@ -192,10 +192,8 @@
         android:id="@+id/imageViewBuffer"
         android:layout_width="423dp"
         android:layout_height="375dp"
+        app:srcCompat="@mipmap/buzzer_burned"/>
 
-        app:srcCompat="@mipmap/buzzer_burned">
-
-    </ImageView>
 <TextView
         android:id="@+id/textViewEnd"
         android:layout_width="0dp"

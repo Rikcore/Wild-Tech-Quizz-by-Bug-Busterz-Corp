@@ -21,6 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:maxLength="50"
         android:inputType="textCapSentences"
         android:hint="Tapez votre question"
         android:textColorHint="@color/white"
@@ -43,6 +44,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:maxLength="20"
         android:inputType="textCapSentences"
         android:hint="Entrez le premier choix"
         android:textColorHint="@color/white"
@@ -65,6 +67,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:maxLength="20"
         android:inputType="textCapSentences"
         android:hint="Entrez le second choix"
         android:textColorHint="@color/white"
@@ -135,6 +138,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
+        android:maxLength="20"
         android:hint="Nom du quizz"
         android:textColorHint="@color/white"
         android:textColor="@color/white"
@@ -188,15 +192,11 @@
         android:id="@+id/imageViewBuffer"
         android:layout_width="423dp"
         android:layout_height="375dp"
-        app:srcCompat="@mipmap/buzzer_burned"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintVertical_bias="0.501"
-        style="?android:borderlessButtonStyle" />
 
-    <TextView
+        app:srcCompat="@mipmap/buzzer_burned">
+
+    </ImageView>
+<TextView
         android:id="@+id/textViewEnd"
         android:layout_width="0dp"
         android:layout_height="91dp"

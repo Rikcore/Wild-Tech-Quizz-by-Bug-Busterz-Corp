@@ -154,7 +154,7 @@ public class PlayQuizzActivity extends AppCompatActivity {
 
                 }
                 else{
-
+                    sound.playFailSound();
                     textViewChoiceB.setBackgroundColor(Color.RED);
                     textViewChoiceB.postDelayed(new Runnable() {
 
@@ -206,6 +206,7 @@ public class PlayQuizzActivity extends AppCompatActivity {
         else{
             timer.cancel();
             Intent scoreIntent = new Intent(PlayQuizzActivity.this, ScoreActivity.class);
+
             scoreIntent.putExtra("score", score);
             scoreIntent.putExtra("total", questionList.size());
             scoreIntent.putExtra("quizzRef", quizzString);

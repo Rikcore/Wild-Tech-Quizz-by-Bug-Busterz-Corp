@@ -25,6 +25,7 @@ public class ScoreActivity extends AppCompatActivity{
 
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,7 +63,10 @@ public class ScoreActivity extends AppCompatActivity{
             textViewResult2.setText(score+"/"+total+" Beau gosse !");
             textViewResult2.setTextColor(getResources().getColor(R.color.purple));
 
+
         }
+
+
 
 
         buttonMessage.setOnClickListener(new View.OnClickListener() {
@@ -91,9 +95,17 @@ public class ScoreActivity extends AppCompatActivity{
         });
 
 
-
-
         }
+
+    public void share(View view){
+        Intent scoreIntent = getIntent();
+        final int score = scoreIntent.getIntExtra("score", 0);
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, " J'ai réalisé le score de " + score + "/5"  + " sur Wild Tech Quiz. Rejoins-moi vite !" );
+        sendIntent.setType("text/plain");
+        startActivity(Intent.createChooser(sendIntent, getResources().getText(R.string.send_to)));
+    }
 
 
     }

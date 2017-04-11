@@ -7,6 +7,12 @@ import android.media.SoundPool;
 import android.os.Build;
 
 
+/**
+ * Created by apprenti on 06/04/17.
+ */
+
+
+
 
 public class SoundPlayer {
     private AudioAttributes audioAttributes;
@@ -20,6 +26,7 @@ public class SoundPlayer {
     public SoundPlayer(Context context) {
 
         // SoundPool is deprecated in API level 21. (Lollipop)
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 
             audioAttributes = new AudioAttributes.Builder()
@@ -39,8 +46,12 @@ public class SoundPlayer {
 
 
         successSound = soundPool.load(context, R.raw.success, 1);
+
+       
+
         failSound = soundPool.load(context, R.raw.wrongbuzzer, 1);
         boogieSound = soundPool.load(context, R.raw.genes, 1);
+
 
     }
 
@@ -51,6 +62,15 @@ public class SoundPlayer {
     }
 
     public void playFailSound() {
+
+        
+
+    public void playStageSound() {
+        soundPool.play(stageSound, 1.0f, 1.0f, 1, 0, 1.0f);
+    }
+
+}
+
         soundPool.play(failSound, 0.7f, 0.7f, 1, 0, 1.0f);
     }
 
@@ -58,3 +78,4 @@ public class SoundPlayer {
         soundPool.play(boogieSound, 1.0f, 1.0f, 1, 0, 1.0f);
     }
 }
+

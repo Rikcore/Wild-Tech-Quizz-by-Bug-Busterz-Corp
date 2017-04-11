@@ -24,6 +24,7 @@ public class PlayQuizzActivity extends AppCompatActivity {
     private TextView textViewTimer;
     private TextView textViewScore;
     private QuestionClass newQuestion;
+
     private SoundPlayer sound;
     private CountDownTimer timer;
 
@@ -34,6 +35,8 @@ public class PlayQuizzActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_quizz);
+        sound = new SoundPlayer(this);
+
         Intent goPlay = getIntent();
         quizzString = goPlay.getStringExtra("quizzRef");
         Quizzclass newQuiz = (Quizzclass) goPlay.getExtras().get("quizzObject");
@@ -154,7 +157,7 @@ public class PlayQuizzActivity extends AppCompatActivity {
 
                 }
                 else{
-
+                    sound.playFailSound();
                     textViewChoiceB.setBackgroundColor(Color.RED);
                     textViewChoiceB.postDelayed(new Runnable() {
 

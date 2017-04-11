@@ -195,6 +195,7 @@
     <ImageView
         android:id="@+id/imageViewBuffer"
 
+
         android:layout_width="323dp"
         android:layout_height="275dp"
         app:srcCompat="@mipmap/buzzer_burned"

@@ -4,10 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/cube2"
     tools:context="bugbusterzcorp.wildtechquizz.LoginActivity"
     tools:layout_editor_absoluteY="81dp"
     tools:layout_editor_absoluteX="0dp">
+
+    <pl.droidsonroids.gif.GifTextView
+        android:id="@+id/gifTextViewResult"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/city2"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintVertical_bias="0.0" />
 
 
     <EditText
@@ -26,7 +37,8 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        tools:layout_editor_absoluteY="47dp" />
+        android:layout_marginBottom="24dp"
+        app:layout_constraintBottom_toTopOf="@+id/editTextPassword" />
 
     <EditText
         android:id="@+id/editTextPassword"
@@ -34,7 +46,6 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginTop="32dp"
         android:textSize="25dp"
         android:hint="Mot de passe"
         android:textStyle="bold"
@@ -45,22 +56,22 @@
         android:inputType="textPassword"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextEmail" />
+        android:layout_marginBottom="24dp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonSignin" />
 
     <Button
         android:id="@+id/buttonSignin"
         android:layout_width="191dp"
         android:layout_height="55dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
         android:background="@drawable/round"
         android:text="Connexion"
         android:textColor="@color/white"
-        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginBottom="9dp"
+        app:layout_constraintBottom_toTopOf="@+id/textViewSignUp"
+        android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintHorizontal_bias="0.564"
-        android:layout_marginTop="21dp"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPassword" />
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent" />
 
     <TextView
         android:id="@+id/textViewSignUp"
@@ -70,14 +81,29 @@
         android:layout_marginRight="8dp"
         android:textStyle="bold"
 
-        android:layout_marginTop="74dp"
         android:text="Pas de compte ? Enregistre toi ici."
         android:textAlignment="center"
         android:textSize="19sp"
         android:textColor="@color/blue"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonSignin"
-        app:layout_constraintHorizontal_bias="0.0" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintBottom_toBottomOf="@+id/gifTextViewResult"
+        android:layout_marginBottom="320dp" />
+
+    <TextView
+        android:id="@+id/textViewForgetPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mot de passe oublié? Clique ici."
+        android:layout_marginLeft="-264dp"
+        android:textColor="@color/yellow"
+        android:textAlignment="center"
+        android:textSize="15dp"
+        app:layout_constraintLeft_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="226dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

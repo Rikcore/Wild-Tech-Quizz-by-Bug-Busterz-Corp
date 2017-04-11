@@ -6,20 +6,27 @@ import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Build;
 
+
 /**
  * Created by apprenti on 06/04/17.
  */
 
-public class SoundPlayer {
 
-    private static final int SOUND_POOL_MAX = 2 ;
+
+
+public class SoundPlayer {
     private AudioAttributes audioAttributes;
+    final int SOUND_POOL_MAX = 8;
+
     private static SoundPool soundPool;
     private static int successSound;
     private static int failSound;
-    private static int stageSound;
+    private static int boogieSound;
 
-    public SoundPlayer (Context context){
+    public SoundPlayer(Context context) {
+
+        // SoundPool is deprecated in API level 21. (Lollipop)
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 
             audioAttributes = new AudioAttributes.Builder()
@@ -39,8 +46,12 @@ public class SoundPlayer {
 
 
         successSound = soundPool.load(context, R.raw.success, 1);
-        failSound = soundPool.load(context, R.raw.wrong_buzzer, 1);
-        stageSound = soundPool.load(context, R.raw.stage, 1);
+
+       
+
+        failSound = soundPool.load(context, R.raw.wrongbuzzer, 1);
+        boogieSound = soundPool.load(context, R.raw.genes, 1);
+
 
     }
 
@@ -51,8 +62,8 @@ public class SoundPlayer {
     }
 
     public void playFailSound() {
-        soundPool.play(failSound, 1.0f, 1.0f, 1, 0, 1.0f);
-    }
+
+        
 
     public void playStageSound() {
         soundPool.play(stageSound, 1.0f, 1.0f, 1, 0, 1.0f);
@@ -60,7 +71,11 @@ public class SoundPlayer {
 
 }
 
+        soundPool.play(failSound, 0.7f, 0.7f, 1, 0, 1.0f);
+    }
 
-
-
+    public void playBoogieSound() {
+        soundPool.play(boogieSound, 1.0f, 1.0f, 1, 0, 1.0f);
+    }
+}
 

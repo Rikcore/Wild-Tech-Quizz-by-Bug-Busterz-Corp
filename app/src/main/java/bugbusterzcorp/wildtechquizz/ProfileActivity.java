@@ -1,36 +1,48 @@
 package bugbusterzcorp.wildtechquizz;
 
 import android.app.ProgressDialog;
+import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.media.ExifInterface;
 import android.media.Image;
 import android.net.Uri;
+import android.os.ParcelFileDescriptor;
 import android.provider.ContactsContract;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileDescriptor;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
 
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserInfo;
@@ -40,6 +52,7 @@ import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
 import static android.R.attr.bitmap;
 import static android.R.attr.data;
@@ -60,6 +73,8 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
     private TextView textViewUsername;
     private ImageView imageViewUser;
+    private TextView textViewResetPassword;
+    private TextView textViewFormat;
     private Button buttonLogout;
     private Button buttonPlay;
     private Button buttonUpload;
@@ -67,6 +82,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     private static int RESULT_LOAD_IMAGE = 1;
     private String picturePath;
     private Uri selectedImage;
+    private Bitmap correctImage;
     private String uid;
 
 
@@ -78,6 +94,9 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         setContentView(R.layout.activity_profile);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
+        Typeface game_font = Typeface.createFromAsset(getAssets(), "fonts/Gamegirl.ttf");
+
+
         mStorage = FirebaseStorage.getInstance().getReference();
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -88,7 +107,8 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
 
         textViewUsername = (TextView) findViewById(R.id.textViewUsername);
-
+        textViewResetPassword = (TextView) findViewById(R.id.textViewForgetPassword);
+        textViewFormat = (TextView) findViewById(R.id.textViewFormat);
         imageViewUser = (ImageView) findViewById(R.id.imageViewUser);
         buttonLogout = (Button) findViewById(R.id.buttonLogout);
         buttonPlay = (Button)findViewById(R.id.buttonPlay);
@@ -106,16 +126,25 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                 String email = user.getEmail();
 
                 textViewUsername.setText(username);
+                textViewUsername.setTypeface(game_font);
 
 
             mStorage.child("images/"+uid).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+
+
+
+
                 @Override
                 public void onSuccess(Uri uri) {
+
                     Picasso
                             .with(ProfileActivity.this)
                             .load(uri)
+                            .resize(700,700)
+                            .centerCrop()
                             .into(imageViewUser);
                     buttonUpload.setVisibility(View.INVISIBLE);
+                    textViewFormat.setVisibility(View.INVISIBLE);
 
                 }
             }).addOnFailureListener(new OnFailureListener() {
@@ -155,7 +184,14 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
             int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
             picturePath = cursor.getString(columnIndex);
             cursor.close();
-            imageViewUser.setImageURI(selectedImage);
+
+                Picasso
+                        .with(ProfileActivity.this)
+                        .load(selectedImage)
+                        .resize(700,700)
+                        .centerCrop()
+                        .into(imageViewUser);
+
             buttonUpload.setVisibility(View.VISIBLE);
 
 
@@ -172,7 +208,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
             }
         else if (view == buttonPlay) {
-            startActivity(new Intent(this, ThemeActivity.class));
+            startActivity(new Intent(this, QuizzListActivity.class));
         }
         else if (view == imageViewUser){
             final Intent i = new Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
@@ -215,8 +251,11 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
 
             buttonUpload.setVisibility(View.INVISIBLE);
+            textViewFormat.setVisibility(View.INVISIBLE);
+
 
         }
+
     }
 
     public void goToCreate(View view){
@@ -224,6 +263,10 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         startActivity(new Intent(this, CreateQuizActivity.class));
 
     }
+
+
+
+
 
 
 }

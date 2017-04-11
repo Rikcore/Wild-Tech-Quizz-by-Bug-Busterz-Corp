@@ -194,9 +194,10 @@
 
     <ImageView
         android:id="@+id/imageViewBuffer"
+
         android:layout_width="323dp"
         android:layout_height="275dp"
-        app:srcCompat="@drawable/buzzer_burned"
+        app:srcCompat="@mipmap/buzzer_burned"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -206,10 +207,10 @@
         app:layout_constraintRight_toRightOf="@+id/gifTextViewResult"
         android:layout_marginLeft="8dp"
         app:layout_constraintLeft_toLeftOf="@+id/gifTextViewResult" />
+        />
 
 
-
-    <TextView
+<TextView
         android:id="@+id/textViewEnd"
         android:layout_width="0dp"
         android:layout_height="91dp"

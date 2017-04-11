@@ -36,9 +36,6 @@
             android:name=".MyService"
             android:enabled="true"
             android:exported="true">
-            <intent-filter>
-                <action android:name="DemoService.DisplayNotif"></action>
-            </intent-filter>
         </service>
         <receiver android:name=".MyReceiver">
             <intent-filter>

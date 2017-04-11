@@ -35,10 +35,13 @@ public class QuizzListActivity extends AppCompatActivity {
 
 
 
-
+        // APPELLE LA BASE DE DONNEES
         mDatabase = FirebaseDatabase.getInstance().getReference("Quizz");
 
-        // APPELLE LA BASE DE DONNEES
+
+
+
+
 
 
         final QuizzListAdapter mQuizzListAdapter = new QuizzListAdapter(mDatabase, this, R.layout.quizz_item ); // APPELLE L'ADAPTER
@@ -54,9 +57,7 @@ public class QuizzListActivity extends AppCompatActivity {
                 super.onChanged();
                 quizzListView.setSelection(mQuizzListAdapter.getCount() - 1);
 
-                Intent myIntent = new Intent(MyService.INTENT_DISPLAY_NOTIF);
-                myIntent.setClass(QuizzListActivity.this, MyService.class);
-                startService(myIntent);
+
 
             }
         });

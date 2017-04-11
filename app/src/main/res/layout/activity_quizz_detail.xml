@@ -4,21 +4,43 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/grey"
     tools:context="bugbusterzcorp.wildtechquizz.QuizzDetailActivity">
+
+    <Button
+        android:id="@+id/buttonGoPlay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="1dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:text="GO PLAY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
 
     <TextView
         android:id="@+id/textViewTitre"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="103dp"
+        android:layout_height="39dp"
+        android:layout_marginBottom="0dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:gravity="center"
         android:text="TITRE"
-        tools:layout_editor_absoluteX="163dp"
-        tools:layout_editor_absoluteY="2dp" />
+        android:textColor="@color/blue"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toTopOf="@+id/InfoQuizzListview"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
 
     <ListView
         android:id="@+id/InfoQuizzListview"
-        android:layout_width="391dp"
-        android:layout_height="546dp"
-        tools:layout_editor_absoluteX="-6dp"
-        tools:layout_editor_absoluteY="27dp" />
+        android:layout_width="399dp"
+        android:layout_height="462dp"
+        android:layout_marginBottom="23dp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonGoPlay"
+        tools:layout_editor_absoluteX="-3dp" />
 
 </android.support.constraint.ConstraintLayout>

@@ -31,6 +31,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/orange"
+        android:textSize="15dp"
         tools:text="Note obetenue"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true" />
@@ -39,7 +40,7 @@
         android:id="@+id/textViewMessage"
         android:textColor="@color/white"
         android:textStyle="italic"
-        android:maxLines=""
+        android:maxLines="2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Message"

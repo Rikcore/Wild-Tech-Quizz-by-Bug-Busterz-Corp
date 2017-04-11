@@ -77,7 +77,7 @@ public class ScoreActivity extends AppCompatActivity{
                     ScoreCommentUserClass scoreCommentUserClass = new ScoreCommentUserClass(message,userName, userID ,score);
                     FirebaseDatabase database = FirebaseDatabase.getInstance();
                     DatabaseReference commentScoreRef = database.getReference("Quizz");
-                    commentScoreRef.child(quizzString).child(user.getDisplayName()).push().setValue(scoreCommentUserClass);
+                    commentScoreRef.child(quizzString).child("comments").push().setValue(scoreCommentUserClass);
 
                 }
             }

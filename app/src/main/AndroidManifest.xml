@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.MANAGE_DOCUMENTS" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
         android:allowBackup="true"
@@ -30,17 +31,26 @@
         <activity android:name=".CreateQuizActivity" />
         <activity android:name=".PlayQuizzActivity" />
         <activity android:name=".ScoreActivity" />
+        <activity android:name=".QuizzDetailActivity"></activity>
 
         <service
             android:name=".MyService"
             android:enabled="true"
             android:exported="true">
-            <intent-filter>
-                <action android:name="DemoService.DisplayNotif" />
-            </intent-filter>
         </service>
 
-        <activity android:name=".QuizzDetailActivity"></activity>
+        <receiver
+            android:name=".MyReceiverForNotif"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+              <action android:name="android.intent.action.PACKAGE_INSTALL" />
+              <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                
+            </intent-filter>
+
+        </receiver>
+
     </application>
 
 </manifest>

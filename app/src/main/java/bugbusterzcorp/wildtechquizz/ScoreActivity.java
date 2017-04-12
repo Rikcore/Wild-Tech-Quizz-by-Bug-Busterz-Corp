@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -21,6 +22,7 @@ import static bugbusterzcorp.wildtechquizz.R.layout.activity_score;
 
 
 public class ScoreActivity extends AppCompatActivity{
+
 
 
 
@@ -61,7 +63,10 @@ public class ScoreActivity extends AppCompatActivity{
             textViewResult2.setText(score+"/"+total+" Beau gosse !");
             textViewResult2.setTextColor(getResources().getColor(R.color.purple));
 
+
         }
+
+
 
 
         buttonMessage.setOnClickListener(new View.OnClickListener() {
@@ -77,16 +82,34 @@ public class ScoreActivity extends AppCompatActivity{
                     ScoreCommentUserClass scoreCommentUserClass = new ScoreCommentUserClass(message,userName, userID ,score);
                     FirebaseDatabase database = FirebaseDatabase.getInstance();
                     DatabaseReference commentScoreRef = database.getReference("Quizz");
+
                     commentScoreRef.child(quizzString).child("comments").push().setValue(scoreCommentUserClass);
+
+                  
+                    startActivity(new Intent(ScoreActivity.this, ProfileActivity.class));
+                    finish();
+
+                }
+                else{
+                    Toast.makeText(ScoreActivity.this,"Laisse nous un petit commentaire, connard!",Toast.LENGTH_LONG).show();
+
 
                 }
             }
         });
 
 
-
-
         }
+
+    public void share(View view){
+        Intent scoreIntent = getIntent();
+        final int score = scoreIntent.getIntExtra("score", 0);
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, " J'ai réalisé le score de " + score + "/5"  + " sur Wild Tech Quiz. Rejoins-moi vite !" );
+        sendIntent.setType("text/plain");
+        startActivity(Intent.createChooser(sendIntent, getResources().getText(R.string.send_to)));
+    }
 
 
     }

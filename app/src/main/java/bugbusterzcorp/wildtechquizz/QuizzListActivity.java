@@ -1,8 +1,10 @@
 package bugbusterzcorp.wildtechquizz;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.DataSetObserver;
 import android.graphics.Typeface;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -33,10 +35,13 @@ public class QuizzListActivity extends AppCompatActivity {
 
 
 
-
+        // APPELLE LA BASE DE DONNEES
         mDatabase = FirebaseDatabase.getInstance().getReference("Quizz");
 
-        // APPELLE LA BASE DE DONNEES
+
+
+
+
 
 
         final QuizzListAdapter mQuizzListAdapter = new QuizzListAdapter(mDatabase, this, R.layout.quizz_item ); // APPELLE L'ADAPTER
@@ -52,9 +57,7 @@ public class QuizzListActivity extends AppCompatActivity {
                 super.onChanged();
                 quizzListView.setSelection(mQuizzListAdapter.getCount() - 1);
 
-                Intent myIntent = new Intent(MyService.INTENT_DISPLAY_NOTIF);
-                myIntent.setClass(QuizzListActivity.this, MyService.class);
-                startService(myIntent);
+
 
             }
         });
@@ -80,15 +83,34 @@ public class QuizzListActivity extends AppCompatActivity {
         quizzListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                Quizzclass newQuiz = (Quizzclass) quizzListView.getAdapter().getItem(position);
-                if(user.getUid().equals(newQuiz.getmCreatorId()) || user.getUid().equals("jCcNcWkOv4c4m4xV4yWWaAT7AAS2")) {
-                    mDatabase.child(mQuizzListAdapter.getItemKey(position)).removeValue();
-                }
-                else{
-                    Toast.makeText(QuizzListActivity.this,"C'est pas beau de vouloir supprimer les quizzs des copains !",Toast.LENGTH_LONG).show();
+                final int currentPosition = position;
 
-                }
+                new AlertDialog.Builder(QuizzListActivity.this)
+                        .setTitle("Delete entry")
+                        .setMessage("Are you sure you want to delete this entry?")
+
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                // continue with delete
+
+                                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                                Quizzclass newQuiz = (Quizzclass) quizzListView.getAdapter().getItem(currentPosition);
+                                if(user.getUid().equals(newQuiz.getmCreatorId()) || user.getUid().equals("jCcNcWkOv4c4m4xV4yWWaAT7AAS2")) {
+                                    mDatabase.child(mQuizzListAdapter.getItemKey(currentPosition)).removeValue();
+                                }
+                                else{
+                                    Toast.makeText(QuizzListActivity.this,"C'est pas beau de vouloir supprimer les quizzs des copains !",Toast.LENGTH_LONG).show();
+                                }
+                            }
+                        })
+
+                        .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                // do nothing
+                            }
+                        })
+                        .setIcon(android.R.drawable.ic_dialog_alert)
+                        .show();
                 return (true);
             }
         });

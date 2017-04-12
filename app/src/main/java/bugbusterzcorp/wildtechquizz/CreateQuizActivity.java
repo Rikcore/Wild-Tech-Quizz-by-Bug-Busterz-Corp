@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +21,9 @@ import java.util.ArrayList;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -33,6 +37,7 @@ public class CreateQuizActivity extends AppCompatActivity {
     String mQuestion;
     String mChoiceA;
     String mChoiceB;
+    RadioGroup radioGroupAnswer;
     ArrayList questionList;
     private FirebaseAuth firebaseAuth;
     private String quizzName;
@@ -52,6 +57,8 @@ public class CreateQuizActivity extends AppCompatActivity {
         final Button buttonContinue = (Button) findViewById(R.id.buttonContinue);
 
 
+
+
         final FloatingActionButton floatingActionButtonAddQuestion = (FloatingActionButton) findViewById(R.id.floatingActionButtonAddQuestion);
         floatingActionButtonAddQuestion.setVisibility(View.INVISIBLE);
         final EditText editTextQuestion = (EditText) findViewById(R.id.editTextQuestion);
@@ -65,6 +72,8 @@ public class CreateQuizActivity extends AppCompatActivity {
         final RadioButton radioButtonSecondChoice = (RadioButton) findViewById(R.id.radioButtonSecondChoice);
         radioButtonSecondChoice.setVisibility(View.INVISIBLE);
 
+        final RadioGroup radiogroupAnswer = (RadioGroup) findViewById(R.id.radioGroupAnswer);
+
         final TextView textViewEnd = (TextView) findViewById(R.id.textViewEnd);
         textViewEnd.setVisibility(View.INVISIBLE);
         final ImageView bufferButton = (ImageView) findViewById(R.id.imageViewBuffer);
@@ -76,6 +85,7 @@ public class CreateQuizActivity extends AppCompatActivity {
 
 
         textViewQuizzName.setTypeface(game_font);
+        textViewEnd.setTypeface(game_font);
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
@@ -136,8 +146,8 @@ public class CreateQuizActivity extends AppCompatActivity {
                         editTextQuestion.setText("");
                         editTextFirstChoice.setText("");
                         editTextSecondChoice.setText("");
-                        radioButtonFirstChoice.setChecked(false);
-                        radioButtonSecondChoice.setChecked(false);
+                        radiogroupAnswer.clearCheck();
+
 
 
                         if (questionList.size() == 5) {
@@ -172,8 +182,8 @@ public class CreateQuizActivity extends AppCompatActivity {
                     FirebaseDatabase database = FirebaseDatabase.getInstance();
                     DatabaseReference ref = database.getReference("Quizz");
                     ref.push().setValue(newQuiz);
-
                     editTextQuizzName.setText("");
+
 
                     Toast.makeText(CreateQuizActivity.this, "Quizz envoyé", Toast.LENGTH_LONG).show();
 

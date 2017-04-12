@@ -2,9 +2,9 @@
 <resources>
     <color name="colorPrimary">#000000</color>
     <color name="colorPrimaryDark">#000000</color>
-    <color name="colorAccent">#d94941</color>
+    <color name="colorAccent">#00d94941</color>
     <color name="blued">#0000FF</color>
-    <color name="LightSteelBlue">#B0C4DE</color>
+    <color name="LightSteelBlue">#42696a6b</color>
     <color name="PaleGreen">#98FB98</color>
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>

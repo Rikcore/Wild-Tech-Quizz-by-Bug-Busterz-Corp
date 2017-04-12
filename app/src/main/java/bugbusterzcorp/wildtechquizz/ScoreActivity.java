@@ -17,6 +17,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import pl.droidsonroids.gif.GifTextView;
 
+import static bugbusterzcorp.wildtechquizz.CreateQuizActivity.TOTAL_QUESTION;
 import static bugbusterzcorp.wildtechquizz.R.layout.activity_score;
 
 
@@ -106,7 +107,7 @@ public class ScoreActivity extends AppCompatActivity{
         final int score = scoreIntent.getIntExtra("score", 0);
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEND);
-        sendIntent.putExtra(Intent.EXTRA_TEXT, " J'ai réalisé le score de " + score + "/5"  + " sur Wild Tech Quiz. Rejoins-moi vite !" );
+        sendIntent.putExtra(Intent.EXTRA_TEXT, " J'ai réalisé le score de " + score +"/"+TOTAL_QUESTION+" "+" sur Wild Tech Quiz. Rejoins-moi vite !" );
         sendIntent.setType("text/plain");
         startActivity(Intent.createChooser(sendIntent, getResources().getText(R.string.send_to)));
     }

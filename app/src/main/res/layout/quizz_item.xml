@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -8,13 +9,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="32dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="35dp"
+        android:layout_marginStart="94dp"
+        android:layout_marginTop="40dp"
         android:text="TextView"
         android:textSize="20dp"
         android:textColor="@color/white"
         android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
     <TextView
@@ -30,4 +30,14 @@
         android:layout_marginEnd="18dp"
         android:layout_marginRight="18dp"
         android:text="TextView" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="25dp"
+        app:srcCompat="@drawable/voyons"
+        android:layout_alignBottom="@+id/textViewAuthor"
+        android:layout_alignParentStart="true" />
+
 </RelativeLayout>

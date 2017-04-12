@@ -71,7 +71,6 @@ public class QuizzListActivity extends AppCompatActivity {
                 Quizzclass newQuiz = (Quizzclass) quizzListView.getAdapter().getItem(position);
 
                 String quizzRef = mQuizzListAdapter.getItemKey(position);
-                Toast.makeText(QuizzListActivity.this,"Bonne chance",Toast.LENGTH_LONG).show();
                 Intent goDetails = new Intent(QuizzListActivity.this, QuizzDetailActivity.class);
 
                 goDetails.putExtra("quizzRef", quizzRef);
@@ -86,8 +85,8 @@ public class QuizzListActivity extends AppCompatActivity {
                 final int currentPosition = position;
 
                 new AlertDialog.Builder(QuizzListActivity.this)
-                        .setTitle("Delete entry")
-                        .setMessage("Are you sure you want to delete this entry?")
+                        .setTitle("Supprimer ce quizz ?")
+                        .setMessage("Etes vous vraiment sûrs de vouloir supprimer ce quizz ?")
 
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {

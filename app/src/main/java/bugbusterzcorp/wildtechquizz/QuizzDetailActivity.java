@@ -1,6 +1,7 @@
 package bugbusterzcorp.wildtechquizz;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -20,8 +21,8 @@ import java.util.ArrayList;
 
 public class QuizzDetailActivity extends AppCompatActivity {
     TextView textViewTitre;
-   // TextView textViewMonScore;
     ListView InfoQuizzListview;
+    TextView textViewEmptyList;
     Button buttonGoPlay;
     private DatabaseReference mDatabase;
 
@@ -34,13 +35,19 @@ public class QuizzDetailActivity extends AppCompatActivity {
         final String quizzRef = intent.getStringExtra("quizzRef");
         final Quizzclass newQuiz = (Quizzclass) intent.getExtras().get("quizzObject");
         textViewTitre = (TextView) findViewById(R.id.textViewTitre);
-       // textViewMonScore = (TextView) findViewById(R.id.textViewMonScore);
+        textViewEmptyList = (TextView) findViewById(R.id.textViewEmptyList);
         InfoQuizzListview = (ListView) findViewById(R.id.InfoQuizzListview);
         buttonGoPlay = (Button)findViewById(R.id.buttonGoPlay);
         mDatabase = FirebaseDatabase.getInstance().getReference("Quizz")
                 .child(intent.getStringExtra("quizzRef")).child("comments");
 
+        Typeface game_font = Typeface.createFromAsset(getAssets(), "fonts/Gamegirl.ttf");
+
+        textViewTitre.setTypeface(game_font);
         textViewTitre.setText(newQuiz.getQuizzName());
+
+        textViewEmptyList.setTypeface(game_font);
+
 
 
         // FirebaseDatabase.child(quizzString).child(user.getDisplayName()).push().setValue(scoreCommentUserClass);
@@ -49,6 +56,9 @@ public class QuizzDetailActivity extends AppCompatActivity {
         final ScoreCommentUserAdapter mScoreCommentUserAdapter = new ScoreCommentUserAdapter(mDatabase, this, R.layout.infoquizz ); // APPELLE L'ADAPTER
         final ListView InfoQuizzListview = (ListView) findViewById(R.id.InfoQuizzListview); //APPELLE LA LISTE .XML
         InfoQuizzListview.setAdapter(mScoreCommentUserAdapter); //FUSION LIST ET ADAPTER
+        InfoQuizzListview.setEmptyView(findViewById(R.id.textViewEmptyList));
+
+
 
 
         buttonGoPlay.setOnClickListener(new View.OnClickListener() {

@@ -54,6 +54,8 @@ import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 import static android.R.attr.bitmap;
 import static android.R.attr.data;
 import static android.R.attr.drawable;
@@ -73,6 +75,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
     private TextView textViewUsername;
     private ImageView imageViewUser;
+    private CircleImageView profileImage;
     private TextView textViewResetPassword;
     private TextView textViewFormat;
     private Button buttonLogout;
@@ -109,7 +112,8 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         textViewUsername = (TextView) findViewById(R.id.textViewUsername);
         textViewResetPassword = (TextView) findViewById(R.id.textViewForgetPassword);
         textViewFormat = (TextView) findViewById(R.id.textViewFormat);
-        imageViewUser = (ImageView) findViewById(R.id.imageViewUser);
+        //imageViewUser = (ImageView) findViewById(R.id.imageViewUser);
+        profileImage = (CircleImageView) findViewById(R.id.profile_image);
         buttonLogout = (Button) findViewById(R.id.buttonLogout);
         buttonPlay = (Button)findViewById(R.id.buttonPlay);
         buttonUpload = (Button) findViewById(R.id.buttonUpload);
@@ -142,7 +146,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                             .load(uri)
                             .resize(700,700)
                             .centerCrop()
-                            .into(imageViewUser);
+                            .into(profileImage);
                     buttonUpload.setVisibility(View.INVISIBLE);
                     textViewFormat.setVisibility(View.INVISIBLE);
 
@@ -158,7 +162,8 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
         buttonLogout.setOnClickListener(this);
         buttonPlay.setOnClickListener(this);
-        imageViewUser.setOnClickListener(this);
+        //imageViewUser.setOnClickListener(this);
+        profileImage.setOnClickListener(this);
         buttonUpload.setOnClickListener(this);
     }
 
@@ -190,7 +195,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                         .load(selectedImage)
                         .resize(700,700)
                         .centerCrop()
-                        .into(imageViewUser);
+                        .into(profileImage);
 
             buttonUpload.setVisibility(View.VISIBLE);
 
@@ -210,7 +215,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         else if (view == buttonPlay) {
             startActivity(new Intent(this, QuizzListActivity.class));
         }
-        else if (view == imageViewUser){
+        else if (view == profileImage){
             final Intent i = new Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
             startActivityForResult(i, RESULT_LOAD_IMAGE);
         }

@@ -41,6 +41,7 @@ public class CreateQuizActivity extends AppCompatActivity {
     ArrayList questionList;
     private FirebaseAuth firebaseAuth;
     private String quizzName;
+    final static int TOTAL_QUESTION = 5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -150,7 +151,7 @@ public class CreateQuizActivity extends AppCompatActivity {
 
 
 
-                        if (questionList.size() == 5) {
+                        if (questionList.size() == TOTAL_QUESTION) {
                             floatingActionButtonAddQuestion.setVisibility(View.INVISIBLE);
                             bufferButton.setVisibility(View.VISIBLE);
                             textViewEnd.setVisibility(View.VISIBLE);

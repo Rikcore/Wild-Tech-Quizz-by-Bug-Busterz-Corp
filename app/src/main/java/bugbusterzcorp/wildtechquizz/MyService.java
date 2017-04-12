@@ -22,7 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class MyService extends Service {
 
     public static final DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Quizz");
-    private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+    private FirebaseAuth firebaseAuth = null;
     String creatorName;
 
     public MyService() {
@@ -30,13 +30,10 @@ public class MyService extends Service {
     }
 
     @Override
-    public IBinder onBind(Intent intent) {
-        // TODO: Return the communication channel to the service.
-        throw new UnsupportedOperationException("Not yet implemented");
-    }
+    public void onCreate() {
+        super.onCreate();
 
-    @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
+        firebaseAuth = FirebaseAuth.getInstance();
 
         ref.addChildEventListener(new ChildEventListener() {
             @Override
@@ -65,6 +62,17 @@ public class MyService extends Service {
 
             }
         });
+    }
+
+    @Override
+    public IBinder onBind(Intent intent) {
+        // TODO: Return the communication channel to the service.
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
+
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+
         return Service.START_STICKY;
 
     }

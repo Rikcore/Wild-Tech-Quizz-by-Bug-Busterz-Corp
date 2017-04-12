@@ -72,11 +72,11 @@ public class QuizzListActivity extends AppCompatActivity {
 
                 String quizzRef = mQuizzListAdapter.getItemKey(position);
                 Toast.makeText(QuizzListActivity.this,"Bonne chance",Toast.LENGTH_LONG).show();
-                Intent goPlay = new Intent(QuizzListActivity.this, PlayQuizzActivity.class);
+                Intent goDetails = new Intent(QuizzListActivity.this, QuizzDetailActivity.class);
 
-                goPlay.putExtra("quizzRef", quizzRef);
-                goPlay.putExtra("quizzObject", newQuiz);
-                startActivity(goPlay);
+                goDetails.putExtra("quizzRef", quizzRef);
+                goDetails.putExtra("quizzObject", newQuiz);
+                startActivity(goDetails);
             }
         });
 

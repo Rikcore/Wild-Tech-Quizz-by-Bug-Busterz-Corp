@@ -85,6 +85,7 @@ public class CreateQuizActivity extends AppCompatActivity {
 
 
         textViewQuizzName.setTypeface(game_font);
+        textViewEnd.setTypeface(game_font);
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {

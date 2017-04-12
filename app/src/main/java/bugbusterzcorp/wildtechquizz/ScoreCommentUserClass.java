@@ -10,6 +10,8 @@ public class ScoreCommentUserClass {
     private String mUserID;
     private int mScore;
 
+    private ScoreCommentUserClass(){}
+
     public ScoreCommentUserClass(String message, String userNickName, String userID, int score){
         mMessage= message;
         mUserNickName = userNickName;

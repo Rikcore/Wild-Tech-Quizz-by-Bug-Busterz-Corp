@@ -162,7 +162,6 @@
             android:textSize="36dp"
             android:gravity="center"
             android:typeface="serif"
-            android:textColor="@color/blue"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="16dp"
             android:layout_marginRight="8dp"

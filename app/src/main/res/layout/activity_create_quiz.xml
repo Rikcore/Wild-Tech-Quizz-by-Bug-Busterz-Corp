@@ -81,8 +81,8 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextFirstChoice"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="8dp"
-        app:layout_constraintHorizontal_bias="0.503"
-        app:layout_constraintVertical_bias="0.358"
+        app:layout_constraintHorizontal_bias="0.418"
+        app:layout_constraintVertical_bias="0.191"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp" />
 
@@ -209,7 +209,6 @@
         android:layout_marginLeft="8dp"
         app:layout_constraintLeft_toLeftOf="@+id/gifTextViewResult" />
         />
-
 
 <TextView
         android:id="@+id/textViewEnd"

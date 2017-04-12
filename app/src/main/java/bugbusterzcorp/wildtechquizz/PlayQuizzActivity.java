@@ -1,10 +1,14 @@
 package bugbusterzcorp.wildtechquizz;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.CountDownTimer;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -30,12 +34,18 @@ public class PlayQuizzActivity extends AppCompatActivity {
 
     private int positionDansLesQuestions = 0;
     int score = 0;
+    int killer = 0; //need to be
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_quizz);
         sound = new SoundPlayer(this);
+
+
+
 
         Intent goPlay = getIntent();
         quizzString = goPlay.getStringExtra("quizzRef");
@@ -193,32 +203,54 @@ public class PlayQuizzActivity extends AppCompatActivity {
         });
     }
     public  void UpdateQuestion(){
+        if(killer == 0) {
+            if (positionDansLesQuestions < questionList.size() - 1) {
 
-        if(positionDansLesQuestions < questionList.size()-1) {
-
-            positionDansLesQuestions++;
-            newQuestion = (QuestionClass) questionList.get(positionDansLesQuestions);
-            textViewChoiceA.setText(newQuestion.getChoiceA());
-            textViewChoiceB.setText(newQuestion.getChoiceB());
-            textViewQuestion.setText(newQuestion.getmQuestion());
-            timer.cancel();
-            timer.start();
+                positionDansLesQuestions++;
+                newQuestion = (QuestionClass) questionList.get(positionDansLesQuestions);
+                textViewChoiceA.setText(newQuestion.getChoiceA());
+                textViewChoiceB.setText(newQuestion.getChoiceB());
+                textViewQuestion.setText(newQuestion.getmQuestion());
+                timer.cancel();
+                timer.start();
 
 
-        }
-        else{
-            timer.cancel();
-            Intent scoreIntent = new Intent(PlayQuizzActivity.this, ScoreActivity.class);
+            } else {
+                timer.cancel();
+                Intent scoreIntent = new Intent(PlayQuizzActivity.this, ScoreActivity.class);
 
-            scoreIntent.putExtra("score", score);
-            scoreIntent.putExtra("total", questionList.size());
-            scoreIntent.putExtra("quizzRef", quizzString);
-            startActivity(scoreIntent);
-            finish();
+                scoreIntent.putExtra("killer", killer);
+                scoreIntent.putExtra("score", score);
+                scoreIntent.putExtra("total", questionList.size());
+                scoreIntent.putExtra("quizzRef", quizzString);
+                startActivity(scoreIntent);
+                finish();
+            }
+
         }
 
 
     }
+
+
+
+    @Override
+    public void onBackPressed() {
+        killer = 1; //killer to != so updateQuestion() wont be called.
+        finish();
+
+    }
+
+
+
+
+
+
+
+
+
+
+
 
 }
 

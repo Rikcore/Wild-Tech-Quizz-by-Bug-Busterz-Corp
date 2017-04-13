@@ -1,6 +1,7 @@
 package bugbusterzcorp.wildtechquizz;
 
 import android.content.Intent;
+import android.database.DataSetObserver;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -57,6 +58,15 @@ public class QuizzDetailActivity extends AppCompatActivity {
         final ListView InfoQuizzListview = (ListView) findViewById(R.id.InfoQuizzListview); //APPELLE LA LISTE .XML
         InfoQuizzListview.setAdapter(mScoreCommentUserAdapter); //FUSION LIST ET ADAPTER
         InfoQuizzListview.setEmptyView(findViewById(R.id.textViewEmptyList));
+
+        mScoreCommentUserAdapter.registerDataSetObserver(new DataSetObserver() {
+             @Override
+             public void onChanged() {
+                 super.onChanged();
+                 InfoQuizzListview.setSelection(mScoreCommentUserAdapter.getCount() - 1);
+             }
+         });
+
 
 
 

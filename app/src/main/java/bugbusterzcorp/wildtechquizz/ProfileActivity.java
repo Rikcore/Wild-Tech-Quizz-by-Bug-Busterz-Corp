@@ -144,7 +144,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                     Picasso
                             .with(ProfileActivity.this)
                             .load(uri)
-                            .resize(700,700)
+                            .resize(500,500)
                             .centerCrop()
                             .into(profileImage);
                     buttonUpload.setVisibility(View.INVISIBLE);

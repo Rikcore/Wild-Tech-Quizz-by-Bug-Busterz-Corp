@@ -41,7 +41,7 @@ public class CreateQuizActivity extends AppCompatActivity {
     ArrayList questionList;
     private FirebaseAuth firebaseAuth;
     private String quizzName;
-    final static int TOTAL_QUESTION = 5;
+    final static int TOTAL_QUESTION = 10;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

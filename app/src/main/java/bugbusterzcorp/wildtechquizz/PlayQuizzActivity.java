@@ -137,7 +137,6 @@ public class PlayQuizzActivity extends AppCompatActivity {
                 else{
                     Intent scoreIntent = new Intent(PlayQuizzActivity.this, ScoreActivity.class);
                     scoreIntent.putExtra("score", score);
-                    scoreIntent.putExtra("total", questionList.size());
                     scoreIntent.putExtra("quizzRef", quizzString);
                     startActivity(scoreIntent);
                     timer.cancel();

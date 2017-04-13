@@ -45,27 +45,30 @@ public class ScoreActivity extends AppCompatActivity{
 
 
         Intent scoreIntent = getIntent();
+        final int killer = scoreIntent.getIntExtra("killer", 0);
         final int score = scoreIntent.getIntExtra("score", 0);
         int total = scoreIntent.getIntExtra("total", 0);
         final String quizzString = scoreIntent.getStringExtra("quizzRef");
 
 
 
-        if (score < 2) {
-            gifTextViewResult.setBackgroundResource(R.drawable.zombie);
-            textViewResult.setText(score+"/"+total+" So bad");
-        } else if (score <= 4) {
-            gifTextViewResult.setBackgroundResource(R.drawable.lucky);
-            textViewResult.setText(score+"/"+total+" Not bad !");
-        } else {
+            if (score < 2) {
+                gifTextViewResult.setBackgroundResource(R.drawable.zombie);
+                textViewResult.setText(score + "/" + total + " So bad");
+            } else if (score <= 4) {
+                gifTextViewResult.setBackgroundResource(R.drawable.lucky);
+                textViewResult.setText(score + "/" + total + " Not bad !");
+            } else {
 
-            gifTextViewResult.setBackgroundResource(R.drawable.victoire);
+                gifTextViewResult.setBackgroundResource(R.drawable.victoire);
 
-            textViewResult2.setText(score+"/"+total+" Beau gosse !");
-            textViewResult2.setTextColor(getResources().getColor(R.color.purple));
+                textViewResult2.setText(score + "/" + total + " Beau gosse !");
+                textViewResult2.setTextColor(getResources().getColor(R.color.purple));
 
 
-        }
+            }
+
+
 
 
 

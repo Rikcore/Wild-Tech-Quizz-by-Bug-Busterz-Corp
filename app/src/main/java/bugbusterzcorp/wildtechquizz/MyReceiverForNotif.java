@@ -12,7 +12,7 @@ public class MyReceiverForNotif extends BroadcastReceiver {
         Intent myIntent = new Intent();
         myIntent.setClass(context, MyService.class);
 
-        if (intent.getAction().equals(intent.ACTION_BOOT_COMPLETED) || intent.getAction().equals(intent.ACTION_SCREEN_ON)){
+        if (intent.getAction().equals(intent.ACTION_BOOT_COMPLETED) || intent.getAction().equals(intent.ACTION_BATTERY_CHANGED)){
             context.startService(myIntent);
             Log.d("Test receiver", "Receiver works");
         }

@@ -85,6 +85,7 @@ public class MyService extends Service {
                 .setContentTitle("Wild Tech Quizz")
                 .setContentText(user.getDisplayName()+", un nouveau quizz de "+creatorName+" vous attend!")
                 .setSmallIcon(R.mipmap.interrogation_burned)
+                .setVibrate(new long[] { 1000, 1000, 1000, 1000, 1000 })
                 .setContentIntent(PendingIntent.getActivity(this, 0, new Intent(this, MainActivity.class), 0))
                 .build();
 

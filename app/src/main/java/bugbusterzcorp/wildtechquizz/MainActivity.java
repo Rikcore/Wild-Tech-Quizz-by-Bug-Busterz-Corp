@@ -124,7 +124,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()) {
                                         finish();
-                                        startActivity(new Intent(getApplicationContext(), CharteActivity.class));
+                                        startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
                                     }
                                 }
                             });

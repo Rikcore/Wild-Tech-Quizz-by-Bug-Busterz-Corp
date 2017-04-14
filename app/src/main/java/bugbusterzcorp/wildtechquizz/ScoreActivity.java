@@ -51,10 +51,15 @@ public class ScoreActivity extends AppCompatActivity{
 
 
 
-            if (score < 2) {
+            if (score <= 2) {
+                gifTextViewResult.setBackgroundResource(R.drawable.alien);
+                textViewResult.setText(score + "/" + TOTAL_QUESTION + " You shouldn't live on this planet anymore...");
+            }
+            else if (score <= 5) {
                 gifTextViewResult.setBackgroundResource(R.drawable.zombie);
-                textViewResult.setText(score + "/" + TOTAL_QUESTION + " So bad");
-            } else if (score <= 4) {
+                textViewResult.setText(score+"/"+TOTAL_QUESTION+" It's alive !!!");
+            }
+            else if (score <= 8) {
                 gifTextViewResult.setBackgroundResource(R.drawable.lucky);
                 textViewResult.setText(score + "/" + TOTAL_QUESTION + " Not bad !");
             } else {

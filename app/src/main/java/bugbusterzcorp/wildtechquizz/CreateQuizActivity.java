@@ -152,10 +152,10 @@ public class CreateQuizActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     if (editTextQuizzName == null) {
-                        Toast.makeText(CreateQuizActivity.this, "Ton quizz a besoin d'un nom", Toast.LENGTH_LONG).show();
+                        Toast.makeText(CreateQuizActivity.this, R.string.QuizzName, Toast.LENGTH_LONG).show();
                     } else {
                         quizzName = editTextQuizzName.getText().toString();
-                        textViewQuizzEtape.setText("Maintenant créée tes "+TOTAL_QUESTION+" questions");
+                        textViewQuizzEtape.setText(getString(R.string.CreateQuizz)+TOTAL_QUESTION+getString(R.string.questionsDuQuizz));
                         textViewQuestionCount.setTextSize(15);
                         editTextQuizzName.setVisibility(View.INVISIBLE);
                         buttonContinue.setVisibility(View.INVISIBLE);
@@ -171,7 +171,7 @@ public class CreateQuizActivity extends AppCompatActivity {
                         textViewQuestionCount.setTextSize(size);
 
 
-                        Toast.makeText(CreateQuizActivity.this, "Titre OK, place aux questions !", Toast.LENGTH_LONG).show();
+                        Toast.makeText(CreateQuizActivity.this, R.string.placeAuxQuestions, Toast.LENGTH_LONG).show();
 
 
                     }
@@ -200,7 +200,7 @@ public class CreateQuizActivity extends AppCompatActivity {
 
 
                         QuestionClass newQuestion = new QuestionClass(mQuestion, mChoiceA, mChoiceB, mCorrectAnswer);
-                        Toast.makeText(CreateQuizActivity.this, "Quesion enregistrée !", Toast.LENGTH_LONG).show();
+                        Toast.makeText(CreateQuizActivity.this, R.string.QuestionEnregistree, Toast.LENGTH_LONG).show();
 
 
                         questionList.add(newQuestion);
@@ -219,7 +219,7 @@ public class CreateQuizActivity extends AppCompatActivity {
                             floatingActionButtonAddQuestion.setVisibility(View.INVISIBLE);
                             bufferButton.setVisibility(View.VISIBLE);
                             textViewQuestionCount.setTextSize(30);
-                            textViewQuizzEtape.setText("Enfin, appuie sur le buzzer pour envoyer ton quizz!");
+                            textViewQuizzEtape.setText(R.string.BuzzerSend);
                             editTextQuestion.setVisibility(View.INVISIBLE);
                             editTextFirstChoice.setVisibility(View.INVISIBLE);
                             editTextSecondChoice.setVisibility(View.INVISIBLE);
@@ -231,7 +231,7 @@ public class CreateQuizActivity extends AppCompatActivity {
 
 
                     } else {
-                        Toast.makeText(CreateQuizActivity.this, "Tu dois remplir tous les champs, et sélectionner la bonne réponse", Toast.LENGTH_LONG).show();
+                        Toast.makeText(CreateQuizActivity.this, R.string.ConditionCréationQuizz, Toast.LENGTH_LONG).show();
                         return;
                     }
                 }
@@ -282,7 +282,7 @@ public class CreateQuizActivity extends AppCompatActivity {
 
 
 
-                    Toast.makeText(CreateQuizActivity.this, "Quizz envoyé", Toast.LENGTH_LONG).show();
+                    Toast.makeText(CreateQuizActivity.this, R.string.QuizzCréeEnvoyé, Toast.LENGTH_LONG).show();
 
 
                     finish();

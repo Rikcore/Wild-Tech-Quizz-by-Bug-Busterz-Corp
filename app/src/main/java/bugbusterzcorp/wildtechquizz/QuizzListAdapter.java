@@ -29,7 +29,7 @@ public class QuizzListAdapter extends FirebaseListAdapter<Quizzclass> {
         final ImageView imageView3 = (ImageView)v.findViewById(R.id.imageView3);
 
         quizzName.setText(String.valueOf(newQuiz.getQuizzName()));
-        quizzAutor.setText(String.valueOf("Par "+newQuiz.getUsername()));
+        quizzAutor.setText((R.string.parAuteur)+newQuiz.getUsername());
 
         StorageReference mStorage;
         mStorage = FirebaseStorage.getInstance().getReference();

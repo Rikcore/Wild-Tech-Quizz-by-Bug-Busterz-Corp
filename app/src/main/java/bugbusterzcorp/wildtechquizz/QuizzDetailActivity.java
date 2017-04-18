@@ -87,7 +87,7 @@ public class QuizzDetailActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                // Quizzclass newQuiz = (Quizzclass) InfoQuizzListview.getAdapter().getItem(position);
-                Toast.makeText(QuizzDetailActivity.this,"Bonne chance",Toast.LENGTH_LONG).show();
+                Toast.makeText(QuizzDetailActivity.this, R.string.goodLuck,Toast.LENGTH_LONG).show();
                 Intent goPlay = new Intent(QuizzDetailActivity.this, PlayQuizzActivity.class);
 
                 goPlay.putExtra("quizzRef", quizzRef);

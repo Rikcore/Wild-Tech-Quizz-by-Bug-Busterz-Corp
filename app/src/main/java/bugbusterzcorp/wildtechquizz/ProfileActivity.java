@@ -221,7 +221,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         else if (view == buttonUpload){
 
             final ProgressDialog progressDialog = new ProgressDialog(this);
-            progressDialog.setTitle("Uploading");
+            progressDialog.setTitle(getString(R.string.Uploading));
             progressDialog.show();
 
 
@@ -242,7 +242,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                         @Override
                         public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
                             @SuppressWarnings("VisibleForTests") double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
-                            progressDialog.setMessage("Uploaded " + ((int) progress) + "%...");
+                            progressDialog.setMessage(getString(R.string.Uploaded) + ((int) progress) + getString(R.string.pourcentages));
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {

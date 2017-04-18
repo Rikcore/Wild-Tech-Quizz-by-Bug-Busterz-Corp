@@ -82,8 +82,8 @@ public class QuizzListActivity extends AppCompatActivity {
                 final int currentPosition = position;
 
                 new AlertDialog.Builder(QuizzListActivity.this)
-                        .setTitle("Supprimer ce quizz ?")
-                        .setMessage("Etes vous vraiment sûrs de vouloir supprimer ce quizz ?")
+                        .setTitle(R.string.suppressionQuizz)
+                        .setMessage(R.string.confirmerSuppression)
 
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
@@ -91,11 +91,11 @@ public class QuizzListActivity extends AppCompatActivity {
 
                                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                                 Quizzclass newQuiz = (Quizzclass) quizzListView.getAdapter().getItem(currentPosition);
-                                if(user.getUid().equals(newQuiz.getmCreatorId()) || user.getUid().equals("jCcNcWkOv4c4m4xV4yWWaAT7AAS2")) {
+                                if(user.getUid().equals(newQuiz.getmCreatorId()) || user.getUid().equals(getString(R.string.UidRikcore))) {
                                     mDatabase.child(mQuizzListAdapter.getItemKey(currentPosition)).removeValue();
                                 }
                                 else{
-                                    Toast.makeText(QuizzListActivity.this,"C'est pas beau de vouloir supprimer les quizzs des copains !",Toast.LENGTH_LONG).show();
+                                    Toast.makeText(QuizzListActivity.this, R.string.suppressionQuizzCopain,Toast.LENGTH_LONG).show();
                                 }
                             }
                         })

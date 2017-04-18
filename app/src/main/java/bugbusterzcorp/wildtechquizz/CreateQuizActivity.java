@@ -169,14 +169,14 @@ public class CreateQuizActivity extends AppCompatActivity {
 
 
 
-                        Toast.makeText(CreateQuizActivity.this, "Titre OK, place aux questions !", Toast.LENGTH_LONG).show();
+                        Toast.makeText(CreateQuizActivity.this, R.string.placeAuxQuestions, Toast.LENGTH_LONG).show();
                         return;
 
 
                     } else {
 
 
-                        Toast.makeText(CreateQuizActivity.this, "Ton quizz a besoin d'un nom et d'une image", Toast.LENGTH_LONG).show();
+                        Toast.makeText(CreateQuizActivity.this, R.string.QuizzNameImage, Toast.LENGTH_LONG).show();
 
                     }
                 }
@@ -235,7 +235,7 @@ public class CreateQuizActivity extends AppCompatActivity {
 
 
                     } else {
-                        Toast.makeText(CreateQuizActivity.this, R.string.ConditionCréationQuizz, Toast.LENGTH_LONG).show();
+                        Toast.makeText(CreateQuizActivity.this, R.string.ConditionCreationQuizz, Toast.LENGTH_LONG).show();
                         return;
                     }
                 }

@@ -1,15 +1,13 @@
 package bugbusterzcorp.wildtechquizz;
 
-import android.content.DialogInterface;
+
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.CountDownTimer;
-import android.support.v7.app.AlertDialog;
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.KeyEvent;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -33,7 +31,7 @@ public class PlayQuizzActivity extends AppCompatActivity {
     private SoundPlayer sound;
     private CountDownTimer timer;
 
-    private int positionDansLesQuestions = 0;
+    private int questionBrowser = 0;
     int score = 0;
     int killer = 0; //need to be
 
@@ -73,15 +71,15 @@ public class PlayQuizzActivity extends AppCompatActivity {
 
         // TIMER
 
-        timer = new CountDownTimer(15000, 1000) {
+        timer = new CountDownTimer(10000, 1000) {
 
             public void onTick(long millisUntilFinished) {
 
                 if (millisUntilFinished >= 6000) {
-                    textViewTimer.setText(""+millisUntilFinished / 1000);
+                    textViewTimer.setText(" " + millisUntilFinished / 1000);
                     textViewTimer.setTextColor(getResources().getColor(R.color.green));
                 } else {
-                    textViewTimer.setText("" + millisUntilFinished / 1000);
+                    textViewTimer.setText(" " + millisUntilFinished / 1000);
                     textViewTimer.setTextColor(getResources().getColor(R.color.red));
 
                 }
@@ -89,7 +87,7 @@ public class PlayQuizzActivity extends AppCompatActivity {
             }
 
             public void onFinish() {
-                UpdateQuestion();
+                updateQuestion();
 
 
             }
@@ -103,8 +101,7 @@ public class PlayQuizzActivity extends AppCompatActivity {
                 if(newQuestion.getChoiceA().equals(newQuestion.getCorrectAnswer())){
                     sound.playSuccessSound();
                     textViewChoiceA.setBackgroundColor(Color.GREEN);
-                    score++;
-                    textViewScore.setText(score+"/"+questionList.size());
+                    updateScore();
                     textViewChoiceA.postDelayed(new Runnable() {
 
                         @Override
@@ -126,24 +123,7 @@ public class PlayQuizzActivity extends AppCompatActivity {
                     }, 150);
                 }
 
-                if(positionDansLesQuestions < questionList.size()-1) {
-
-                    positionDansLesQuestions++;
-                    newQuestion = (QuestionClass) questionList.get(positionDansLesQuestions);
-                    textViewChoiceA.setText(newQuestion.getChoiceA());
-                    textViewChoiceB.setText(newQuestion.getChoiceB());
-                    textViewQuestion.setText(newQuestion.getmQuestion());
-                    timer.start();
-
-                }
-                else{
-                    Intent scoreIntent = new Intent(PlayQuizzActivity.this, ScoreActivity.class);
-                    scoreIntent.putExtra("score", score);
-                    scoreIntent.putExtra("quizzRef", quizzString);
-                    startActivity(scoreIntent);
-                    timer.cancel();
-                    finish();
-                }
+                updateQuestion();
 
             }
 
@@ -156,8 +136,7 @@ public class PlayQuizzActivity extends AppCompatActivity {
                 if(newQuestion.getChoiceB().equals(newQuestion.getCorrectAnswer())){
                     sound.playSuccessSound();
                     textViewChoiceB.setBackgroundColor(Color.GREEN);
-                    score++;
-                    textViewScore.setText(score+"/"+questionList.size());
+                    updateScore();
                     textViewChoiceB.postDelayed(new Runnable() {
 
                         @Override
@@ -179,36 +158,17 @@ public class PlayQuizzActivity extends AppCompatActivity {
                     }, 150);
                 }
 
-                if(positionDansLesQuestions < questionList.size()-1) {
-
-                    positionDansLesQuestions++;
-                    newQuestion = (QuestionClass) questionList.get(positionDansLesQuestions);
-                    textViewChoiceA.setText(newQuestion.getChoiceA());
-                    textViewChoiceB.setText(newQuestion.getChoiceB());
-                    textViewQuestion.setText(newQuestion.getmQuestion());
-                    timer.start();
-
-
-                }
-                else{
-                    Intent scoreIntent = new Intent(PlayQuizzActivity.this, ScoreActivity.class);
-                    scoreIntent.putExtra("score", score);
-                    scoreIntent.putExtra("total", questionList.size());
-                    scoreIntent.putExtra("quizzRef", quizzString);
-                    startActivity(scoreIntent);
-                    timer.cancel();
-                    finish();
-                }
+                updateQuestion();
 
             }
         });
     }
-    public  void UpdateQuestion(){
+    public  void updateQuestion(){
         if(killer == 0) {
-            if (positionDansLesQuestions < questionList.size() - 1) {
+            if (questionBrowser < questionList.size() - 1) {
 
-                positionDansLesQuestions++;
-                newQuestion = (QuestionClass) questionList.get(positionDansLesQuestions);
+                questionBrowser++;
+                newQuestion = (QuestionClass) questionList.get(questionBrowser);
                 textViewChoiceA.setText(newQuestion.getChoiceA());
                 textViewChoiceB.setText(newQuestion.getChoiceB());
                 textViewQuestion.setText(newQuestion.getmQuestion());
@@ -231,6 +191,11 @@ public class PlayQuizzActivity extends AppCompatActivity {
         }
 
 
+    }
+
+    public void updateScore(){
+        score++;
+        textViewScore.setText(score+"/"+questionList.size());
     }
 
 

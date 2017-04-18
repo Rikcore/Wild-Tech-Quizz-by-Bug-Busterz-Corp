@@ -73,7 +73,7 @@ public class CreateQuizActivity extends AppCompatActivity {
     private static String urlPhotoQuizz;
 
 
-    final static int TOTAL_QUESTION = 10;
+    final static int TOTAL_QUESTION = 1;
     int count = 1;
     int size = 30;
 

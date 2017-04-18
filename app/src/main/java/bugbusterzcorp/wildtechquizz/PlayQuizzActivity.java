@@ -73,15 +73,15 @@ public class PlayQuizzActivity extends AppCompatActivity {
 
         // TIMER
 
-        timer = new CountDownTimer(10000, 1000) {
+        timer = new CountDownTimer(15000, 1000) {
 
             public void onTick(long millisUntilFinished) {
 
                 if (millisUntilFinished >= 6000) {
-                    textViewTimer.setText(" " + millisUntilFinished / 1000);
+                    textViewTimer.setText(""+millisUntilFinished / 1000);
                     textViewTimer.setTextColor(getResources().getColor(R.color.green));
                 } else {
-                    textViewTimer.setText(" " + millisUntilFinished / 1000);
+                    textViewTimer.setText("" + millisUntilFinished / 1000);
                     textViewTimer.setTextColor(getResources().getColor(R.color.red));
 
                 }

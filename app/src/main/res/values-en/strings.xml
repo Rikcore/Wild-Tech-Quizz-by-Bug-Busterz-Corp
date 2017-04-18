@@ -18,7 +18,7 @@
     <string name="_0_10">0/10</string>
     <string name="charte"><a href="http://www.wild-tech-quizz.kevin.anin.com"> I have read and I accept the Term and User</a></string>
     <string name="choisis_le_nom_de_ton_quizz">CHoose a name for your Quizz</string>
-    <string name="choix_du_quizz">Choice of the quizz</string>
+    <string name="choix_du_quizz">Quizz choice</string>
     <string name="clique_sur_le_rond_pour_choisir_ta_photo_conseil_privil_gie_une_photo_carr_e_pour_un_meilleur_r_sultat">\"Click on the  circle to choose your pictures. Advice: \"Favor a square photo for a better result.</string>
     <string name="conditionEmail">Please enter your email adress</string>
     <string name="confirmerSuppression">Do you really want to supress this quizz?</string>
@@ -38,11 +38,11 @@
     <string name="go">Go</string>
     <string name="goodLuck">Good Luck</string>
     <string name="laisse_un_commentaire">Leave a commentary !</string>
-    <string name="lancer_le_quizz">Lunch the quizz</string>
+    <string name="lancer_le_quizz">Launch the quizz</string>
     <string name="message">Message</string>
     <string name="monScore">I have done the score of :</string>
     <string name="mot_de_passe">Password</string>
-    <string name="mot_de_passe_oubli_clique_ici">Password forgotten? Click there.</string>
+    <string name="mot_de_passe_oubli_clique_ici">Forgot your Password? Click there.</string>
     <string name="nom_du_quizz">Name of the quizz</string>
     <string name="nouveauQuizz">, a new quizz of</string>
     <string name="parAuteur">By</string>

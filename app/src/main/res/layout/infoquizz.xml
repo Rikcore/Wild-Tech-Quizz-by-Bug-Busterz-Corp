@@ -24,7 +24,7 @@
         android:textColor="@color/red"
         android:layout_marginLeft="10dp"
         android:textStyle="bold"
-        tools:text="Pseudo"
+        tools:text="@string/Pseudonyme"
         android:layout_alignParentTop="true"
         android:layout_toEndOf="@+id/avatar" />
 
@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:textColor="@color/orange"
         android:textSize="15dp"
-        tools:text="Note obetenue"
+        tools:text="@string/NoteObtenue"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true" />
 
@@ -45,7 +45,7 @@
         android:maxLines="2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Message"
+        android:text="@string/message"
         android:layout_marginStart="17dp"
         android:layout_alignBottom="@+id/quizzImage"
         android:layout_toEndOf="@+id/quizzImage"

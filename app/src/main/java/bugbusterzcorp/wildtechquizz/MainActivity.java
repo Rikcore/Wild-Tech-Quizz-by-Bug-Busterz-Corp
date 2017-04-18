@@ -93,19 +93,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         username = editTextUsername.getText().toString().trim();
 
         if(TextUtils.isEmpty(email)){
-            Toast.makeText(this,"Merci de fourni une adresse mail.",Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.fournirEmailAdress,Toast.LENGTH_LONG).show();
             return;
         }
 
         if(TextUtils.isEmpty(password)){
-            Toast.makeText(this,"Tu ne peux pas créer un compte sans mot de passe !",Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.renseigneMDP,Toast.LENGTH_LONG).show();
             return;
         }
 
 
 
 
-        progressDialog.setMessage("Envoi des données à la NSA");
+        progressDialog.setMessage(getString(R.string.envoieDonnées));
         progressDialog.show();
 
         firebaseAuth.createUserWithEmailAndPassword(email, password)
@@ -134,7 +134,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                         }else{
 
-                            Toast.makeText(MainActivity.this,"Erreur",Toast.LENGTH_LONG).show();
+                            Toast.makeText(MainActivity.this, R.string.Error,Toast.LENGTH_LONG).show();
                         }
                         progressDialog.dismiss();
                     }

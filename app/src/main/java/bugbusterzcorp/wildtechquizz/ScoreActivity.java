@@ -56,20 +56,20 @@ public class ScoreActivity extends AppCompatActivity{
             if (score <= 2) {
                 gifTextViewResult.setBackgroundResource(R.drawable.alien);
                 textViewResult.setTextSize(15);
-                textViewResult.setText(score + "/" + TOTAL_QUESTION + " You shouldn't live on this planet anymore...");
+                textViewResult.setText(score + "/" + TOTAL_QUESTION + getString(R.string.ScoreNul));
             }
             else if (score <= 5) {
                 gifTextViewResult.setBackgroundResource(R.drawable.zombie);
-                textViewResult.setText(score+"/"+TOTAL_QUESTION+" It's alive !!!");
+                textViewResult.setText(score+"/"+TOTAL_QUESTION+getString(R.string.scoreMediocre));
             }
             else if (score <= 8) {
                 gifTextViewResult.setBackgroundResource(R.drawable.lucky);
-                textViewResult.setText(score + "/" + TOTAL_QUESTION + " Not bad !");
+                textViewResult.setText(score + "/" + TOTAL_QUESTION + getString(R.string.scoreIntermediaire));
             } else {
 
                 gifTextViewResult.setBackgroundResource(R.drawable.victoire);
 
-                textViewResult2.setText(score + "/" + TOTAL_QUESTION + " Beau gosse !");
+                textViewResult2.setText(score + "/" + TOTAL_QUESTION + getString(R.string.scoreBeauGosse));
                 textViewResult2.setTextColor(getResources().getColor(R.color.purple));
 
 
@@ -102,7 +102,7 @@ public class ScoreActivity extends AppCompatActivity{
 
                 }
                 else{
-                    Toast.makeText(ScoreActivity.this,"Laisse nous un petit commentaire, connard!",Toast.LENGTH_LONG).show();
+                    Toast.makeText(ScoreActivity.this, R.string.LeaveComment,Toast.LENGTH_LONG).show();
 
 
                 }
@@ -117,7 +117,7 @@ public class ScoreActivity extends AppCompatActivity{
         final int score = scoreIntent.getIntExtra("score", 0);
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEND);
-        sendIntent.putExtra(Intent.EXTRA_TEXT, " J'ai réalisé le score de " + score +"/"+TOTAL_QUESTION+" "+" sur Wild Tech Quiz. Rejoins-moi vite !" );
+        sendIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.monScore) + score +"/"+TOTAL_QUESTION+" "+getString(R.string.quizzName) );
         sendIntent.setType("text/plain");
         startActivity(Intent.createChooser(sendIntent, getResources().getText(R.string.send_to)));
     }

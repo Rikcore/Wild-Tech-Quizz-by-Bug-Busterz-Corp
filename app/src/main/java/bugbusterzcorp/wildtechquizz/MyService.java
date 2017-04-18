@@ -86,7 +86,7 @@ public class MyService extends Service {
         NotificationManager notifManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         Notification noti = new Notification.Builder(this)
                 .setContentTitle("Wild Tech Quizz")
-                .setContentText(user.getDisplayName()+", un nouveau quizz de "+creatorName+" vous attend!")
+                .setContentText(user.getDisplayName()+getString(R.string.nouveauQuizz)+creatorName+getString(R.string.vousAttend))
                 .setSmallIcon(R.mipmap.interrogation_burned)
                 .setVibrate(new long[] { 1000, 1000, 1000, 1000, 1000 })
                 .setContentIntent(PendingIntent.getActivity(this, 0, new Intent(this, MainActivity.class), 0))

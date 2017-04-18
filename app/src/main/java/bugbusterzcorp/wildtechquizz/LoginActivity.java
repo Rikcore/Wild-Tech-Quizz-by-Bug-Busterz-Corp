@@ -73,17 +73,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 
         if (TextUtils.isEmpty(email)) {
-            Toast.makeText(this, "Please enter email", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.enterEmail, Toast.LENGTH_LONG).show();
             return;
         }
 
         if (TextUtils.isEmpty(password)) {
-            Toast.makeText(this, "Please enter password", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.enterPassword, Toast.LENGTH_LONG).show();
             return;
         }
 
 
-        progressDialog.setMessage("Registering Please Wait...");
+        progressDialog.setMessage(getString(R.string.Registering));
         progressDialog.show();
 
         firebaseAuth.signInWithEmailAndPassword(email, password)
@@ -121,7 +121,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         FirebaseAuth auth = FirebaseAuth.getInstance();
         String emailAddress = editTextEmail.getText().toString().trim();
         if (TextUtils.isEmpty(emailAddress)) {
-            Toast.makeText(LoginActivity.this, "Veuillez remplir votre adresse email", Toast.LENGTH_SHORT).show();
+            Toast.makeText(LoginActivity.this, R.string.conditionEmail, Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -131,10 +131,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     public void onComplete(@NonNull Task<Void> task) {
 
                         if (task.isSuccessful()) {
-                            Toast.makeText(LoginActivity.this, "Reset de votre email confirmé !", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, R.string.resetPasswordConfirmed, Toast.LENGTH_SHORT).show();
                         }
                         else {
-                            Toast.makeText(LoginActivity.this, "Veuillez verifiez votre adresse email", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(LoginActivity.this, R.string.emailCheck, Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

@@ -33,7 +33,7 @@
         android:id="@+id/textViewChoix"
         android:layout_width="268dp"
         android:layout_height="76dp"
-        android:text="Choix du quizz"
+        android:text="@string/choix_du_quizz"
         android:textSize="30dp"
         android:textAlignment="center"
         android:gravity="center_vertical"

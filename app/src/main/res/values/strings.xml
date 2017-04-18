@@ -4,13 +4,13 @@
     <string name="title_activity_theme">ThemeActivity</string>
     <string name="send_to">mon score est de</string>
     <string name="charte"><a href="http://www.wild-tech-quizz.kevin.anin.com"> J\'ai lu et j\'accepte les CGU</a></string>
-    <string name="QuizzName">Ton quizz a besoin d\'un nom</string>
+    <string name="QuizzNameImage">Ton quizz a besoin d\'un nom et d\'une image !</string>
     <string name="CreateQuizz">Maintenant créée tes</string>
     <string name="questionsDuQuizz">questions</string>
     <string name="placeAuxQuestions">Titre OK, place aux questions !</string>
     <string name="QuestionEnregistree">Quesion enregistrée !</string>
     <string name="BuzzerSend">Enfin, appuie sur le buzzer pour envoyer ton quizz!</string>
-    <string name="ConditionCréationQuizz">Tu dois remplir tous les champs, et sélectionner la bonne réponse</string>
+    <string name="ConditionCreationQuizz">Tu dois remplir tous les champs, et sélectionner la bonne réponse</string>
     <string name="QuizzCréeEnvoyé">Quizz envoyé</string>
     <string name="enterEmail">Veuillez entrer une adresse email.</string>
     <string name="enterPassword">Merci d\'entrer un password</string>

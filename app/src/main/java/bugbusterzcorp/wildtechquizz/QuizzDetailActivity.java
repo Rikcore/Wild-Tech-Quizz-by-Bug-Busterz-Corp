@@ -53,8 +53,6 @@ public class QuizzDetailActivity extends AppCompatActivity {
 
 
 
-        // FirebaseDatabase.child(quizzString).child(user.getDisplayName()).push().setValue(scoreCommentUserClass);
-
 
         final ScoreCommentUserAdapter mScoreCommentUserAdapter = new ScoreCommentUserAdapter(mDatabase, this, R.layout.infoquizz ); // APPELLE L'ADAPTER
         final ListView InfoQuizzListview = (ListView) findViewById(R.id.InfoQuizzListview); //APPELLE LA LISTE .XML

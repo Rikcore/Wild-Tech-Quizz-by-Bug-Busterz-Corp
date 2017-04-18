@@ -81,10 +81,12 @@
         android:layout_marginRight="8dp"
         android:textStyle="bold"
 
+
         android:text="@string/pas_de_compte_enregistre_toi_ici"
+
         android:textAlignment="center"
         android:textSize="19sp"
-        android:textColor="@color/LightSteelBlue"
+        android:textColor="@color/white"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -95,16 +97,18 @@
         android:id="@+id/textViewForgetPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+
         android:text="@string/mot_de_passe_oubli_clique_ici"
         android:layout_marginLeft="-264dp"
+
         android:textColor="@color/yellow"
         android:textAlignment="center"
         android:textSize="15dp"
-        app:layout_constraintLeft_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="197dp"
+        android:layout_marginBottom="96dp"
         android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintHorizontal_bias="0.465" />
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

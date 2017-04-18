@@ -14,6 +14,8 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class QuizzListAdapter extends FirebaseListAdapter<Quizzclass> {
     public QuizzListAdapter(Query ref, Activity activity, int layout) {
         super(ref, Quizzclass.class, layout, activity);
@@ -26,8 +28,7 @@ public class QuizzListAdapter extends FirebaseListAdapter<Quizzclass> {
 
         TextView quizzName = (TextView)v.findViewById(R.id.textViewQuizzName);
         TextView quizzAutor = (TextView)v.findViewById(R.id.textViewAuthor);
-        final ImageView imageView3 = (ImageView)v.findViewById(R.id.imageView3);
-
+        final CircleImageView quizzImageView = (CircleImageView)v.findViewById(R.id.quizzImage);
         quizzName.setText(String.valueOf(newQuiz.getQuizzName()));
         quizzAutor.setText((R.string.parAuteur)+newQuiz.getUsername());
 
@@ -44,7 +45,7 @@ public class QuizzListAdapter extends FirebaseListAdapter<Quizzclass> {
                         .load(uri)
                         .resize(700, 700)
                         .centerCrop()
-                        .into(imageView3);
+                        .into(quizzImageView);
             }
         });
     }

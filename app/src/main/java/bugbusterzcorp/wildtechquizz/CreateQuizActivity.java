@@ -56,10 +56,7 @@ public class CreateQuizActivity extends AppCompatActivity {
     String mQuestion;
     String mChoiceA;
     String mChoiceB;
-    RadioGroup radioGroupAnswer;
-    ArrayList questionList;
     private ImageView imageViewPhoto;
-    private Bitmap photoList;
     private FirebaseAuth firebaseAuth;
     private String quizzName;
 
@@ -125,8 +122,7 @@ public class CreateQuizActivity extends AppCompatActivity {
         final ImageView bufferButton = (ImageView) findViewById(R.id.imageViewBuffer);
         bufferButton.setVisibility(View.INVISIBLE);
 
-        Typeface custom_font = Typeface.createFromAsset(getAssets(),  "fonts/bits.TTF");
-        Typeface geek_font = Typeface.createFromAsset(getAssets(), "fonts/digiffiti.ttf");
+
         Typeface game_font = Typeface.createFromAsset(getAssets(), "fonts/Gamegirl.ttf");
 
 
@@ -151,9 +147,10 @@ public class CreateQuizActivity extends AppCompatActivity {
             buttonContinue.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (editTextQuizzName == null) {
-                        Toast.makeText(CreateQuizActivity.this, R.string.QuizzName, Toast.LENGTH_LONG).show();
-                    } else {
+
+
+                    if (editTextQuizzName.getText().toString().length() != 0 && selectedImageQuizz != null) {
+
                         quizzName = editTextQuizzName.getText().toString();
                         textViewQuizzEtape.setText(getString(R.string.CreateQuizz)+TOTAL_QUESTION+getString(R.string.questionsDuQuizz));
                         textViewQuestionCount.setTextSize(15);
@@ -171,8 +168,15 @@ public class CreateQuizActivity extends AppCompatActivity {
                         textViewQuestionCount.setTextSize(size);
 
 
-                        Toast.makeText(CreateQuizActivity.this, R.string.placeAuxQuestions, Toast.LENGTH_LONG).show();
 
+                        Toast.makeText(CreateQuizActivity.this, "Titre OK, place aux questions !", Toast.LENGTH_LONG).show();
+                        return;
+
+
+                    } else {
+
+
+                        Toast.makeText(CreateQuizActivity.this, "Ton quizz a besoin d'un nom et d'une image", Toast.LENGTH_LONG).show();
 
                     }
                 }
@@ -343,8 +347,6 @@ public class CreateQuizActivity extends AppCompatActivity {
                     .into(imageViewPhoto);
         }
     }
-
-
 
 
 }

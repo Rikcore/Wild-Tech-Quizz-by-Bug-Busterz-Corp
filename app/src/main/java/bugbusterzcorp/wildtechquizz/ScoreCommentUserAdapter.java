@@ -3,7 +3,6 @@ package bugbusterzcorp.wildtechquizz;
 import android.app.Activity;
 import android.net.Uri;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -35,7 +34,7 @@ public class ScoreCommentUserAdapter extends FirebaseListAdapter<ScoreCommentUse
         TextView quizzMessage = (TextView) v.findViewById(R.id.textViewMessage);
         TextView quizzNote = (TextView) v.findViewById(R.id.textViewNote);
         //final ImageView quizzAvatar = (ImageView) v.findViewById(R.id.avatar);
-        final CircleImageView profileImage = (CircleImageView) v.findViewById(R.id.profile_image);
+        final CircleImageView profileImage = (CircleImageView) v.findViewById(R.id.quizzImage);
 
         quizzPseudo.setText(String.valueOf(info.getmUserNickName()));
         quizzMessage.setText(String.valueOf(info.getmMessage()));

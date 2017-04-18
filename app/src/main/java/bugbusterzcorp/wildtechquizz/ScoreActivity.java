@@ -1,6 +1,7 @@
 package bugbusterzcorp.wildtechquizz;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -31,6 +32,7 @@ public class ScoreActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(activity_score);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
 
         Typeface game_font = Typeface.createFromAsset(getAssets(), "fonts/Gamegirl.ttf");
@@ -45,27 +47,35 @@ public class ScoreActivity extends AppCompatActivity{
 
 
         Intent scoreIntent = getIntent();
+        final int killer = scoreIntent.getIntExtra("killer", 0);
         final int score = scoreIntent.getIntExtra("score", 0);
-        int total = scoreIntent.getIntExtra("total", 0);
         final String quizzString = scoreIntent.getStringExtra("quizzRef");
 
 
 
-        if (score < 2) {
-            gifTextViewResult.setBackgroundResource(R.drawable.zombie);
-            textViewResult.setText(score+"/"+total+" So bad");
-        } else if (score <= 4) {
-            gifTextViewResult.setBackgroundResource(R.drawable.lucky);
-            textViewResult.setText(score+"/"+total+" Not bad !");
-        } else {
+            if (score <= 2) {
+                gifTextViewResult.setBackgroundResource(R.drawable.alien);
+                textViewResult.setTextSize(15);
+                textViewResult.setText(score + "/" + TOTAL_QUESTION + " You shouldn't live on this planet anymore...");
+            }
+            else if (score <= 5) {
+                gifTextViewResult.setBackgroundResource(R.drawable.zombie);
+                textViewResult.setText(score+"/"+TOTAL_QUESTION+" It's alive !!!");
+            }
+            else if (score <= 8) {
+                gifTextViewResult.setBackgroundResource(R.drawable.lucky);
+                textViewResult.setText(score + "/" + TOTAL_QUESTION + " Not bad !");
+            } else {
 
-            gifTextViewResult.setBackgroundResource(R.drawable.victoire);
+                gifTextViewResult.setBackgroundResource(R.drawable.victoire);
 
-            textViewResult2.setText(score+"/"+total+" Beau gosse !");
-            textViewResult2.setTextColor(getResources().getColor(R.color.purple));
+                textViewResult2.setText(score + "/" + TOTAL_QUESTION + " Beau gosse !");
+                textViewResult2.setTextColor(getResources().getColor(R.color.purple));
 
 
-        }
+            }
+
+
 
 
 

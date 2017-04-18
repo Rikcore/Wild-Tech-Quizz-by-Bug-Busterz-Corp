@@ -22,6 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class MyService extends Service {
 
     public static final DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Quizz");
+    public final FirebaseUser user =FirebaseAuth.getInstance().getCurrentUser();
     private FirebaseAuth firebaseAuth = null;
     String creatorName;
 
@@ -39,7 +40,9 @@ public class MyService extends Service {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 creatorName = (String) dataSnapshot.child("username").getValue();
-                displayNotification();
+                if (!user.getDisplayName().equals(creatorName)){
+                    displayNotification();
+                }
             }
 
             @Override
@@ -79,12 +82,13 @@ public class MyService extends Service {
 
     private void displayNotification() {
 
-        FirebaseUser user =FirebaseAuth.getInstance().getCurrentUser();
+
         NotificationManager notifManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         Notification noti = new Notification.Builder(this)
                 .setContentTitle("Wild Tech Quizz")
                 .setContentText(user.getDisplayName()+", un nouveau quizz de "+creatorName+" vous attend!")
                 .setSmallIcon(R.mipmap.interrogation_burned)
+                .setVibrate(new long[] { 1000, 1000, 1000, 1000, 1000 })
                 .setContentIntent(PendingIntent.getActivity(this, 0, new Intent(this, MainActivity.class), 0))
                 .build();
 

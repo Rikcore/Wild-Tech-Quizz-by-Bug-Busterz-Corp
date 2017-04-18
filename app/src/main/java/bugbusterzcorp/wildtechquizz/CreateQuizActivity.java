@@ -2,8 +2,12 @@ package bugbusterzcorp.wildtechquizz;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+
 import android.database.Cursor;
 import android.graphics.Bitmap;
+
+import android.content.pm.ActivityInfo;
+
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.net.Uri;
@@ -58,9 +62,9 @@ public class CreateQuizActivity extends AppCompatActivity {
     private Bitmap photoList;
     private FirebaseAuth firebaseAuth;
     private String quizzName;
+
     private String uid;
     private StorageReference mStorage;
-    final static int TOTAL_QUESTION = 1;
     private static int RESULT_LOAD_IMAGE = 1;
     private Bitmap correctImage;
     private Uri selectedImageQuizz;
@@ -69,18 +73,29 @@ public class CreateQuizActivity extends AppCompatActivity {
     private static String urlPhotoQuizz;
 
 
+    final static int TOTAL_QUESTION = 10;
+    int count = 1;
+    int size = 30;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_quiz);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
 
         final ArrayList<QuestionClass> questionList = new ArrayList<>();
         firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         final String username = user.getDisplayName();
+
         imageViewPhoto = (ImageView) findViewById(R.id.imageViewPhoto);
-        final TextView textViewQuizzName = (TextView) findViewById(R.id.textViewQuizzNameChoice);
+        
+
+
+        final TextView textViewQuizzEtape = (TextView) findViewById(R.id.textViewQuizzEtape);
+
         final EditText editTextQuizzName = (EditText) findViewById(R.id.editTextQuizzName);
         final Button buttonContinue = (Button) findViewById(R.id.buttonContinue);
         mStorage = FirebaseStorage.getInstance().getReference();
@@ -92,6 +107,8 @@ public class CreateQuizActivity extends AppCompatActivity {
 
         final FloatingActionButton floatingActionButtonAddQuestion = (FloatingActionButton) findViewById(R.id.floatingActionButtonAddQuestion);
         floatingActionButtonAddQuestion.setVisibility(View.INVISIBLE);
+        final TextView textViewQuestionCount = (TextView) findViewById(R.id.textViewQuestionCount);
+        textViewQuestionCount.setVisibility(View.INVISIBLE);
         final EditText editTextQuestion = (EditText) findViewById(R.id.editTextQuestion);
         editTextQuestion.setVisibility(View.INVISIBLE);
         final EditText editTextFirstChoice = (EditText) findViewById(R.id.editTextFirstChoice);
@@ -105,8 +122,6 @@ public class CreateQuizActivity extends AppCompatActivity {
 
         final RadioGroup radiogroupAnswer = (RadioGroup) findViewById(R.id.radioGroupAnswer);
 
-        final TextView textViewEnd = (TextView) findViewById(R.id.textViewEnd);
-        textViewEnd.setVisibility(View.INVISIBLE);
         final ImageView bufferButton = (ImageView) findViewById(R.id.imageViewBuffer);
         bufferButton.setVisibility(View.INVISIBLE);
 
@@ -115,8 +130,7 @@ public class CreateQuizActivity extends AppCompatActivity {
         Typeface game_font = Typeface.createFromAsset(getAssets(), "fonts/Gamegirl.ttf");
 
 
-        textViewQuizzName.setTypeface(game_font);
-        textViewEnd.setTypeface(game_font);
+        textViewQuizzEtape.setTypeface(game_font);
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
@@ -141,7 +155,8 @@ public class CreateQuizActivity extends AppCompatActivity {
                         Toast.makeText(CreateQuizActivity.this, "Ton quizz a besoin d'un nom", Toast.LENGTH_LONG).show();
                     } else {
                         quizzName = editTextQuizzName.getText().toString();
-                        textViewQuizzName.setVisibility(View.INVISIBLE);
+                        textViewQuizzEtape.setText("Maintenant créée tes "+TOTAL_QUESTION+" questions");
+                        textViewQuestionCount.setTextSize(15);
                         editTextQuizzName.setVisibility(View.INVISIBLE);
                         buttonContinue.setVisibility(View.INVISIBLE);
                         imageViewPhoto.setVisibility(View.INVISIBLE);
@@ -151,6 +166,10 @@ public class CreateQuizActivity extends AppCompatActivity {
                         radioButtonFirstChoice.setVisibility(View.VISIBLE);
                         radioButtonSecondChoice.setVisibility(View.VISIBLE);
                         floatingActionButtonAddQuestion.setVisibility(View.VISIBLE);
+
+                        textViewQuestionCount.setVisibility(View.VISIBLE);
+                        textViewQuestionCount.setTextSize(size);
+
 
                         Toast.makeText(CreateQuizActivity.this, "Titre OK, place aux questions !", Toast.LENGTH_LONG).show();
 
@@ -189,13 +208,18 @@ public class CreateQuizActivity extends AppCompatActivity {
                         editTextFirstChoice.setText("");
                         editTextSecondChoice.setText("");
                         radiogroupAnswer.clearCheck();
+                        textViewQuestionCount.setText(count+"/"+TOTAL_QUESTION);
+                        textViewQuestionCount.setTextSize(size);
+                        count++;
+                        size++;
 
 
 
                         if (questionList.size() == TOTAL_QUESTION) {
                             floatingActionButtonAddQuestion.setVisibility(View.INVISIBLE);
                             bufferButton.setVisibility(View.VISIBLE);
-                            textViewEnd.setVisibility(View.VISIBLE);
+                            textViewQuestionCount.setTextSize(30);
+                            textViewQuizzEtape.setText("Enfin, appuie sur le buzzer pour envoyer ton quizz!");
                             editTextQuestion.setVisibility(View.INVISIBLE);
                             editTextFirstChoice.setVisibility(View.INVISIBLE);
                             editTextSecondChoice.setVisibility(View.INVISIBLE);

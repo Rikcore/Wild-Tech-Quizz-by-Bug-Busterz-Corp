@@ -20,12 +20,21 @@
 
     <EditText
         android:id="@+id/editTextQuestion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="313dp"
+        android:layout_height="96dp"
+        android:background="@drawable/rounded_edittext"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
         android:ems="10"
-        android:maxLength="50"
-        android:inputType="textCapSentences"
+        android:maxLength="100"
         android:hint="Tapez votre question"
+        android:lines="3"
+        android:minLines="1"
+        android:gravity="top|left"
+        android:maxLines="4"
+        android:inputType="textMultiLine|textCapSentences"
         android:textColorHint="@color/white"
         android:textColor="@color/white"
         android:layout_marginTop="8dp"
@@ -34,10 +43,9 @@
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/editTextFirstChoice"
-        app:layout_constraintVertical_bias="0.487"
+        app:layout_constraintVertical_bias="0.697"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp" />
 
@@ -45,8 +53,13 @@
         android:id="@+id/editTextFirstChoice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/rounded_edittext"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
         android:ems="10"
-        android:maxLength="25"
+        android:maxLength="35"
         android:inputType="textCapSentences"
         android:hint="Entrez le premier choix"
         android:textColorHint="@color/white"
@@ -55,12 +68,12 @@
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="12dp"
-        app:layout_constraintVertical_bias="0.424"
+        app:layout_constraintVertical_bias="0.634"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp" />
 
@@ -70,7 +83,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:maxLength="25"
+        android:maxLength="35"
+        android:background="@drawable/rounded_edittext"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
         android:inputType="textCapSentences"
         android:hint="Entrez le second choix"
         android:textColorHint="@color/white"
@@ -83,8 +101,8 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextFirstChoice"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="8dp"
-        app:layout_constraintHorizontal_bias="0.418"
-        app:layout_constraintVertical_bias="0.191"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintVertical_bias="0.185"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp" />
 
@@ -102,9 +120,9 @@
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginLeft="8dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintHorizontal_bias="0.929"
+        app:layout_constraintHorizontal_bias="0.923"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="398dp"
+        android:layout_marginTop="480dp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp" />
 
@@ -114,7 +132,7 @@
         android:layout_height="145dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.024"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -122,7 +140,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp">
+        android:layout_marginEnd="8dp"
+        app:layout_constraintVertical_bias="0.72">
 
         <RadioButton
             android:id="@+id/radioButtonFirstChoice"
@@ -143,8 +162,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:maxLength="20"
+        android:maxLength="30"
         android:hint="Nom du quizz"
+        android:background="@drawable/rounded_edittext"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
         android:textColorHint="@color/white"
         android:textColor="@color/white"
         android:inputType="textCapSentences"
@@ -159,23 +183,23 @@
         android:layout_marginEnd="8dp" />
 
     <TextView
-        android:id="@+id/textViewQuizzNameChoice"
+        android:id="@+id/textViewQuizzEtape"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="9dp"
+        android:layout_marginBottom="72dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:text="CHOISIS LE NOM DE TON QUIZZ"
-        android:textColorHint="@color/white"
-        android:textColor="@color/white"
-        android:textSize="30dp"
-        android:textAlignment="center"
+        android:layout_marginStart="8dp"
         android:gravity="center_vertical"
+        android:text="CHOISIS LE NOM DE TON QUIZZ"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textSize="30dp"
         app:layout_constraintBottom_toTopOf="@+id/editTextQuizzName"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp" />
+        app:layout_constraintRight_toRightOf="parent" />
 
     <Button
         android:id="@+id/buttonContinue"
@@ -194,7 +218,7 @@
         app:layout_constraintHorizontal_bias="0.498" />
 
 
-    <ImageView
+   <ImageView
         android:id="@+id/imageViewBuffer"
 
 
@@ -210,24 +234,24 @@
         app:layout_constraintRight_toRightOf="@+id/gifTextViewResult"
         android:layout_marginLeft="8dp"
         app:layout_constraintLeft_toLeftOf="@+id/gifTextViewResult" />
-        />
 
-<TextView
-        android:id="@+id/textViewEnd"
-        android:layout_width="0dp"
-        android:layout_height="91dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:text="Appuie maintenant sur le buzzer pour soumettre ton quizz !"
-        android:textColor="@color/white"
-        android:textSize="20dp"
+
+    <TextView
+        android:id="@+id/textViewQuestionCount"
         android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/imageViewBuffer"
+        android:textColor="@color/white"
+        android:textSize="30dp"
+        android:text="0/10"
+        android:layout_width="169dp"
+        android:layout_height="110dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="534dp"
+        android:layout_marginLeft="8dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:layout_editor_absoluteY="536dp"
+        tools:layout_editor_absoluteX="93dp" />
 
     <ImageView
         android:id="@+id/imageViewPhoto"

@@ -2,6 +2,7 @@ package bugbusterzcorp.wildtechquizz;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.database.DataSetObserver;
 import android.graphics.Typeface;
 import android.support.v7.app.AlertDialog;
@@ -31,6 +32,7 @@ public class QuizzListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quizz_list);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         Typeface game_font = Typeface.createFromAsset(getAssets(), "fonts/Gamegirl.ttf");
 
 

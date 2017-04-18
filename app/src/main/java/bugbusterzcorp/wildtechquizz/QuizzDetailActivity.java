@@ -1,6 +1,7 @@
 package bugbusterzcorp.wildtechquizz;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.database.DataSetObserver;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
@@ -31,6 +32,7 @@ public class QuizzDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quizz_detail);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         Intent intent = getIntent();
         final String quizzRef = intent.getStringExtra("quizzRef");
@@ -66,6 +68,17 @@ public class QuizzDetailActivity extends AppCompatActivity {
                  InfoQuizzListview.setSelection(mScoreCommentUserAdapter.getCount() - 1);
              }
          });
+
+        mScoreCommentUserAdapter.registerDataSetObserver(new DataSetObserver() {
+            @Override
+            public void onChanged() {
+                super.onChanged();
+                InfoQuizzListview.setSelection(mScoreCommentUserAdapter.getCount() - 1);
+
+
+
+            }
+        });
 
 
 

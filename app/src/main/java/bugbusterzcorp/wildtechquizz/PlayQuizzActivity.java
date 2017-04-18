@@ -2,6 +2,7 @@ package bugbusterzcorp.wildtechquizz;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.CountDownTimer;
 import android.support.v7.app.AlertDialog;
@@ -42,6 +43,7 @@ public class PlayQuizzActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_quizz);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         sound = new SoundPlayer(this);
 
 

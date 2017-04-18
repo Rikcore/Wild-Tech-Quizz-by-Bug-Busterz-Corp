@@ -1,6 +1,7 @@
 package bugbusterzcorp.wildtechquizz;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -31,6 +32,7 @@ public class ScoreActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(activity_score);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
 
         Typeface game_font = Typeface.createFromAsset(getAssets(), "fonts/Gamegirl.ttf");
@@ -53,6 +55,7 @@ public class ScoreActivity extends AppCompatActivity{
 
             if (score <= 2) {
                 gifTextViewResult.setBackgroundResource(R.drawable.alien);
+                textViewResult.setTextSize(15);
                 textViewResult.setText(score + "/" + TOTAL_QUESTION + " You shouldn't live on this planet anymore...");
             }
             else if (score <= 5) {

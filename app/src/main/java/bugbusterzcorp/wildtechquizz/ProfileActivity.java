@@ -133,9 +133,8 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                 textViewUsername.setTypeface(game_font);
 
 
-            mStorage.child("images/"+uid).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-
-
+            mStorage.child("images/"+uid).getDownloadUrl()
+                    .addOnSuccessListener(new OnSuccessListener<Uri>() {
 
 
                 @Override

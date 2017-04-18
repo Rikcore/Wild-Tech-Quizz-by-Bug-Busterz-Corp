@@ -1,8 +1,14 @@
 package bugbusterzcorp.wildtechquizz;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
+import android.net.Uri;
+import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.constraint.solver.SolverVariable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -16,9 +22,12 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.database.Cursor;
 
 import java.util.ArrayList;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -26,8 +35,14 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
-
+import static android.R.attr.data;
+import static bugbusterzcorp.wildtechquizz.R.id.buttonUpload;
 
 
 public class CreateQuizActivity extends AppCompatActivity {
@@ -39,23 +54,38 @@ public class CreateQuizActivity extends AppCompatActivity {
     String mChoiceB;
     RadioGroup radioGroupAnswer;
     ArrayList questionList;
+    private ImageView imageViewPhoto;
+    private Bitmap photoList;
     private FirebaseAuth firebaseAuth;
     private String quizzName;
-    final static int TOTAL_QUESTION = 5;
+    private String uid;
+    private StorageReference mStorage;
+    final static int TOTAL_QUESTION = 1;
+    private static int RESULT_LOAD_IMAGE = 1;
+    private Bitmap correctImage;
+    private Uri selectedImageQuizz;
+    private FirebaseUser user;
+    private String picturePath;
+    private static String urlPhotoQuizz;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_quiz);
 
+
         final ArrayList<QuestionClass> questionList = new ArrayList<>();
         firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         final String username = user.getDisplayName();
-
+        imageViewPhoto = (ImageView) findViewById(R.id.imageViewPhoto);
         final TextView textViewQuizzName = (TextView) findViewById(R.id.textViewQuizzNameChoice);
         final EditText editTextQuizzName = (EditText) findViewById(R.id.editTextQuizzName);
         final Button buttonContinue = (Button) findViewById(R.id.buttonContinue);
+        mStorage = FirebaseStorage.getInstance().getReference();
+
+
 
 
 
@@ -95,6 +125,15 @@ public class CreateQuizActivity extends AppCompatActivity {
             final String uid = user.getUid();
 
 
+            imageViewPhoto.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    final Intent i = new Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    startActivityForResult(i, RESULT_LOAD_IMAGE);
+                }
+            });
+
+
             buttonContinue.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -105,12 +144,14 @@ public class CreateQuizActivity extends AppCompatActivity {
                         textViewQuizzName.setVisibility(View.INVISIBLE);
                         editTextQuizzName.setVisibility(View.INVISIBLE);
                         buttonContinue.setVisibility(View.INVISIBLE);
+                        imageViewPhoto.setVisibility(View.INVISIBLE);
                         editTextQuestion.setVisibility(View.VISIBLE);
                         editTextFirstChoice.setVisibility(View.VISIBLE);
                         editTextSecondChoice.setVisibility(View.VISIBLE);
                         radioButtonFirstChoice.setVisibility(View.VISIBLE);
                         radioButtonSecondChoice.setVisibility(View.VISIBLE);
                         floatingActionButtonAddQuestion.setVisibility(View.VISIBLE);
+
                         Toast.makeText(CreateQuizActivity.this, "Titre OK, place aux questions !", Toast.LENGTH_LONG).show();
 
 
@@ -179,11 +220,42 @@ public class CreateQuizActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
 
-                    Quizzclass newQuiz = new Quizzclass(questionList, username, quizzName, uid);
-                    FirebaseDatabase database = FirebaseDatabase.getInstance();
-                    DatabaseReference ref = database.getReference("Quizz");
-                    ref.push().setValue(newQuiz);
-                    editTextQuizzName.setText("");
+                    mStorage = mStorage.child("imagesQuizz/"+quizzName+uid);
+
+                    mStorage.putFile(selectedImageQuizz)
+
+                            .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+
+                                @Override
+                                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                                    // Get a URL to the uploaded content
+                                    @SuppressWarnings("VisibleForTests") Uri downloadUrl = taskSnapshot.getDownloadUrl();
+                                    urlPhotoQuizz = downloadUrl.toString();
+                                    Quizzclass newQuiz = new Quizzclass(questionList, username, quizzName, uid, urlPhotoQuizz);
+                                    FirebaseDatabase database = FirebaseDatabase.getInstance();
+                                    DatabaseReference ref = database.getReference("Quizz");
+                                    ref.push().setValue(newQuiz);
+                                    editTextQuizzName.setText("");
+
+                                }
+                            })
+                            .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                                @Override
+                                public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                                    @SuppressWarnings("VisibleForTests") double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception exception) {
+                                    // Handle unsuccessful uploads
+                                    // ...
+                                }
+                            });
+
+
+
 
 
                     Toast.makeText(CreateQuizActivity.this, "Quizz envoyé", Toast.LENGTH_LONG).show();
@@ -222,10 +294,38 @@ public class CreateQuizActivity extends AppCompatActivity {
                     return false;
                 }
             });
-
         }
-
 
     }
 
+
+    @Override
+    protected void onActivityResult ( int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK && null != data) {
+            selectedImageQuizz = data.getData();
+            String[] filePathColumn = {MediaStore.Images.Media.DATA};
+            Cursor cursor = getContentResolver().query(selectedImageQuizz, filePathColumn, null, null, null);
+            cursor.moveToFirst();
+            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+            picturePath = cursor.getString(columnIndex);
+            cursor.close();
+
+            Picasso
+                    .with(CreateQuizActivity.this)
+                    .load(selectedImageQuizz)
+                    .resize(700, 700)
+                    .centerCrop()
+                    .into(imageViewPhoto);
+        }
+    }
+
+
+
+
 }
+
+
+
+
+

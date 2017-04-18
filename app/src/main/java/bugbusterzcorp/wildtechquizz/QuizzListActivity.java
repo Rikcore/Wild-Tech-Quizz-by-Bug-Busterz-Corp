@@ -3,6 +3,7 @@ package bugbusterzcorp.wildtechquizz;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.DataSetObserver;
+import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -33,14 +34,8 @@ public class QuizzListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_quizz_list);
         Typeface game_font = Typeface.createFromAsset(getAssets(), "fonts/Gamegirl.ttf");
 
-
-
         // APPELLE LA BASE DE DONNEES
         mDatabase = FirebaseDatabase.getInstance().getReference("Quizz");
-
-
-
-
 
 
 

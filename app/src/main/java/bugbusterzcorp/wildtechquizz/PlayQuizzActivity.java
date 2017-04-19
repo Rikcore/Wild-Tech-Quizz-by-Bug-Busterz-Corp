@@ -4,6 +4,7 @@ package bugbusterzcorp.wildtechquizz;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.CountDownTimer;
 
 import android.support.v7.app.AppCompatActivity;
@@ -44,6 +45,8 @@ public class PlayQuizzActivity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         sound = new SoundPlayer(this);
 
+        Typeface digital = Typeface.createFromAsset(getAssets(), "fonts/DSDIGIT.TTF");
+
 
 
 
@@ -63,6 +66,8 @@ public class PlayQuizzActivity extends AppCompatActivity {
         textViewQuestion = (TextView) findViewById(R.id.textViewQuestion);
         textViewScore = (TextView) findViewById(R.id.textViewScore);
         textViewTimer = (TextView) findViewById(R.id.textViewTimer);
+        textViewTimer.setTypeface(digital);
+
 
         textViewChoiceA.setText(newQuestion.getChoiceA());
         textViewChoiceB.setText(newQuestion.getChoiceB());
@@ -71,15 +76,15 @@ public class PlayQuizzActivity extends AppCompatActivity {
 
         // TIMER
 
-        timer = new CountDownTimer(10000, 1000) {
+        timer = new CountDownTimer(15000, 1000) {
 
             public void onTick(long millisUntilFinished) {
 
                 if (millisUntilFinished >= 6000) {
-                    textViewTimer.setText(" " + millisUntilFinished / 1000);
+                    textViewTimer.setText("" + millisUntilFinished / 1000);
                     textViewTimer.setTextColor(getResources().getColor(R.color.green));
                 } else {
-                    textViewTimer.setText(" " + millisUntilFinished / 1000);
+                    textViewTimer.setText("" + millisUntilFinished / 1000);
                     textViewTimer.setTextColor(getResources().getColor(R.color.red));
 
                 }
@@ -106,7 +111,7 @@ public class PlayQuizzActivity extends AppCompatActivity {
 
                         @Override
                         public void run() {
-                            textViewChoiceA.setBackgroundColor(getResources().getColor(R.color.blue));
+                            textViewChoiceA.setBackgroundColor(getResources().getColor(R.color.greybackground));
                         }
                     }, 150);
 
@@ -118,7 +123,7 @@ public class PlayQuizzActivity extends AppCompatActivity {
 
                         @Override
                         public void run() {
-                            textViewChoiceA.setBackgroundColor(getResources().getColor(R.color.blue));
+                            textViewChoiceA.setBackgroundColor(getResources().getColor(R.color.greybackground));
                         }
                     }, 150);
                 }
@@ -141,7 +146,7 @@ public class PlayQuizzActivity extends AppCompatActivity {
 
                         @Override
                         public void run() {
-                            textViewChoiceB.setBackgroundColor(getResources().getColor(R.color.blue));
+                            textViewChoiceB.setBackgroundColor(getResources().getColor(R.color.greybackground));
                         }
                     }, 150);
 
@@ -153,7 +158,7 @@ public class PlayQuizzActivity extends AppCompatActivity {
 
                         @Override
                         public void run() {
-                            textViewChoiceB.setBackgroundColor(getResources().getColor(R.color.blue));
+                            textViewChoiceB.setBackgroundColor(getResources().getColor(R.color.greybackground));
                         }
                     }, 150);
                 }
@@ -190,14 +195,12 @@ public class PlayQuizzActivity extends AppCompatActivity {
 
         }
 
-
     }
 
     public void updateScore(){
         score++;
         textViewScore.setText(score+"/"+questionList.size());
     }
-
 
 
     @Override
@@ -207,22 +210,4 @@ public class PlayQuizzActivity extends AppCompatActivity {
 
     }
 
-
-
-
-
-
-
-
-
-
-
-
 }
-
-
-
-
-
-
-

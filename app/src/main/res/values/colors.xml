@@ -19,6 +19,7 @@
     <item name="red" type="color">#FFFF4444</item>
     <color name="Azure">#F0FFFF</color>
     <color name="AliceBlue">#F0F8FF</color>
+    <color name="greybackground">#ac434242</color>
 
 
 </resources>

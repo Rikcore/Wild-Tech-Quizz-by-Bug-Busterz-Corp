@@ -31,6 +31,7 @@
 
     <TextView
         android:id="@+id/textViewChoix"
+        android:background="@drawable/round"
         android:layout_width="268dp"
         android:layout_height="76dp"
         android:text="@string/choix_du_quizz"

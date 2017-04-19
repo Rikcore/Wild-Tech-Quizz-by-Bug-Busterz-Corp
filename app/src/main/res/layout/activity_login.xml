@@ -97,10 +97,8 @@
         android:id="@+id/textViewForgetPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         android:text="@string/mot_de_passe_oubli_clique_ici"
         android:layout_marginLeft="-264dp"
-
         android:textColor="@color/yellow"
         android:textAlignment="center"
         android:textSize="15dp"

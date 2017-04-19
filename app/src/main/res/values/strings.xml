@@ -67,6 +67,9 @@
     <string name="Pseudonyme">Pseudo</string>
     <string name="NoteObtenue">Note obetenue</string>
     <string name="message">Message</string>
+    <string name="link">J\'ai lu et j\'accepte les <a href="http://www.wild-tech-quizz.kevinanin.com">CGU</a></string>
+    <string name="checkboxWarning">Tu dois accepter les CGU</string>
     <string name="envoyer">Envoyer</string>
     <string name="compteurzero">0/</string>
+
 </resources>

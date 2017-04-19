@@ -10,10 +10,13 @@ import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Spanned;
 import android.text.TextUtils;
+import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -27,6 +30,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import android.text.Html;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -45,13 +49,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private EditText editTextUsername;
     private TextView textViewSignin;
     private Button buttonSignup;
+    private CheckBox checkBoxCgu;
 
 
     private ProgressDialog progressDialog;
 
     private FirebaseAuth firebaseAuth;
+    private TextView textViewCgu;
 
     String username;
+
+    Spanned Text;
 
 
 
@@ -62,6 +70,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         //startService(new Intent(this, MyService.class));
+
+        textViewCgu = (TextView)findViewById(R.id.textViewCgu);
+
+        textViewCgu.setMovementMethod(LinkMovementMethod.getInstance());
+
 
 
         firebaseAuth = FirebaseAuth.getInstance();
@@ -77,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         editTextUsername = (EditText) findViewById(R.id.editTextUsername);
         textViewSignin = (TextView) findViewById(R.id.textViewSignin);
         buttonSignup = (Button) findViewById(R.id.buttonSignup);
-
+        checkBoxCgu = (CheckBox) findViewById(R.id.checkBoxCgu);
         progressDialog = new ProgressDialog(this);
 
         buttonSignup.setOnClickListener(this);
@@ -99,6 +112,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         if(TextUtils.isEmpty(password)){
             Toast.makeText(this, R.string.renseigneMDP,Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        if(checkBoxCgu.isChecked()==false){
+            Toast.makeText(this, R.string.checkboxWarning,Toast.LENGTH_LONG).show();
             return;
         }
 

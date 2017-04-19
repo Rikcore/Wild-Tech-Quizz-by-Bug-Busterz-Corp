@@ -26,7 +26,6 @@ public class PlayQuizzActivity extends AppCompatActivity {
     private TextView textViewChoiceB;
     private TextView textViewQuestion;
     private TextView textViewTimer;
-    private TextView textViewScore;
     private QuestionClass newQuestion;
 
     private SoundPlayer sound;
@@ -64,7 +63,6 @@ public class PlayQuizzActivity extends AppCompatActivity {
         textViewChoiceA = (TextView) findViewById(R.id.textViewChoiceA);
         textViewChoiceB = (TextView) findViewById(R.id.textViewChoiceB);
         textViewQuestion = (TextView) findViewById(R.id.textViewQuestion);
-        textViewScore = (TextView) findViewById(R.id.textViewScore);
         textViewTimer = (TextView) findViewById(R.id.textViewTimer);
         textViewTimer.setTypeface(digital);
 
@@ -199,7 +197,6 @@ public class PlayQuizzActivity extends AppCompatActivity {
 
     public void updateScore(){
         score++;
-        textViewScore.setText(score+"/"+questionList.size());
     }
 
 

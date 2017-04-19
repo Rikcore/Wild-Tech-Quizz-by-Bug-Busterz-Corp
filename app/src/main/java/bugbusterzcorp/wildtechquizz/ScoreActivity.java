@@ -24,6 +24,9 @@ import static bugbusterzcorp.wildtechquizz.R.layout.activity_score;
 
 
 public class ScoreActivity extends AppCompatActivity{
+    final static double VERY_BAD_SCORE = 0.2;
+    final static double BAD_SCORE = 0.4;
+    final static double MEDIUM_CORE = 0.7;
 
 
 
@@ -50,20 +53,22 @@ public class ScoreActivity extends AppCompatActivity{
         final int killer = scoreIntent.getIntExtra("killer", 0);
         final int score = scoreIntent.getIntExtra("score", 0);
         final int total = scoreIntent.getIntExtra("total", 0);
+        final float note = (float)score/total;
         final String quizzString = scoreIntent.getStringExtra("quizzRef");
 
 
 
-            if (score <= 2) {
+
+            if (note <= VERY_BAD_SCORE) {
                 gifTextViewResult.setBackgroundResource(R.drawable.alien);
                 textViewResult.setTextSize(15);
                 textViewResult.setText(score + "/" + total +" "+ getString(R.string.ScoreNul));
             }
-            else if (score <= 5) {
+            else if (note <= BAD_SCORE) {
                 gifTextViewResult.setBackgroundResource(R.drawable.zombie);
                 textViewResult.setText(score+"/"+total+" "+getString(R.string.scoreMediocre));
             }
-            else if (score <= 8) {
+            else if (note <= MEDIUM_CORE) {
                 gifTextViewResult.setBackgroundResource(R.drawable.lucky);
                 textViewResult.setText(score + "/" + total + " "+getString(R.string.scoreIntermediaire));
             } else {

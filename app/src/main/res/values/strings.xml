@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Wild Tech Quizz</string>
-    <string name="TestCharte" translatable="false">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</string>
     <string name="title_activity_theme">ThemeActivity</string>
     <string name="send_to">mon score est de</string>
     <string name="charte"><a href="http://www.wild-tech-quizz.kevin.anin.com"> J\'ai lu et j\'accepte les CGU</a></string>
@@ -32,7 +31,6 @@
     <string name="confirmerSuppression">Etes vous vraiment sûrs de vouloir supprimer ce quizz ?</string>
     <string name="suppressionQuizzCopain">C\'est pas beau de vouloir supprimer les quizzs des copains !</string>
     <string name="UidRikcore" translatable="false">jCcNcWkOv4c4m4xV4yWWaAT7AAS2</string>
-    <string name="parAuteur">Par</string>
     <string name="ScoreNul">You shouldn\'t live on this planet anymore...</string>
     <string name="scoreMediocre">It\'s alive !!!</string>
     <string name="scoreIntermediaire">Not bad !</string>
@@ -71,5 +69,6 @@
     <string name="checkboxWarning">Tu dois accepter les CGU</string>
     <string name="envoyer">Envoyer</string>
     <string name="compteurzero">0/</string>
+    <string name="by">Par</string>
 
 </resources>

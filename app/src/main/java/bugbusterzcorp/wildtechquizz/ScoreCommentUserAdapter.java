@@ -33,7 +33,6 @@ public class ScoreCommentUserAdapter extends FirebaseListAdapter<ScoreCommentUse
         TextView quizzPseudo = (TextView) v.findViewById(R.id.textViewPseudo);
         TextView quizzMessage = (TextView) v.findViewById(R.id.textViewMessage);
         TextView quizzNote = (TextView) v.findViewById(R.id.textViewNote);
-        //final ImageView quizzAvatar = (ImageView) v.findViewById(R.id.avatar);
         final CircleImageView profileImage = (CircleImageView) v.findViewById(R.id.quizzImage);
 
         quizzPseudo.setText(String.valueOf(info.getmUserNickName()));

@@ -1,6 +1,7 @@
 package bugbusterzcorp.wildtechquizz;
 
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.net.Uri;
@@ -17,6 +18,8 @@ import com.squareup.picasso.Picasso;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class QuizzListAdapter extends FirebaseListAdapter<Quizzclass> {
+
+
     public QuizzListAdapter(Query ref, Activity activity, int layout) {
         super(ref, Quizzclass.class, layout, activity);
 
@@ -30,7 +33,7 @@ public class QuizzListAdapter extends FirebaseListAdapter<Quizzclass> {
         TextView quizzAutor = (TextView)v.findViewById(R.id.textViewAuthor);
         final CircleImageView quizzImageView = (CircleImageView)v.findViewById(R.id.quizzImage);
         quizzName.setText(String.valueOf(newQuiz.getQuizzName()));
-        quizzAutor.setText((R.string.parAuteur)+newQuiz.getUsername());
+        quizzAutor.setText("By "+newQuiz.getUsername());
 
         StorageReference mStorage;
         mStorage = FirebaseStorage.getInstance().getReference();

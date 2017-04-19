@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.database.Cursor;
 import android.graphics.BitmapFactory;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
@@ -48,6 +49,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private EditText editTextPassword;
     private EditText editTextUsername;
     private TextView textViewSignin;
+    private TextView textViewTitre;
+    private TextView textViewCreation;
     private Button buttonSignup;
     private CheckBox checkBoxCgu;
 
@@ -72,10 +75,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //startService(new Intent(this, MyService.class));
 
         textViewCgu = (TextView)findViewById(R.id.textViewCgu);
-
         textViewCgu.setMovementMethod(LinkMovementMethod.getInstance());
 
+        Typeface game_font = Typeface.createFromAsset(getAssets(), "fonts/Gamegirl.ttf");
 
+        textViewTitre = (TextView) findViewById(R.id.textViewTitre);
+        textViewTitre.setTypeface(game_font);
+
+        textViewCreation = (TextView) findViewById(R.id.textViewCreation);
+        textViewCreation.setTextSize(15);
+        textViewCreation.setTypeface(game_font);
 
         firebaseAuth = FirebaseAuth.getInstance();
 

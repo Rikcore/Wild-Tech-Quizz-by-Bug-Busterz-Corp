@@ -33,7 +33,7 @@
         android:lines="3"
         android:minLines="1"
         android:gravity="top|left"
-        android:maxLines="4"
+        android:maxLines="3"
         android:inputType="textMultiLine|textCapSentences"
         android:textColorHint="@color/white"
         android:textColor="@color/white"

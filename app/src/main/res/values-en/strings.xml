@@ -43,7 +43,6 @@
     <string name="mot_de_passe_oubli_clique_ici">Forgot your Password? Click there.</string>
     <string name="nom_du_quizz">Quizz name</string>
     <string name="nouveauQuizz">, a new quizz of</string>
-    <string name="parAuteur">By</string>
     <string name="pas_de_compte_enregistre_toi_ici">Need an account ? Register there.</string>
     <string name="placeAuxQuestions">"Title OK, now questions ! "</string>
     <string name="pourcentages">%...</string>
@@ -68,4 +67,6 @@
     <string name="QuizzNameImage">Your quizz need a name and an image !</string>
     <string name="envoyer">Go</string>
     <string name="ConditionCreationQuizz">You need to fill every fields, and to choose the correct answer.</string>
+    <string name="by">By</string>
+    <string name="checkboxWarning">You must accept the CGU</string>
 </resources>

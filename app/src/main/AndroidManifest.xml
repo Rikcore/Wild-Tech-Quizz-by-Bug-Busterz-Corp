@@ -25,9 +25,6 @@
         </activity>
         <activity android:name=".ProfileActivity" />
         <activity android:name=".LoginActivity" />
-        <activity android:name=".CharteActivity" />
-        <activity android:name=".MyQuizzActivity" />
-        <activity android:name=".ThemeActivity" />
         <activity android:name=".QuizzListActivity" />
         <activity android:name=".CreateQuizActivity" />
         <activity android:name=".PlayQuizzActivity" />

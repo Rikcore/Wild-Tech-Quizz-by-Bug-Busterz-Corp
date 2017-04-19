@@ -94,8 +94,6 @@ public class MyService extends Service {
 
         notifManager.notify(0, noti);
 
-
     }
-
 
 }

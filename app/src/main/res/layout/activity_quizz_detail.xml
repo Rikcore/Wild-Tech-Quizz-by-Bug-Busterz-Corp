@@ -22,17 +22,19 @@
         android:id="@+id/buttonGoPlay"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="27dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:text="@string/lancer_le_quizz"
         android:background="@drawable/borderbutton"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        app:layout_constraintHorizontal_bias="0.498" />
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="9dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/textViewEmptyList" />
 
     <TextView
         android:id="@+id/textViewTitre"
@@ -50,9 +52,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         app:layout_constraintTop_toTopOf="@+id/gifTextViewResult"
-        android:layout_marginTop="8dp"
-        tools:layout_editor_absoluteX="45dp"
-        app:layout_constraintHorizontal_bias="0.505" />
+        android:layout_marginTop="16dp" />
 
     <TextView
         android:id="@+id/textViewEmptyList"
@@ -60,24 +60,24 @@
         android:layout_height="280dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginTop="128dp"
         android:text="@string/tu_es_le_premier_r_aliser_ce_quizz_fais_le_meilleur_score"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="30dp"
         app:layout_constraintLeft_toLeftOf="@+id/InfoQuizzListview"
         app:layout_constraintRight_toRightOf="@+id/InfoQuizzListview"
+        android:layout_marginTop="16dp"
         app:layout_constraintTop_toBottomOf="@+id/textViewTitre" />
 
     <ListView
         android:id="@+id/InfoQuizzListview"
-        android:layout_width="367dp"
-        android:layout_height="412dp"
-        android:layout_marginBottom="37dp"
+        android:layout_width="350dp"
+        android:layout_height="374dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/buttonGoPlay"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTitre" />
 
 </android.support.constraint.ConstraintLayout>

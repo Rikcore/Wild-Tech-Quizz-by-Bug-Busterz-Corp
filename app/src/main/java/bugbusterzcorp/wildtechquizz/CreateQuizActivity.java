@@ -165,6 +165,7 @@ public class CreateQuizActivity extends AppCompatActivity {
                         floatingActionButtonAddQuestion.setVisibility(View.VISIBLE);
 
                         textViewQuestionCount.setVisibility(View.VISIBLE);
+                        textViewQuestionCount.setText(getString(R.string.compteurzero)+TOTAL_QUESTION);
                         textViewQuestionCount.setTextSize(size);
 
 

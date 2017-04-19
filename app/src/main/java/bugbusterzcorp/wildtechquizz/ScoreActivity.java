@@ -49,6 +49,7 @@ public class ScoreActivity extends AppCompatActivity{
         Intent scoreIntent = getIntent();
         final int killer = scoreIntent.getIntExtra("killer", 0);
         final int score = scoreIntent.getIntExtra("score", 0);
+        final int total = scoreIntent.getIntExtra("total", 0);
         final String quizzString = scoreIntent.getStringExtra("quizzRef");
 
 
@@ -56,20 +57,20 @@ public class ScoreActivity extends AppCompatActivity{
             if (score <= 2) {
                 gifTextViewResult.setBackgroundResource(R.drawable.alien);
                 textViewResult.setTextSize(15);
-                textViewResult.setText(score + "/" + TOTAL_QUESTION + getString(R.string.ScoreNul));
+                textViewResult.setText(score + "/" + total +" "+ getString(R.string.ScoreNul));
             }
             else if (score <= 5) {
                 gifTextViewResult.setBackgroundResource(R.drawable.zombie);
-                textViewResult.setText(score+"/"+TOTAL_QUESTION+getString(R.string.scoreMediocre));
+                textViewResult.setText(score+"/"+total+" "+getString(R.string.scoreMediocre));
             }
             else if (score <= 8) {
                 gifTextViewResult.setBackgroundResource(R.drawable.lucky);
-                textViewResult.setText(score + "/" + TOTAL_QUESTION + getString(R.string.scoreIntermediaire));
+                textViewResult.setText(score + "/" + total + " "+getString(R.string.scoreIntermediaire));
             } else {
 
                 gifTextViewResult.setBackgroundResource(R.drawable.victoire);
 
-                textViewResult2.setText(score + "/" + TOTAL_QUESTION + getString(R.string.scoreBeauGosse));
+                textViewResult2.setText(score + "/" + total + " "+ getString(R.string.scoreBeauGosse));
                 textViewResult2.setTextColor(getResources().getColor(R.color.purple));
 
 

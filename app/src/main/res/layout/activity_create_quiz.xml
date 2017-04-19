@@ -243,7 +243,6 @@
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="30dp"
-        android:text="@string/_0_10"
         android:layout_width="169dp"
         android:layout_height="110dp"
         app:layout_constraintTop_toTopOf="parent"

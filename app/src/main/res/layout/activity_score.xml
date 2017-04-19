@@ -85,7 +85,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/round"
         android:textColor="@color/white"
-        android:text="@string/laisse_un_commentaire"
+        android:text="@string/envoyer"
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
         android:layout_marginTop="15dp"

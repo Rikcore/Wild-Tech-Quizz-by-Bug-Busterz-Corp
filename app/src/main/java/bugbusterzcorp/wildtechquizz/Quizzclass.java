@@ -15,6 +15,7 @@ public class Quizzclass implements Serializable {
     private String mCreatorId;
     private String mUrlQuizz;
 
+
     private Quizzclass() {
 
     }

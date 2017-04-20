@@ -52,8 +52,8 @@ public class ScoreActivity extends AppCompatActivity{
         Intent scoreIntent = getIntent();
         final int killer = scoreIntent.getIntExtra("killer", 0);
         final int score = scoreIntent.getIntExtra("score", 0);
-        final int total = scoreIntent.getIntExtra("total", 0);
-        final float note = (float)score/total;
+        final int quizzSize = scoreIntent.getIntExtra("total", 0);
+        final float note = (float)score/quizzSize;
         final String quizzString = scoreIntent.getStringExtra("quizzRef");
 
 
@@ -62,20 +62,20 @@ public class ScoreActivity extends AppCompatActivity{
             if (note <= VERY_BAD_SCORE) {
                 gifTextViewResult.setBackgroundResource(R.drawable.alien);
                 textViewResult.setTextSize(15);
-                textViewResult.setText(score + "/" + total +" "+ getString(R.string.ScoreNul));
+                textViewResult.setText(score + "/" + quizzSize +" "+ getString(R.string.ScoreNul));
             }
             else if (note <= BAD_SCORE) {
                 gifTextViewResult.setBackgroundResource(R.drawable.zombie);
-                textViewResult.setText(score+"/"+total+" "+getString(R.string.scoreMediocre));
+                textViewResult.setText(score+"/"+quizzSize+" "+getString(R.string.scoreMediocre));
             }
             else if (note <= MEDIUM_CORE) {
                 gifTextViewResult.setBackgroundResource(R.drawable.lucky);
-                textViewResult.setText(score + "/" + total + " "+getString(R.string.scoreIntermediaire));
+                textViewResult.setText(score + "/" + quizzSize + " "+getString(R.string.scoreIntermediaire));
             } else {
 
                 gifTextViewResult.setBackgroundResource(R.drawable.victoire);
 
-                textViewResult2.setText(score + "/" + total + " "+ getString(R.string.scoreBeauGosse));
+                textViewResult2.setText(score + "/" + quizzSize + " "+ getString(R.string.scoreBeauGosse));
                 textViewResult2.setTextColor(getResources().getColor(R.color.purple));
 
 

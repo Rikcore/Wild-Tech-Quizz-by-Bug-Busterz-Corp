@@ -24,6 +24,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import static bugbusterzcorp.wildtechquizz.MainActivity.ASLAN;
+import static bugbusterzcorp.wildtechquizz.MainActivity.RIKCORE;
+
 public class QuizzListActivity extends AppCompatActivity {
 
     private DatabaseReference mDatabase;
@@ -91,7 +94,7 @@ public class QuizzListActivity extends AppCompatActivity {
 
                                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                                 Quizzclass newQuiz = (Quizzclass) quizzListView.getAdapter().getItem(currentPosition);
-                                if(user.getUid().equals(newQuiz.getmCreatorId()) || user.getUid().equals(getString(R.string.UidRikcore))) {
+                                if(user.getUid().equals(newQuiz.getmCreatorId()) || user.getUid().equals(RIKCORE) || user.getUid().equals(ASLAN)) {
                                     mDatabase.child(mQuizzListAdapter.getItemKey(currentPosition)).removeValue();
                                 }
                                 else{

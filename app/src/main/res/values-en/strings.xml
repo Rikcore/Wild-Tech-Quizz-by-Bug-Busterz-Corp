@@ -69,4 +69,5 @@
     <string name="ConditionCreationQuizz">You need to fill every fields, and to choose the correct answer.</string>
     <string name="by">By</string>
     <string name="checkboxWarning">You must accept the CGU</string>
+    <string name="suppression">Tips : Long click on a quizz delete it if you\'re his own author.</string>
 </resources>

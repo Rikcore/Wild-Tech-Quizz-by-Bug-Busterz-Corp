@@ -220,14 +220,13 @@
 
    <ImageView
         android:id="@+id/imageViewBuffer"
+        android:background="@drawable/button_effect"
         android:layout_width="323dp"
         android:layout_height="275dp"
-        app:srcCompat="@mipmap/buzzer_burned"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="8dp"
-        style="?android:borderlessButtonStyle"
         android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="@+id/gifTextViewResult"
         android:layout_marginLeft="8dp"

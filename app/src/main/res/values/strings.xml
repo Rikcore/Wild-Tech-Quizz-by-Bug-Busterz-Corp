@@ -70,5 +70,6 @@
     <string name="envoyer">Envoyer</string>
     <string name="compteurzero">0/</string>
     <string name="by">Par</string>
+    <string name="suppression">Astuces : Un appui long sur un de vos quizzs permet de le supprimer.</string>
 
 </resources>

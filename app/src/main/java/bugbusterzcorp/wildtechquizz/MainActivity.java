@@ -45,6 +45,9 @@ import static android.R.attr.data;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
+    public final static String RIKCORE ="jCcNcWkOv4c4m4xV4yWWaAT7AAS2";
+    public final static String ASLAN = "TqXppWpupGNC0tyMPldr58XmVZ33";
+
     private EditText editTextEmail;
     private EditText editTextPassword;
     private EditText editTextUsername;

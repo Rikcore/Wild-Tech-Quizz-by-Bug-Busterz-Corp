@@ -67,6 +67,7 @@ public class CreateQuizActivity extends AppCompatActivity {
         final String username = user.getDisplayName();
         imageViewPhoto = (ImageView) findViewById(R.id.imageViewPhoto);
         final TextView textViewQuizzEtape = (TextView) findViewById(R.id.textViewQuizzEtape);
+        textViewQuizzEtape.setTextSize(25);
         final EditText editTextQuizzName = (EditText) findViewById(R.id.editTextQuizzName);
         final Button buttonContinue = (Button) findViewById(R.id.buttonContinue);
         mStorage = FirebaseStorage.getInstance().getReference();
@@ -107,7 +108,8 @@ public class CreateQuizActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     if (editTextQuizzName.getText().toString().length() != 0 && selectedImageQuizz != null) {
                         quizzName = editTextQuizzName.getText().toString();
-                        textViewQuizzEtape.setText(getString(R.string.CreateQuizz)+TOTAL_QUESTION+getString(R.string.questionsDuQuizz));
+                        textViewQuizzEtape.setTextSize(18);
+                        textViewQuizzEtape.setText(getString(R.string.CreateQuizz)+" "+TOTAL_QUESTION+" "+getString(R.string.questionsDuQuizz));
                         textViewQuestionCount.setTextSize(15);
                         editTextQuizzName.setVisibility(View.INVISIBLE);
                         buttonContinue.setVisibility(View.INVISIBLE);

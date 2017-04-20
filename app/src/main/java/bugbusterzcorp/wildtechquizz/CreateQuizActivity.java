@@ -88,6 +88,10 @@ public class CreateQuizActivity extends AppCompatActivity {
         final ImageView bufferButton = (ImageView) findViewById(R.id.imageViewBuffer);
         bufferButton.setVisibility(View.INVISIBLE);
 
+
+
+
+
         Typeface game_font = Typeface.createFromAsset(getAssets(), "fonts/Gamegirl.ttf");
         textViewQuizzEtape.setTypeface(game_font);
         user = FirebaseAuth.getInstance().getCurrentUser();
@@ -183,7 +187,6 @@ public class CreateQuizActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     mStorage = mStorage.child("imagesQuizz/"+quizzName+uid);
                     mStorage.putFile(selectedImageQuizz)
-
                             .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
 
                                 @Override
@@ -215,28 +218,8 @@ public class CreateQuizActivity extends AppCompatActivity {
                 }
             });
 
-            bufferButton.setOnTouchListener(new View.OnTouchListener() {
-                @Override
-                public boolean onTouch(View v, MotionEvent event) {
 
-                    switch (event.getAction()) {
-                        case MotionEvent.ACTION_DOWN: {
-                            ImageView view = (ImageView) v;
-                            view.getDrawable().setColorFilter(0x77000000, PorterDuff.Mode.SRC_ATOP);
-                            view.invalidate();
-                            break;
-                        }
-                        case MotionEvent.ACTION_UP:
-                        case MotionEvent.ACTION_CANCEL: {
-                            ImageView view = (ImageView) v;
-                            view.getDrawable().clearColorFilter();
-                            view.invalidate();
-                            break;
-                        }
-                    }
-                    return false;
-                }
-            });
+
         }
     }
 

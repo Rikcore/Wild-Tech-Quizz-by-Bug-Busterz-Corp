@@ -51,4 +51,5 @@ public class ScoreCommentUserClass {
     public void setmUserID(String mUserID) {
         this.mUserID = mUserID;
     }
+
 }

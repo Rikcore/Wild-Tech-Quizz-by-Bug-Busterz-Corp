@@ -51,7 +51,7 @@ public class CreateQuizActivity extends AppCompatActivity {
     private FirebaseUser user;
     private String picturePath;
     private static String urlPhotoQuizz;
-    final static int TOTAL_QUESTION = 1;
+    final static int TOTAL_QUESTION = 10;
     int count = 1;
     int size = 30;
 

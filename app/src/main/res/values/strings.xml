@@ -4,8 +4,8 @@
     <string name="send_to">mon score est de</string>
     <string name="charte"><a href="http://www.wild-tech-quizz.kevin.anin.com"> J\'ai lu et j\'accepte les CGU</a></string>
     <string name="QuizzNameImage">Ton quizz a besoin d\'un nom et d\'une image !</string>
-    <string name="CreateQuizz">Maintenant créée tes</string>
-    <string name="questionsDuQuizz">questions</string>
+    <string name="CreateQuizz">Maintenant crée tes</string>
+    <string name="questionsDuQuizz">questions et coche la bonne réponse</string>
     <string name="placeAuxQuestions">Titre OK, place aux questions !</string>
     <string name="QuestionEnregistree">Quesion enregistrée !</string>
     <string name="BuzzerSend">Enfin, appuie sur le buzzer pour envoyer ton quizz !</string>
@@ -36,8 +36,8 @@
     <string name="scoreIntermediaire">Not bad !</string>
     <string name="scoreBeauGosse">Beau gosse !</string>
     <string name="LeaveComment">Laisse nous un petit commentaire !</string>
-    <string name="monScore">J\'ai réalisé le score de</string>
-    <string name="quizzName">sur Wild Tech Quiz. Rejoins-moi vite !</string>
+    <string name="monScore">J\'ai réalisé le score de </string>
+    <string name="quizzName"> sur Wild Tech Quiz. Rejoins-moi vite !</string>
     <string name="continuer">Continuer</string>
     <string name="tapez_votre_question">Tapez votre question</string>
     <string name="entrez_le_premier_choix">Entrez le premier choix</string>

@@ -113,7 +113,7 @@ public class ScoreActivity extends AppCompatActivity{
         final int score = scoreIntent.getIntExtra("score", 0);
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEND);
-        sendIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.monScore) + score +"/"+TOTAL_QUESTION+" "+getString(R.string.quizzName) );
+        sendIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.monScore)+" " + score +"/"+TOTAL_QUESTION+" "+getString(R.string.quizzName) );
         sendIntent.setType("text/plain");
         startActivity(Intent.createChooser(sendIntent, getResources().getText(R.string.send_to)));
     }

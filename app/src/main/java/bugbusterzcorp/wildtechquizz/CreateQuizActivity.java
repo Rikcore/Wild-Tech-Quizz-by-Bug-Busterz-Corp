@@ -92,6 +92,7 @@ public class CreateQuizActivity extends AppCompatActivity {
 
         Typeface game_font = Typeface.createFromAsset(getAssets(), "fonts/Gamegirl.ttf");
         textViewQuizzEtape.setTypeface(game_font);
+        textViewQuestionCount.setTypeface(game_font);
         user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
             final String uid = user.getUid();
@@ -111,7 +112,7 @@ public class CreateQuizActivity extends AppCompatActivity {
                         quizzName = editTextQuizzName.getText().toString();
                         textViewQuizzEtape.setTextSize(18);
                         textViewQuizzEtape.setText(getString(R.string.CreateQuizz)+" "+TOTAL_QUESTION+" "+getString(R.string.questionsDuQuizz));
-                        textViewQuestionCount.setTextSize(15);
+                        textViewQuestionCount.setTextSize(12);
                         editTextQuizzName.setVisibility(View.INVISIBLE);
                         buttonContinue.setVisibility(View.INVISIBLE);
                         imageViewPhoto.setVisibility(View.INVISIBLE);

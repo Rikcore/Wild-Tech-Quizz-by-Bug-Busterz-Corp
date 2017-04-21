@@ -78,13 +78,7 @@ public class ScoreActivity extends AppCompatActivity{
                 textViewResult2.setText(score + "/" + quizzSize + " "+ getString(R.string.scoreBeauGosse));
                 textViewResult2.setTextColor(getResources().getColor(R.color.purple));
 
-
             }
-
-
-
-
-
 
         buttonMessage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,19 +96,15 @@ public class ScoreActivity extends AppCompatActivity{
 
                     commentScoreRef.child(quizzString).child("comments").push().setValue(scoreCommentUserClass);
 
-                  
                     startActivity(new Intent(ScoreActivity.this, ProfileActivity.class));
                     finish();
 
                 }
                 else{
                     Toast.makeText(ScoreActivity.this, R.string.LeaveComment,Toast.LENGTH_LONG).show();
-
-
                 }
             }
         });
-
 
         }
 
@@ -127,7 +117,6 @@ public class ScoreActivity extends AppCompatActivity{
         sendIntent.setType("text/plain");
         startActivity(Intent.createChooser(sendIntent, getResources().getText(R.string.send_to)));
     }
-
 
     }
 

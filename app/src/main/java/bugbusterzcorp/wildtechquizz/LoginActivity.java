@@ -31,11 +31,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private EditText editTextPassword;
     private TextView textViewSignup;
     private TextView textViewForgetPassword;
-
+    private TextView textViewConnexion;
     private FirebaseAuth firebaseAuth;
-
     private ProgressDialog progressDialog;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +58,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         textViewForgetPassword = (TextView) findViewById(R.id.textViewForgetPassword);
         textViewForgetPassword.setTypeface(game_font);
         textViewSignup.setTypeface(game_font);
+        textViewConnexion = (TextView)findViewById(R.id.textViewConnexion);
+        textViewConnexion.setTypeface(game_font);
         progressDialog = new ProgressDialog(this);
         buttonSignIn.setOnClickListener(this);
         textViewSignup.setOnClickListener(this);
@@ -140,6 +140,5 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 });
 
     }
-
 }
 

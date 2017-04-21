@@ -56,15 +56,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private TextView textViewCreation;
     private Button buttonSignup;
     private CheckBox checkBoxCgu;
-
-
     private ProgressDialog progressDialog;
-
     private FirebaseAuth firebaseAuth;
     private TextView textViewCgu;
-
     String username;
-
     Spanned Text;
 
 
@@ -74,13 +69,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-
-        //startService(new Intent(this, MyService.class));
+        Typeface game_font = Typeface.createFromAsset(getAssets(), "fonts/Gamegirl.ttf");
 
         textViewCgu = (TextView)findViewById(R.id.textViewCgu);
         textViewCgu.setMovementMethod(LinkMovementMethod.getInstance());
 
-        Typeface game_font = Typeface.createFromAsset(getAssets(), "fonts/Gamegirl.ttf");
 
         textViewTitre = (TextView) findViewById(R.id.textViewTitre);
         textViewTitre.setTypeface(game_font);
@@ -90,8 +83,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         textViewCreation.setTypeface(game_font);
 
         firebaseAuth = FirebaseAuth.getInstance();
-
-
         if(firebaseAuth.getCurrentUser() != null){
             finish();
             startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
@@ -101,6 +92,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
         editTextUsername = (EditText) findViewById(R.id.editTextUsername);
         textViewSignin = (TextView) findViewById(R.id.textViewSignin);
+        textViewSignin.setTypeface(game_font);
         buttonSignup = (Button) findViewById(R.id.buttonSignup);
         checkBoxCgu = (CheckBox) findViewById(R.id.checkBoxCgu);
         progressDialog = new ProgressDialog(this);
@@ -109,7 +101,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         textViewSignin.setOnClickListener(this);
 
     }
-
 
     private void registerUser(){
 
@@ -131,8 +122,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Toast.makeText(this, R.string.checkboxWarning,Toast.LENGTH_LONG).show();
             return;
         }
-
-
 
 
         progressDialog.setMessage(getString(R.string.envoieDonnées));
@@ -183,7 +172,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             startActivity(new Intent(this, LoginActivity.class));
         }
-
-
     }
 }

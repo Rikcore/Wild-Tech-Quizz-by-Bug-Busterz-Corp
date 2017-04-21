@@ -90,9 +90,6 @@ public class CreateQuizActivity extends AppCompatActivity {
         bufferButton.setVisibility(View.INVISIBLE);
 
 
-
-
-
         Typeface game_font = Typeface.createFromAsset(getAssets(), "fonts/Gamegirl.ttf");
         textViewQuizzEtape.setTypeface(game_font);
         user = FirebaseAuth.getInstance().getCurrentUser();
@@ -180,8 +177,6 @@ public class CreateQuizActivity extends AppCompatActivity {
                         return;
                     }
                 }
-
-
             });
 
             bufferButton.setOnClickListener(new View.OnClickListener() {
@@ -219,9 +214,6 @@ public class CreateQuizActivity extends AppCompatActivity {
 
                 }
             });
-
-
-
         }
     }
 

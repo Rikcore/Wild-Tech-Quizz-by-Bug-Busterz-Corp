@@ -36,8 +36,6 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     private StorageReference mStorage;
     private StorageReference mUserRef;
     private FirebaseUser user;
-
-
     private TextView textViewUsername;
     private ImageView imageViewUser;
     private CircleImageView profileImage;
@@ -138,9 +136,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         String username = user.getDisplayName();
         textViewUsername.setText(username);
 
-
     }
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -162,7 +158,6 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                         .into(profileImage);
 
             buttonUpload.setVisibility(View.VISIBLE);
-
 
         }
     }
@@ -222,9 +217,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
             buttonUpload.setVisibility(View.INVISIBLE);
             textViewFormat.setVisibility(View.INVISIBLE);
 
-
         }
-
     }
 
     public void goToCreate(View view){

@@ -31,7 +31,7 @@
     <string name="enterPassword">Please enter a password</string>
     <string name="entrez_le_premier_choix">Choose the first choice</string>
     <string name="entrez_le_second_choix">Choose the second choice</string>
-    <string name="envoieDonnées">Sending data to the NSA</string>
+    <string name="envoieDonnées">Registering...</string>
     <string name="fournirEmailAdress">Please give a valid email.</string>
     <string name="go">Go</string>
     <string name="goodLuck">Good Luck</string>
@@ -40,7 +40,7 @@
     <string name="message">Message</string>
     <string name="monScore">I finished this quizz with</string>
     <string name="mot_de_passe">Password</string>
-    <string name="mot_de_passe_oubli_clique_ici">Forgot your Password? Click there.</string>
+    <string name="mot_de_passe_oubli_clique_ici">Forgot your Password? Click here.</string>
     <string name="nom_du_quizz">Quizz name</string>
     <string name="nouveauQuizz">, a new quizz of</string>
     <string name="pas_de_compte_enregistre_toi_ici">Need an account ? Register there.</string>
@@ -70,4 +70,6 @@
     <string name="by">By</string>
     <string name="checkboxWarning">You must accept the CGU</string>
     <string name="suppression">Tips : Long click on a quizz delete it if you\'re his own author.</string>
+    <string name="link">I have read and agree to the <a href="http://www.wild-tech-quizz.kevinanin.com">terms and conditions</a></string>
+    <string name="connexionTitre">Connection</string>
 </resources>

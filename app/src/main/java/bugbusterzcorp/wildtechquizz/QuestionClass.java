@@ -1,7 +1,5 @@
 package bugbusterzcorp.wildtechquizz;
 
-import android.widget.EditText;
-
 import java.io.Serializable;
 
 
@@ -10,8 +8,6 @@ public class QuestionClass implements Serializable {
     private String mChoiceA;
     private String mChoiceB;
     private String mCorrectAnswer;
-
-
 
     public QuestionClass(){}
 
@@ -22,8 +18,6 @@ public class QuestionClass implements Serializable {
         mCorrectAnswer = correctAnswer;
 
     }
-
-
 
     public String getmQuestion() {
         return mQuestion;

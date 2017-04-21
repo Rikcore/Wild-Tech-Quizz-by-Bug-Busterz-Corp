@@ -33,6 +33,8 @@ public class QuizzDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quizz_detail);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        Typeface game_font = Typeface.createFromAsset(getAssets(), "fonts/Gamegirl.ttf");
+
 
         Intent intent = getIntent();
         final String quizzRef = intent.getStringExtra("quizzRef");
@@ -44,14 +46,11 @@ public class QuizzDetailActivity extends AppCompatActivity {
         mDatabase = FirebaseDatabase.getInstance().getReference("Quizz")
                 .child(intent.getStringExtra("quizzRef")).child("comments");
 
-        Typeface game_font = Typeface.createFromAsset(getAssets(), "fonts/Gamegirl.ttf");
 
         textViewTitre.setTypeface(game_font);
         textViewTitre.setText(newQuiz.getQuizzName());
 
         textViewEmptyList.setTypeface(game_font);
-
-
 
 
         final ScoreCommentUserAdapter mScoreCommentUserAdapter = new ScoreCommentUserAdapter(mDatabase, this, R.layout.infoquizz ); // APPELLE L'ADAPTER
@@ -73,28 +72,19 @@ public class QuizzDetailActivity extends AppCompatActivity {
                 super.onChanged();
                 InfoQuizzListview.setSelection(mScoreCommentUserAdapter.getCount() - 1);
 
-
-
             }
         });
-
-
-
-
 
         buttonGoPlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-               // Quizzclass newQuiz = (Quizzclass) InfoQuizzListview.getAdapter().getItem(position);
                 Toast.makeText(QuizzDetailActivity.this, R.string.goodLuck,Toast.LENGTH_LONG).show();
                 Intent goPlay = new Intent(QuizzDetailActivity.this, PlayQuizzActivity.class);
 
                 goPlay.putExtra("quizzRef", quizzRef);
                 goPlay.putExtra("quizzObject", newQuiz);
                 startActivity(goPlay);
-
-
             }
         });
 

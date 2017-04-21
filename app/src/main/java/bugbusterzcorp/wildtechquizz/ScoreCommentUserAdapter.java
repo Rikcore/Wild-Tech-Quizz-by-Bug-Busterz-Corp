@@ -4,13 +4,11 @@ import android.app.Activity;
 import android.net.Uri;
 import android.view.View;
 import android.widget.TextView;
-
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.Query;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
-
 import de.hdodenhof.circleimageview.CircleImageView;
 
 import static bugbusterzcorp.wildtechquizz.CreateQuizActivity.TOTAL_QUESTION;
@@ -23,9 +21,7 @@ public class ScoreCommentUserAdapter extends FirebaseListAdapter<ScoreCommentUse
     public ScoreCommentUserAdapter(Query ref, Activity activity, int layout) {
         super(ref, ScoreCommentUserClass.class, layout, activity);
 
-
     }
-
 
     @Override
     protected void populateView(final View v, ScoreCommentUserClass info) {
@@ -54,8 +50,6 @@ public class ScoreCommentUserAdapter extends FirebaseListAdapter<ScoreCommentUse
                         .into(profileImage);
             }
         });
-
-
     }
 
 }

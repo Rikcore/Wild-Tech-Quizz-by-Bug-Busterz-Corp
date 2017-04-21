@@ -6,16 +6,12 @@ import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.CountDownTimer;
-
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
-
 import com.google.firebase.database.DatabaseReference;
-
 import java.util.ArrayList;
-
 
 public class PlayQuizzActivity extends AppCompatActivity {
 
@@ -46,9 +42,6 @@ public class PlayQuizzActivity extends AppCompatActivity {
 
         Typeface digital = Typeface.createFromAsset(getAssets(), "fonts/DSDIGIT.TTF");
 
-
-
-
         Intent goPlay = getIntent();
         quizzString = goPlay.getStringExtra("quizzRef");
         Quizzclass newQuiz = (Quizzclass) goPlay.getExtras().get("quizzObject");
@@ -56,9 +49,6 @@ public class PlayQuizzActivity extends AppCompatActivity {
         sound = new SoundPlayer(this);
 
         newQuestion = (QuestionClass) questionList.get(0);
-
-        sound.playBoogieSound();
-
 
         textViewChoiceA = (TextView) findViewById(R.id.textViewChoiceA);
         textViewChoiceB = (TextView) findViewById(R.id.textViewChoiceB);
@@ -71,9 +61,7 @@ public class PlayQuizzActivity extends AppCompatActivity {
         textViewChoiceB.setText(newQuestion.getChoiceB());
         textViewQuestion.setText(newQuestion.getmQuestion());
 
-
         // TIMER
-
         timer = new CountDownTimer(15000, 1000) {
 
             public void onTick(long millisUntilFinished) {
@@ -84,9 +72,7 @@ public class PlayQuizzActivity extends AppCompatActivity {
                 } else {
                     textViewTimer.setText("" + millisUntilFinished / 1000);
                     textViewTimer.setTextColor(getResources().getColor(R.color.red));
-
                 }
-
             }
 
             public void onFinish() {
@@ -95,7 +81,6 @@ public class PlayQuizzActivity extends AppCompatActivity {
 
             }
         }.start();
-
 
 
         textViewChoiceA.setOnClickListener(new View.OnClickListener() {
@@ -125,7 +110,6 @@ public class PlayQuizzActivity extends AppCompatActivity {
                         }
                     }, 150);
                 }
-
                 updateQuestion();
 
             }
@@ -160,13 +144,13 @@ public class PlayQuizzActivity extends AppCompatActivity {
                         }
                     }, 150);
                 }
-
                 updateQuestion();
 
             }
         });
     }
-    public  void updateQuestion(){
+
+    public  void updateQuestion(){  //METHODE DE CHANGEMENT DE QUESTION
         if(killer == 0) {
             if (questionBrowser < questionList.size() - 1) {
 
@@ -190,19 +174,16 @@ public class PlayQuizzActivity extends AppCompatActivity {
                 startActivity(scoreIntent);
                 finish();
             }
-
         }
-
     }
 
     public void updateScore(){
         score++;
     }
 
-
     @Override
     public void onBackPressed() {
-        killer = 1; //killer to != so updateQuestion() wont be called.
+        killer = 1; //killer to != so updateQuestion() won't be called.
         finish();
 
     }

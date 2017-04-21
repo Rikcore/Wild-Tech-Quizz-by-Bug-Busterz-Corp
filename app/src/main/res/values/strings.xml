@@ -19,7 +19,7 @@
     <string name="emailCheck">Veuillez verifiez votre adresse email</string>
     <string name="fournirEmailAdress">Merci de fourni une adresse email.</string>
     <string name="renseigneMDP">Tu ne peux pas créer un compte sans mot de passe !</string>
-    <string name="envoieDonnées">Envoi des données à la NSA</string>
+    <string name="envoieDonnées">Enregistrement...</string>
     <string name="Error">Erreur</string>
     <string name="nouveauQuizz">, un nouveau quizz de</string>
     <string name="vousAttend">vous attend!</string>
@@ -71,5 +71,6 @@
     <string name="compteurzero">0/</string>
     <string name="by">Par</string>
     <string name="suppression">Astuces : Un appui long sur un de vos quizzs permet de le supprimer.</string>
+    <string name="connexionTitre">Connexion</string>
 
 </resources>

@@ -1,11 +1,7 @@
 package bugbusterzcorp.wildtechquizz;
 
-import android.graphics.Bitmap;
-
 import java.io.Serializable;
 import java.util.ArrayList;
-
-
 
 public class Quizzclass implements Serializable {
 
@@ -15,11 +11,9 @@ public class Quizzclass implements Serializable {
     private String mCreatorId;
     private String mUrlQuizz;
 
-
     private Quizzclass() {
 
     }
-
 
     public Quizzclass(ArrayList<QuestionClass> questions, String username, String quizzName, String creatorId, String urlQuizz){
 
@@ -62,7 +56,6 @@ public class Quizzclass implements Serializable {
     public void setmCreatorId(String mCreatorId) {
         this.mCreatorId = mCreatorId;
     }
-
 
     public String getUrlQuizz() {
         return mUrlQuizz;

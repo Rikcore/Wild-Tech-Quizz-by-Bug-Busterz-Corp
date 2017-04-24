@@ -69,7 +69,7 @@ public class ScoreActivity extends AppCompatActivity{
                 textViewResult.setText(score+"/"+quizzSize+" "+getString(R.string.scoreMediocre));
             }
             else if (note <= MEDIUM_CORE) {
-                gifTextViewResult.setBackgroundResource(R.drawable.lucky);
+                gifTextViewResult.setBackgroundResource(R.drawable.chevalier);
                 textViewResult.setText(score + "/" + quizzSize + " "+getString(R.string.scoreIntermediaire));
             } else {
 
@@ -113,7 +113,7 @@ public class ScoreActivity extends AppCompatActivity{
         final int score = scoreIntent.getIntExtra("score", 0);
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEND);
-        sendIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.monScore)+" " + score +"/"+TOTAL_QUESTION+" "+getString(R.string.quizzName) );
+        sendIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.monScore)+" " + score +"/"+TOTAL_QUESTION+" "+getString(R.string.surwildtechquizz) );
         sendIntent.setType("text/plain");
         startActivity(Intent.createChooser(sendIntent, getResources().getText(R.string.send_to)));
     }

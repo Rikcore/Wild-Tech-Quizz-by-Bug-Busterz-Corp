@@ -18,12 +18,10 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import static bugbusterzcorp.wildtechquizz.MainActivity.ASLAN;
-import static bugbusterzcorp.wildtechquizz.MainActivity.RIKCORE;
-
 public class QuizzListActivity extends AppCompatActivity {
 
     private DatabaseReference mDatabase;
+    ListView quizzListView;
 
 
     @Override
@@ -39,7 +37,7 @@ public class QuizzListActivity extends AppCompatActivity {
         final QuizzListAdapter mQuizzListAdapter = new QuizzListAdapter(mDatabase, this, R.layout.quizz_item ); // APPELLE L'ADAPTER
         final TextView textViewChoix = (TextView) findViewById(R.id.textViewChoix);
         textViewChoix.setTypeface(game_font);
-        final ListView quizzListView = (ListView) findViewById(R.id.QuizzLIstView); //APPELLE LA LISTE .XML
+        quizzListView = (ListView) findViewById(R.id.QuizzLIstView); //APPELLE LA LISTE .XML
         quizzListView.setAdapter(mQuizzListAdapter); //FUSION LIST ET ADAPTER
 
         mQuizzListAdapter.registerDataSetObserver(new DataSetObserver() {
@@ -50,6 +48,8 @@ public class QuizzListActivity extends AppCompatActivity {
 
             }
         });
+
+
 
         quizzListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -75,19 +75,18 @@ public class QuizzListActivity extends AppCompatActivity {
                 new AlertDialog.Builder(QuizzListActivity.this)
                         .setTitle(R.string.suppressionQuizz)
                         .setMessage(R.string.confirmerSuppression)
-
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
-                                // continue with delete
-
                                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                                 Quizzclass newQuiz = (Quizzclass) quizzListView.getAdapter().getItem(currentPosition);
-                                if(user.getUid().equals(newQuiz.getmCreatorId()) || user.getUid().equals(RIKCORE) || user.getUid().equals(ASLAN)) {
+
+                                if (canDelete(user, newQuiz)){
                                     mDatabase.child(mQuizzListAdapter.getItemKey(currentPosition)).removeValue();
                                 }
-                                else{
-                                    Toast.makeText(QuizzListActivity.this, R.string.suppressionQuizzCopain,Toast.LENGTH_LONG).show();
+                                else {
+                                    Toast.makeText(QuizzListActivity.this, R.string.suppressionQuizzCopain, Toast.LENGTH_LONG).show();
                                 }
+
                             }
                         })
 
@@ -104,4 +103,21 @@ public class QuizzListActivity extends AppCompatActivity {
 
 
     }
+
+    private boolean canDelete(FirebaseUser user, Quizzclass newQuiz){
+        
+        if (user.getUid().equals(newQuiz.getmCreatorId())){
+            return true;
+        }
+
+        for (int i = 0; i < ModeratorClass.MODERATORTAB.length; i++) {
+            if (user.getUid().equals(ModeratorClass.MODERATORTAB[i])) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
 }

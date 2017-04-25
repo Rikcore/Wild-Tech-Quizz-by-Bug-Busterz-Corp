@@ -46,9 +46,7 @@ public class CreateQuizActivity extends AppCompatActivity {
     private String uid;
     private StorageReference mStorage;
     private static int RESULT_LOAD_IMAGE = 1;
-    private Bitmap correctImage;
     private Uri selectedImageQuizz;
-    private FirebaseUser user;
     private String picturePath;
     private static String urlPhotoQuizz;
     final static int TOTAL_QUESTION = 10;
